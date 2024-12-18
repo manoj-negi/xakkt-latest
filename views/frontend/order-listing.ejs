@@ -1,0 +1,167 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Checkout example for Bootstrap</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/checkout/">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<%= process.env.BASE_URL %>/frontend/css/xakkt-slider.css" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="form-validation.css" rel="stylesheet">
+    <style>
+        .image-parent {
+            max-width: 90px;
+            }
+    </style>
+  </head>
+
+  <body class="bg-light">
+    <%- await include('../_partials/_frontend/navbar.ejs'); %>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="osahan-account-page-left shadow-sm bg-white h-100">
+                    <div class="border-bottom p-4">
+                        <div class="osahan-user text-center">
+                            <div class="osahan-user-media">
+                                Some products you may like to buy as well.
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="nav nav-tabs flex-column border-0 pt-4 pl-4 pb-4" id="myTab" role="tablist">
+                        
+                          <% for (const [i,product] of products.entries()) { %> 
+                        
+                        <li class="nav-item">
+                         
+                          <div class="card" style="width:200px">
+                            <img class="card-img-top" src="<%=process.env.IMAGES_BUCKET_PATH%>/images/products/<%=product.image%>" alt="Card image">
+                            <div class="card-body">
+                              
+                              <p class="card-text"><a href="<%=process.env.BASE_URL%>/<%=store.slug%>/product/<%=product.slug%>"><i class="icofont-food-cart"></i> <%=product.name.english%></a></p>
+                              
+                            </div>
+                          </div>
+
+                            
+                         </li>
+                         <% }%>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="osahan-account-page-right shadow-sm bg-white p-4 h-100">
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane  fade  active show" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+                            <h4 class="font-weight-bold mt-0 mb-4">My Orders</h4>
+                            <%if(!orders.length) {%>
+                                  No data found
+                              <%}%>
+                            <% for (const [i,order] of orders.entries()) { %> 
+                            <div class="bg-white card mb-4 order-list shadow-sm">
+                                <div class="x-order-head">
+                                    <div class="card-body">
+                                    <h6 class="mb-2">
+                                        <a href="javascript:void(0)" class="text-black"># <%=order.shipping.order_id%> </a>
+                                        <span class="text-black" style="float: right;">Delivered on Mon, Nov 12 </span>
+                                    </h6>
+                                    </div>
+                                  </div>
+                                <div class="gold-members p-4">
+                                    
+                                    <div class="media">
+                                        
+                                        <div class="media-body">
+                                           
+                                    
+                                            <ul class="list-group">
+                                                
+                                                <% for (const [i,product] of order.products.entries()) { %>   
+                                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                  <div class="">
+                                                      <p class="text-dark"><%=product._product.name.english%> x <%=product.quantity%> </p>
+                                                      <p class="text-gray mb-1"><i class="icofont-location-arrow"></i> <% if(order.shipping.address){ %><%=order.shipping.address.address1%> , Zipcode: <%=order.shipping.address.zipcode%>,<%=order.shipping.address.emirate%> <% } %>
+                                                      </p>
+                                                    </div> 
+                                                  <div class="image-parent">
+                                                      <img src="<%=product._product.image%>" class="img-fluid" alt="quixote">
+                                                  </div>
+                                                </li>
+                                                 <% }%>  
+                                              </ul>
+
+                                            <hr>
+                                            <div class="float-right">
+                                                <!--a class="btn btn-sm btn-outline-primary" href="#"><i class="icofont-headphone-alt"></i> HELP</a-->
+                                                <!--a class="btn btn-sm btn-primary" href="#"><i class="icofont-refresh"></i> REORDER</a-->
+                                            </div>
+                                            <p class="mb-0 text-black text-primary pt-2"><span class="text-black font-weight-bold"> Total Paid:</span> <%= (!!locals.store)?store._currency.name:'' %><%=order.total_cost%>
+                                            </p>
+                                        </div>
+                                    </div>
+    
+                                </div>
+
+                            </div>
+                            <% }%>  
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+       <!-- Footer -->
+   <%- await include('_partials/footer.ejs'); %>
+   <!-- Footer -->
+    
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/vendor/holder.min.js"></script>
+    <script>  var baseUrl = '<%=process.env.BASE_URL%>'</script>
+    <script src="/frontend/js/xakkt.js"></script>
+    
+    <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+    </script>
+  </body>
+</html>

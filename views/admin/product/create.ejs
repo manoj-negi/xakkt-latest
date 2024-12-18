@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>XAKKT 2.0</title>
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/fontawesome-free/css/all.min.css">
+  <!-- daterange picker -->
+  <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/daterangepicker/daterangepicker.css">
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Bootstrap Color Picker -->
+  <link rel="stylesheet"
+    href="<%= process.env.BASE_URL %>/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet"
+    href="<%= process.env.BASE_URL %>/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <!-- Bootstrap4 Duallistbox -->
+  <link rel="stylesheet"
+    href="<%= process.env.BASE_URL %>/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+  <!-- BS Stepper -->
+  <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/bs-stepper/css/bs-stepper.min.css">
+  <!-- dropzonejs -->
+  <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/dropzone/min/dropzone.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="<%= process.env.BASE_URL %>/dist/css/adminlte.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini">
+  <div class="wrapper">
+    <!-- Navbar -->
+    <%- await include('../../_partials/_admin/navbar.ejs'); %>
+    <!-- /.navbar -->
+    <!-- Main Sidebar Container -->
+    <%- await include('../../_partials/_admin/sidebar.ejs'); %>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>Add Product</h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">New Product</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <!-- /.container-fluid -->
+      </section>
+      <!-- Main content -->
+      <section class="content">
+        <div class="container">
+          <!-- SELECT2 EXAMPLE -->
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Product Details</h3>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <form id="productForm" method="post" action="/admin/product/create" enctype="multipart/form-data">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="productname">Name</label>
+                      <input type="text" name="en_name" class="form-control" id="productname"
+                        placeholder="Enter name">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="_category">Product Category</label>
+                      <select name="_category" class="form-control custom-select" id="category">
+                        <option value="">Choose one</option>
+                        <% if(productCategories) productCategories.forEach(function(category){ %>
+                        <option value="<%=category._id%>"><%=category.name%></option>
+                        <% }) %>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Description</label>
+                      <textarea name="description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Short Description</label>
+                      <textarea name="short_description" class="form-control" rows="3"
+                        placeholder="Enter ..."></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="departmentLogo">Image</label>
+                      <div class="input-group">
+                        <div class="custom-file">
+                          <input type="file" name="logo" class="custom-file-input" accept="image/png,image/jpeg"
+                            id="departmentLogo">
+                          <label class="custom-file-label" for="departmentLogo">Choose file</label>
+                        </div>
+
+                      </div>
+                    </div>
+                    <!-- /.col -->
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="slug">Slug</label>
+                      <input type="text" name="slug" class="form-control" id="slug" placeholder="Product slug">
+                      <div class="message" style="display:none;">
+                        <span style="color:red">Duplicate slug</span>
+                      </div>
+                    </div>
+                  </div>
+                
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="unit">Unit</label>
+                      <select name="unit" class="form-control custom-select" id="unit">
+                        <option value="">Choose one</option>
+                        <% if(unit) unit.forEach(function(unit){ %>
+                        <option value="<%=unit._id%>"><%=unit.name%></option>
+                        <% }) %>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="weight">Weight</label>
+                      <input type="number" name="weight" class="form-control" id="weight" placeholder="Weight">
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="status">Status</label>
+                      <select name="status" class="form-control custom-select" id="status">
+                        <option value="true">Active</option>
+                        <option value="false">Inactive</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="trending"> Trending </label>
+                      <select name="trending" id="trending" class="form-control custom-select">
+                        <option value="false" selected>No</option>
+                        <option value="true">Yes</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="brands">Brand</label>
+                      <select name="brand" class="form-control custom-select" id="brand">
+                        <option value="">Select a brand</option>
+                        <% if(brands) brands.forEach(function(brand){ %>
+                        <option value="<%=brand._id%>"><%=brand.name%></option>
+                        <% }) %>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="cuisine">Cuisine</label>
+                      <select name="cuisine" id="cuisine" class="form-control custom-select">
+                        <option value="">Select a cuisine</option>
+                        <option value="Indian">Indian</option>
+                        <option value="American">American</option>
+                        <option value="Middle Eastern">Middle Eastern</option>
+                        <option value="Hispanic">Hispanic</option>
+                        <option value="Japanese">Japanese</option>
+                        <option value="Chinese">Chinese</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button type="submit" name ="submit" class="btn btn-primary submit">Submit</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <%- await include('../../_partials/_admin/footer.ejs'); %>
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  </div>
+  <!-- ./wrapper -->
+
+
+  <!-- jQuery -->
+  <script src="<%= process.env.BASE_URL %>/plugins/moment/moment.min.js"></script>
+
+  <script src="<%= process.env.BASE_URL %>/plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="<%= process.env.BASE_URL %>/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- bs-custom-file-input -->
+
+   <!-- Select2 -->
+   <script src="<%= process.env.BASE_URL %>/plugins/select2/js/select2.full.min.js"></script>
+
+  <script src="<%= process.env.BASE_URL %>/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="<%= process.env.BASE_URL %>/dist/js/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+
+  <!-- jquery-validation -->
+  <script src="<%= process.env.BASE_URL %>/plugins/jquery-validation/jquery.validate.min.js"></script>
+  <script src="<%= process.env.BASE_URL %>/plugins/jquery-validation/additional-methods.min.js"></script>
+
+  <script>
+    $('#brand, #cuisine, #category').select2({})
+    $("#sku").keyup(function () {
+      let formdata = {
+        "sku": $(this).val()
+      }
+      $.ajax({
+        url: '/admin/product/sku',
+        type: 'POST',
+        data: formdata
+      }).done((data) => {
+        if (!data.status) {
+          $('.message').show();
+          $('.submit').prop('disabled', true).css('background-color', 'red');
+        }else{
+        $('.message').hide();
+        $('.submit').prop('disabled', false);
+        $('.submit').addClass('btn btn-primary ').css('background-color', '')
+        }
+      })
+    })
+
+  
+
+    $(function () {
+      bsCustomFileInput.init();
+    });
+
+    $(function () {
+
+      $('#productForm').validate({
+        rules: {
+          en_name : { required: true },
+          unit    : {  required: true },
+          logo    : { required: true },
+          weight  : { required: true }
+        },
+        messages: {
+          name: { required: "Please enter a department name" },
+          unit: { required: "Please select an unit"  },
+          logo: { required: "Please select an image" },
+          slug:  { required: "Please enter unique slug code" },
+          weight: { required: "Please enter weight value" }
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+          error.addClass('invalid-feedback');
+          element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+          $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+          $(element).removeClass('is-invalid');
+        }
+      });
+    });
+  </script>
+
+</body>
+
+</html>

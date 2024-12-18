@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>XAKKT 2.0</title>
+      <!-- Google Font: Source Sans Pro -->
+      <link rel="stylesheet"
+         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+      <!-- Font Awesome -->
+      <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/fontawesome-free/css/all.min.css">
+      <!-- daterange picker -->
+      <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/daterangepicker/daterangepicker.css">
+      <!-- iCheck for checkboxes and radio inputs -->
+      <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+      <!-- Bootstrap Color Picker -->
+      <link rel="stylesheet"
+         href="<%= process.env.BASE_URL %>/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+      <!-- Tempusdominus Bootstrap 4 -->
+      <link rel="stylesheet"
+         href="<%= process.env.BASE_URL %>/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+      <!-- Select2 -->
+      <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/select2/css/select2.min.css">
+      <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+      <!-- Bootstrap4 Duallistbox -->
+      <link rel="stylesheet"
+         href="<%= process.env.BASE_URL %>/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+      <!-- BS Stepper -->
+      <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/bs-stepper/css/bs-stepper.min.css">
+      <!-- dropzonejs -->
+      <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/dropzone/min/dropzone.min.css">
+      <!-- Theme style -->
+      <link rel="stylesheet" href="<%= process.env.BASE_URL %>/dist/css/adminlte.min.css">
+      <link rel="stylesheet" type="text/css"
+         href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+      <style>
+         .tr_clone_remove {
+         cursor: pointer;
+         }
+      </style>
+   </head>
+   <body class="hold-transition sidebar-mini">
+      <div class="wrapper">
+      <!-- Navbar -->
+      <%- await include('../../_partials/_admin/navbar.ejs'); %>
+      <!-- /.navbar -->
+      <!-- Main Sidebar Container -->
+      <%- await include('../../_partials/_admin/sidebar.ejs'); %>
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+         <% if(failure.length){ %>
+         <div class="alert alert-danger">
+            <strong>
+            <%= failure[0] %>
+            </strong>
+         </div>
+         <% } %>
+         <% if(success.length){ %>
+         <div class="alert alert-success">
+            <strong>
+            <%= success %>
+            </strong>
+         </div>
+         <% } %>
+         <!-- Content Header (Page header) -->
+         <section class="content-header">
+            <div class="container-fluid">
+               <div class="row mb-2">
+                  <div class="col-sm-6">
+                     <h1>Promotions</h1>
+                  </div>
+                  <div class="col-sm-6">
+                     <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Promotions</li>
+                     </ol>
+                  </div>
+               </div>
+            </div>
+            <!-- /.container-fluid -->
+         </section>
+         <!-- Main content -->
+         <section class="content">
+            <div class=".container-fluid">
+               <!-- SELECT2 EXAMPLE -->
+               <div class="card card-primary">
+                  <div class="err" style="display:none;">
+                     <span>Store already selected</span>
+                  </div>
+                  <div class="price-validation" style="display:none;">
+                    <span>Promo price should be less than regular price</span>
+                 </div>
+                  <div class="card-header">
+                     <h3 class="card-title"><%= productName.name.english %></h3>
+                     <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                        </button>
+                     </div>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                     <form id="promotionForm" method="post" action="/admin/product_price/create">
+                        <div class="row">
+                           <table id="gatePass" class="table table-striped">
+                              <thead>
+                                 <tr>
+                                    <th>Store</th>
+                                    <th>Reg Price</th>
+                                    <th>Currency</th>
+                                    <th>Promo Type</th>
+                                    <th>Promo %</th>
+                                    <th>Promo Price</th>
+                                    <th>Begin Date</th>
+                                    <th>End Date</th>
+                                    <th></th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <input type="hidden" id="store" value="" name="no_of_stores" />
+                                 <% if(storeData.length>0){ %>
+                                 <% storeData.forEach(function(prices){ %>
+                                 <div id="item_details">
+                                    <tr class="tr_clone" id="parent">
+                                       <td style="width:18%">
+                                          <select name="store[]" class="form-control custom-select store-name" required
+                                             onclick="changeStore(this)">
+                                             <option value="">Select stores</option>
+                                             <% if(stores) stores.forEach(function(store){ %>
+                                             <option <%=(store._id.equals(prices.storeId))?'selected':''%> value="<%=store._id%>">
+                                                <%=store.name%>
+                                             </option>
+                                             <% }) %>
+                                          </select>
+                                       </td>
+                                       <td style="width:10%"> <input type="text" class="form-control rgprice"
+                                          value="<%= prices.regularprice %>" name="regular_price[]" class="form-control" readonly>
+                                       </td>
+                                      
+                                       <td style="width:10%"> <input type="text" name="currency[]" value="<%= prices._currency  %>"
+                                          class="currency form-control" readonly required> </td>
+                                       
+                                       <td style="width:15%">
+                                          <select name="deal[]" class="form-control custom-select deal-name"
+                                             onchange="handleDuplicacy(this)" required>
+                                             <option value="">Select Deal</option>
+                                             <% if(deals) deals.forEach(function(deal){ %>
+                                             <option <%=(deal._id.equals(prices._deal))?'selected':''%> value="<%=deal._id%>">
+                                                <%=deal.name%>
+                                             </option>
+                                             <% }) %>
+                                          </select>
+                                       </td>
+                                       <td style="width:10%">
+                                          <input type="number" name="deal_value[]" step="any" value="<%= prices.deal_percentage %>"
+                                             class="form-control deal" required>
+                                       </td>
+                                       <td style="width:10%"> <input type="number" step="any" required name="deal_price[]"
+                                          value="<%= prices.deal_price %>" class="form-control deal_price"> </td>
+                                       <td> <input type="date" required name="stime[]" onclick="fromdatevalidation(this)"
+                                           value="<%= moment(prices.deal_start).format('YYYY-MM-DD');  %>"
+                                          class="form-control from-date" required> </td>
+                                       <td> <input type="date" required name="etime[]" onclick="fromdatevalidation(this)"
+                                          class="form-control to-date" value="<%= moment(prices.deal_end).format('YYYY-MM-DD') %>"
+                                          required>
+                                       </td>
+                                       <td>
+                                          <i class="fa fa-trash tr_clone_remove" data-id="<%= prices._id %>"
+                                             onclick="removeRow(this)" aria-hidden="true"></i>
+                                       </td>
+                                    </tr>
+                                 </div>
+                                 <%})%>
+                                 <%} else {%>
+                                 <tr class="tr_clone" id="parent">
+                                    <td style="width:18%">
+                                       <select name="store[]" required class="form-control custom-select store-name" required
+                                          onclick="changeStore(this)">
+                                          <option value="">Select stores</option>
+                                          <% if(stores) stores.forEach(function(store){ %>
+                                          <option value="<%=store._id%>">
+                                             <%=store.name%>
+                                          </option>
+                                          <% }) %>
+                                       </select>
+                                    </td>
+                                    <td style="width:10%"> <input type="text" name="regular_price[]" class="rgprice form-control"
+                                       readonly required> </td>
+                                    <td style="width:10%"> <input type="text" name="currency[]" class="currency form-control"
+                                       readonly> </td>
+                                    <td style="width:15%">
+                                       <select name="deal[]" id="deal" class="form-control custom-select deal-name" required
+                                          onclick="handleDuplicacy(this)" required>
+                                          <option value="">Select Deal</option>
+                                          <% if(deals) deals.forEach(function(deal){ %>
+                                          <option value="<%=deal._id%>">
+                                             <%=deal.name%>
+                                          </option>
+                                          <% }) %>
+                                       </select>
+                                    </td>
+                                    <td style="width:10%">
+                                       <input type="number" required name="deal_value[]" step="any" class="form-control deal"
+                                          required>
+                                    </td>
+                                    <td style="width:20%"> <input type="number" required name="deal_price[]" step="any"
+                                       class="form-control deal_price">
+                                    </td>
+                                    <td> <input type="date" required name="stime[]" class="form-control from-date"
+                                       onclick="fromdatevalidation(this)" required>
+                                    </td>
+                                    <td> <input type="date" required name="etime[]" class="form-control to-date"
+                                       onclick="fromdatevalidation(this)" required> </td>
+                                    <td>
+                                       <i class="fa fa-trash tr_clone_remove" onclick="removeRow(this)" data-id=""
+                                          aria-hidden="true"></i>
+                                    </td>
+                                 </tr>
+                                 <%}%>
+                              </tbody>
+                           </table>
+                        </div>
+                        <input type="hidden" id="productid" name="productid" value="<%= productid %>"></input>
+                        <!-- /.card-body -->
+                        <span class="input-group-btn">
+                        </span>
+                        <div class="card-footer">
+                           <input type="button" name="add" value="Add" id="tr_clone_add"
+                              class="btn btn-primary tr_clone_add add">
+                           <button type="submit" value="submit" class="btn btn-primary psubmit">Submit</button>
+                        </div>
+                     </form>
+                  </div>
+                  <!-- /.card -->
+               </div>
+               <!-- /.container-fluid -->
+         </section>
+         <!-- /.content -->
+         </div>
+         <!-- /.content-wrapper -->
+         <%- await include('../../_partials/_admin/footer.ejs'); %>
+         <!-- Control Sidebar -->
+         <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+         </aside>
+         <!-- /.control-sidebar -->
+      </div>
+      <!-- ./wrapper -->
+      <!-- jQuery -->
+      <script src="<%= process.env.BASE_URL %>/plugins/jquery/jquery.min.js"></script>
+      <!-- Bootstrap 4 -->
+      <script src="<%= process.env.BASE_URL %>/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- bs-custom-file-input -->
+      <script src="<%= process.env.BASE_URL %>/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+      <!-- AdminLTE App -->
+      <script src="<%= process.env.BASE_URL %>/dist/js/adminlte.min.js"></script>
+      <!-- AdminLTE for demo purposes -->
+      <script src="<%= process.env.BASE_URL %>/plugins/select2/js/select2.full.min.js"></script>
+      <!-- sweetAlert -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+      <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+      <!-- jquery-validation -->
+      <script src="<%= process.env.BASE_URL %>/plugins/jquery-validation/jquery.validate.min.js"></script>
+      <script src="<%= process.env.BASE_URL %>/plugins/jquery-validation/additional-methods.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+         integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+         crossorigin="anonymous"></script>
+      <!-- sweetAlert -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+      <script>
+       
+         $(function () {
+           bsCustomFileInput.init();
+         });
+         
+         $(function () {
+           $('.select2').select2({
+             placeholder: "Select Percentage"
+           })
+         
+         });
+         
+         $(function () {
+           $(".tr_clone_add").click(function (e) {
+             $(".select2").select2('destroy');
+             var $tr = $('.tr_clone').first();
+             var $clone = $tr.clone();
+             $clone.attr('id', '');
+             $clone.find('input').val('');
+             $clone.find('select').val('')
+             $(".tr_clone:last").after($clone)
+           });
+         })
+       
+       
+       
+       function fromdatevalidation(that) {
+           var today = new Date().toISOString().split('T')[0];
+           return $(that).attr('min', today);
+         }
+         
+         $(document).on("input", '.deal', function (e) {
+           let that = e.target
+           let regularPrice = that.parentElement.parentElement.getElementsByClassName("rgprice")[0].value
+           let dealPrice = 0, dealPercentage = that.value
+           dealPrice = eval(regularPrice - (regularPrice * dealPercentage) / 100)
+           that.parentElement.parentElement.getElementsByClassName("deal_price")[0].value = dealPrice.toFixed(2)
+         });
+
+         
+         $(document).on("input", '.deal_price', function (e) {
+           let that = e.target
+           let values = that.value
+           that.value = (values.indexOf(".") >= 0) ? (values.substr(0, values.indexOf(".")) + values.substr(values.indexOf("."), 3)) : values;
+           let regularPrice = that.parentElement.parentElement.getElementsByClassName("rgprice")[0].value
+           let dealPrice = that.value, dealPercentage = 0
+           if (parseFloat(dealPrice) > parseFloat(regularPrice)) {
+                             
+             that.parentElement.parentElement.getElementsByClassName("deal_price")[0].style.border = '1px solid red'
+             $('.price-validation').show()
+             $('.psubmit').prop('disabled', true);
+           } else {
+             $('.price-validation').hide()
+             $('.psubmit').prop('disabled', false);
+             that.parentElement.parentElement.getElementsByClassName("deal_price")[0].style.border = ''
+            
+           }
+         
+           dealPercentage = eval(((regularPrice - dealPrice) / regularPrice) * 100)
+           that.parentElement.parentElement.getElementsByClassName("deal")[0].value = dealPercentage.toFixed(2)
+         });
+         
+         $("form").submit(function (event) {
+           var rowCount = $("#gatePass tr").length - 1;
+           $('#store').val(rowCount);
+         });
+         function changeStore(that) {
+           handleDuplicacy(that)
+           $.ajax({
+             url: '/admin/regularprice/get',
+             type: 'POST',
+             data: {
+               storeid: $(that).val(),
+               productid: $('#productid').val(),
+             },
+         
+           }).done((data) => {
+        
+             if (data.status) {
+               $(that).closest('.tr_clone').find('.rgprice').val(data.data.regular_price)
+               $(that).closest('.tr_clone').find('.currency').val(data.store._currency.name)
+         
+             }
+             else {
+               $(that).closest('.tr_clone').find('.rgprice').val('')
+               alert("Regular price not added ")
+             }
+           });
+         
+         }
+         
+         function removeRow(that) {
+           if ($('#gatePass >tbody >tr ').length > 1) {
+             if ($(that).data("id").trim() == "") {
+               return $(that).closest('tr').remove()
+             }
+             $.ajax({
+               url: '/admin/product_price/remove',
+               type: 'POST',
+               data: {
+                 _id: $(that).data("id"),
+               },
+             }).done((data) => {
+               if (data.status) {
+                 $(that).closest('tr').remove();
+               }
+             });
+           }
+           else {
+             sweetAlert("", "Cannot delete last value", "error");
+         
+           }
+         }
+         function handleDuplicacy(that) {
+           var promotionPrices = $('#promotionForm').serializeArray();
+           var idArr = [];
+         
+           $.each(promotionPrices, function (key, value) {
+         
+             if (value['name'] == 'store[]')
+               idArr.push(value['value'])
+           })
+         
+           if (new Set(idArr).size !== idArr.length) {
+             $('.err').show();
+             $('.psubmit').prop('disabled', true);
+             return false;
+           } else {
+             $('.err').hide(); $('.psubmit').prop('disabled', false)
+           }
+         
+         }
+         
+      </script>
+   </body>
+</html>

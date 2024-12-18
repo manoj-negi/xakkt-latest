@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+   <script src="https://use.fontawesome.com/73e16e51a8.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.js"></script>
+  
+<link rel="stylesheet" href="<%= process.env.BASE_URL %>/frontend/css/xakkt-slider.css" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" type="text/css">
+   
+
+</head>
+<body>
+   <!-- Navbar -->
+   <%- await include('../_partials/_frontend/navbar.ejs'); %>
+   <!-- /.navbar -->
+   <div class="main-body">
+      
+      <div class="jumbotron jumbotron-fluid x-jumbo">
+         <div id="bannerCarousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+               <% for (const [i,banner] of banners.banner.entries()) { %>
+                  <li data-target="#bannerCarousel" data-slide-to="<%=i%>" class="<%=(i==0)?'active':''%>"></li>
+                <% }%> 
+            </ol>
+            <div class="carousel-inner">
+                <% for (const [i,banner] of banners.banner.entries()) { %>
+                    <div class="carousel-item <%=(i==0)?'active':''%>">
+                        <img class="d-block w-100" src="<%= process.env.IMAGES_BUCKET_PATH %>/banners/<%=banner.image%>" alt="First slide">
+                    </div>
+                <% }%> 
+            </div>
+            <a class="carousel-control-prev" href="#bannerCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#bannerCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+            </a>
+         </div>
+
+
+         <div class="container-list">
+            <ul class="list-inline">
+              <%if(parentCategory){%>
+              <li class="list-inline-item"><a href="<%=process.env.BASE_URL%>/products/<%=store.slug%>"><%=parentCategory.name%></a></li>
+              <%}%>
+                <% for (const [i,category] of categories.entries()) { %>
+                     <li class="list-inline-item"><a href="<%=process.env.BASE_URL%>/<%=store.slug%>/category/products/<%=category.slug%>"><%=category.name%></a></li>
+                <% }%>    
+            </ul>
+         </div>
+      </div>
+
+      <section style="padding-left:20px">
+        <a href="javascript:void(0)" onclick="history.back()"> Back</a>
+      </section>
+     <section class="categ-pro">
+        <div class="container mt-5 mb-5">
+            
+            <div class="row mt-1">
+                <% for (const [i,product] of storeProducts.entries()) { %>
+                <div class="col-md-3 col-sm-12 mb-3">
+                    <div class="p-card bg-white p-2 rounded px-3 text-center">
+                       <!--div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2">2 credits</span></div-->
+                       <img class="card-img-top" src="<%=process.env.IMAGES_BUCKET_PATH%>/images/products/<%=product.image%>" alt="Card image cap">
+                       
+                       <!--span class="badge badge-primary py-1 mb-2">integrations</span-->
+                       
+
+                        <div class="d-block mb-5">
+                            <div class="product-title">
+                              <a href="<%=process.env.BASE_URL%>/<%=store.slug%>/product/<%=product.slug%>" > <%=product.name.english%> </a>
+                            </div>
+                            <div><%=product.weight%> <%=product.unit%></div>
+                            <div class="pricing">
+
+                              <%if(product.deal_price) {%>
+                                 <span style="width:100%" class="regular_price"><del><%=store._currency.name%><%=product.regular_price%></del></span>
+                                 <span class="deal_price"><%=store._currency.name%><%=product.deal_price%></span>
+                             <%}else{%>
+                                 <span class="deal_price"><%=store._currency.name%><%=product.regular_price%></span>
+                              <%}%> 
+                               
+                            </div>
+
+                          <form class="cart-form" method="post" id="product_form_subcategory_<%=product._id%>">
+                            <input type="hidden" name="_store" value="<%=store._id%>" />
+                            <%- await include('_partials/productSliders.ejs',{product:product,slider:'subcategory'}); %>
+                          </form>  
+                          </div>
+                       
+                       
+                   
+                    </div>
+                 </div>
+                 <% }%> 
+            </div>
+           
+         </div> 
+     </section>                  
+     
+  
+
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          
+          <%if(locals.pre){%>
+            <li class="page-item">
+              <a class="page-link" href="<%=process.env.BASE_URL%>/<%=storeSlug%>/category/products/<%=categorySlug%>?page=<%=pre%>" tabindex="-1">Previous</a>
+            </li>
+          <% } %>
+
+          <%for( var i=1; i<totalPages; i++) {%>
+            <li class="page-item <%=(currentPage==i)?'active':''%>"><a class="page-link" href="<%=process.env.BASE_URL%>/<%=storeSlug%>/category/products/<%=categorySlug%>?page=<%=i%>"><%=i%></a></li>
+          <%}%>
+
+          <%if(locals.next){%>
+          <li class="page-item" >
+            <a href="<%=process.env.BASE_URL%>/<%=storeSlug%>/category/products/<%=categorySlug%>?page=<%=next%>" class="page-link" >Next</a>
+          </li>
+          <% } %>
+        </ul>
+      </nav>
+
+   </div>
+
+
+
+<%- await include('modals/product-details.ejs'); %>
+
+
+   <!-- Footer -->
+   <%- await include('_partials/footer.ejs'); %>
+  <!-- Footer -->
+  <script> var baseUrl = '<%=process.env.BASE_URL%>'</script>
+  <script> var imageBaseUrl = '<%=process.env.IMAGES_BUCKET_PATH%>' </script>
+   <script src="<%= process.env.BASE_URL %>/frontend/js/xakkt.js"></script>
+
+  
+</body>
+</html>

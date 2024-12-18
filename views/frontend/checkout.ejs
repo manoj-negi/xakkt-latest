@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+      <script src="https://use.fontawesome.com/73e16e51a8.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.js"></script>
+      <link rel="stylesheet" href="<%= process.env.BASE_URL %>/frontend/css/xakkt-slider.css" type="text/css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" type="text/css">
+      <script src="<%= process.env.BASE_URL %>/plugins/select2/js/select2.full.min.js"></script>
+    
+      <link rel="stylesheet" href="<%= process.env.BASE_URL %>/frontend/css/checkout.css" />
+      <script src="https://js.stripe.com/v3/"></script>
+      <script> 
+          const stripe = Stripe("<%=process.env.STRIPE_PUBLISH_KEY%>");
+          const baseUrl = '<%=process.env.BASE_URL%>';
+      </script>
+      <script src="<%= process.env.BASE_URL %>/frontend/js/checkout.js" defer></script>
+      <style>
+        #cvv{
+          width:50px;
+        }
+      </style>
+        <style>
+          /* Variables */
+          
+          :root {
+              --body-color: rgb(247, 250, 252);
+              --button-color: rgb(30, 166, 114);
+              --accent-color: #0a721b;
+              --secondary-color: #ed5f74;
+              --link-color: #ffffff;
+              --font-color: rgb(105, 115, 134);
+              --gray-border: rgba(0, 0, 0, 0.15);
+              --gray-light: rgba(0, 0, 0, 0.4);
+              --body-font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+              --radius: 6px;
+              --form-width: 400px;
+          }
+          
+       
+          
+          .sr-input,
+          input[type="text"] {
+              border: 1px solid var(--gray-border);
+              border-radius: var(--radius);
+              padding: 5px 12px;
+              height: 44px;
+              width: 100%;
+              transition: box-shadow 0.2s ease;
+              background: white;
+              -moz-appearance: none;
+              -webkit-appearance: none;
+              appearance: none;
+          }
+          
+          .sr-input:focus,
+          input[type="text"]:focus,
+          button:focus,
+          .focused {
+              box-shadow: 0 0 0 1px rgba(50, 151, 211, 0.3), 0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 0 0 4px rgba(50, 151, 211, 0.3);
+              outline: none;
+              z-index: 9;
+          }
+          
+          .sr-input::placeholder,
+          input[type="text"]::placeholder {
+              color: var(--gray-light);
+          }
+          
+          
+          /* Form */
+          
+          .sr-form-row {
+              margin: 16px 0;
+          }
+          
+          label {
+              font-size: 13px;
+              font-weight: 500;
+              margin-bottom: 8px;
+              display: inline-block;
+          }
+          
+          
+          /* Buttons and links */
+          
+          button {
+              background: var(--accent-color);
+              border-radius: var(--radius);
+              color: white;
+              border: 0;
+              padding: 12px 16px;
+              margin-top: 16px;
+              font-weight: 600;
+              cursor: pointer;
+              transition: all 0.2s ease;
+              display: block;
+              box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
+              width: 100%;
+          }
+          
+          button:hover {
+              filter: contrast(115%);
+          }
+          
+          button:active {
+              transform: translateY(0px) scale(0.98);
+              filter: brightness(0.9);
+          }
+          
+          button:disabled {
+              opacity: 0.5;
+              cursor: none;
+          }
+          .sr-card-element {
+              padding-top: 12px;
+          }
+          
+          </style>
+   </head>
+   <body class="bg-light">
+      <%- await include('../_partials/_frontend/navbar.ejs'); %>
+      <div class="container">
+      <div class="py-5 text-center">
+         <h2>Checkout</h2>
+      </div>
+      <div class="row">
+         <div class="col-md-4 order-md-2 mb-4">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+               <span class="text-muted">Your cart</span>
+               <% var qnt = 0 %>
+               <%if(data?.cart){%>
+                  <% for (const [i,product] of data.cart.entries()) { %> 
+                    <% qnt += product.quantity %>
+                  <% } %>
+                 <%}%> 
+               <span class="badge badge-secondary badge-pill"><%=qnt%></span>
+              
+            </h4>
+            <form class="card p-2" method="post" id="placeorder" action="<%=process.env.BASE_URL%>/placeorder">
+               <input type="hidden" name="_store" value="<%=store._id%>"/>
+               <input type="hidden" name="slug" value="<%=store.slug%>"/>
+               <input type="hidden" name="payment_method" value="0" />
+            <ul class="list-group mb-3">
+               <% var total = 0 %>
+               <% if(data?.cart){ for (const [i,product] of data.cart.entries()) { %>  
+               <li class="list-group-item d-flex justify-content-between lh-condensed">
+                  <div>
+
+                     <input type="hidden" name="products[<%=i%>][_product]" value="<%=product._product._id%>"/>
+                     <input type="hidden" name="products[<%=i%>][quantity]" value="<%=product.quantity%>"/>
+                     <h6 class="my-0"><%=product._product.name.get('english')%> </h6>
+                     <small class="text-muted"> X <%= product.quantity %></small>
+                     <small style="margin-left: 5px;">20gm</small>
+                  </div>
+                  
+                  <span class="text-muted"><%=product.total_price.toFixed(2)%></span>
+                  <% total += product.total_price %>
+               </li>
+               <% } }%>
+             
+               <li class="list-group-item d-flex justify-content-between">
+                  <span>Total</span>
+                  <strong><%=store._currency.name%> <%=total.toFixed(2)%></strong>
+                  <input type="hidden" name="total_cost" value="<%=total.toFixed(2)%>"/>
+               </li>
+            </ul>
+
+            
+               <!-- <div class="input-group">
+                  <button class="btn btn-primary btn-lg btn-block" <%=(data?.cart)?"":"disabled"%> type="submit">Place your order</button>
+               </div> -->
+             </form>
+
+         </div>
+         <div class="col-md-8 order-md-1">
+            <h4 class="mb-3">Billing address</h4>
+            <div class="row">
+
+            
+           
+            <% if(addresses) for (const [i,address] of addresses.entries()) { %> 
+            
+            <div class="col-md-4 mb-3 px-2">
+               <div class="xact-add-card <%=(address.is_default)?'active':''%>">
+                  <%if(address.is_default){%> <div class="defaut_add">
+                     <input type="hidden" name="address" value="<%=address._id%>" form="placeorder"/>
+                         <span class="d-flex align-items-center">Default: <img src="<%=process.env.BASE_URL%>/frontend/images/xakkt.png" alt="User Avatar"  class="d-xat-logo"></span>
+                  </div><%}%>
+                  <div class="address_xat">
+                     <div class="xact-box-inner">
+                        <div class="a-section address-section-no-default">
+                           <div class="a-row a-spacing-small">
+                              <ul class="mb-0">
+                                 <li>
+                                    <span class="a-list-item">
+                                       <h5 class="addr-search-name  a-text-bold"><%=addresses.first_name%> <%addresses.last_name%></h5>
+                                    </span>
+                                 </li>
+                                 <li><span class="addr-search-text"><%=address.address1%> <%=address.address2%></span></li>
+                                 <li><span class="addr-search-text"><%=address.area%> <%=address.zipcode%></span></li>
+                                 <li><span class="addr-search-text"><%=address.country%></span></li>
+                                 <li><span class="addr-search-text">Contact number: <%=address.phoneno%></span></li>
+                              </ul>
+                              <div class="mt-2"><a class="add-declarative"href="#">Add delivery instructions </a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="aedit-address-desktop-link">
+                        <a href="#" class="a-link-normal"  data-toggle="modal" data-id=<%=address._id%> data-target="#editAddressModal">Edit</a> &nbsp; | &nbsp;
+                        <%if(!address.is_default){%><a class="a-link-normal delete-link" href="<%=process.env.BASE_URL%>/user/delete-address/<%=address._id%>">Remove</a> &nbsp; | &nbsp;<%}%>
+                        <%if(!address.is_default){%>  <a class="a-link-normal" href="<%=process.env.BASE_URL%>/user/defautl-address/<%=address._id%>">Set as Default</a> <%}%>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <%}%>
+
+            <div class="col-md-4 mb-3 px-2">
+              <div class="xact-add-card">
+                <div class="d-flex align-items-center justify-content-center h-100">
+                    
+                    <div class="add-address-card py-5" data-toggle="modal" data-target="#addAddressModal">
+                      
+                      <div class="add-icon text-center"><i class="fa fa-plus" aria-hidden="true"></i></div>
+                      <h2 class="text-center">Add Address</h2>
+                    
+                    </div>
+
+                  </div>
+              </div>
+            </div>
+
+            </div>
+               
+         </div>
+      </div>
+      </div>
+      <!-- Footer -->
+
+      <!-- add address modal-->
+       <div class="modal" id="addAddressModal">
+         <div class="modal-dialog">
+           <div class="modal-content">
+       
+             <!-- Modal Header -->
+             <div class="modal-header">
+               <h5 class="modal-title">Enter a new delivery address</h5>
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+             </div>
+       
+             <!-- Modal body -->
+             <div class="modal-body">
+               <form action="<%=process.env.BASE_URL%>/user/add-address%>" class="addaddress" method="POST">
+                  <div class="form-group">
+                     <label for="country">Country/Region</label>
+                     <select class="country form-control" name="country" style="width:100%;" placeholder="Select">
+                      
+                          <option value="uae">UAE</option>
+                          <option value="usa">USA</option>
+                                             
+                    </select>
+                    <input type="hidden" name="countrycode" value="971" />
+                   </div>
+                   
+                   
+                   <div class="form-group">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" class="form-control" name="fullname">
+                   </div>
+
+                   <div class="form-group">
+                    <label for="contactno">Contact Number</label>
+                    <input type="text" class="form-control" placeholder="Contact" name="phoneno">
+                  </div>
+                    <div class="uae">
+                      <div class="form-group">
+                        <label for="streetno">Street Number</label>
+                        <input type="text" class="form-control" placeholder="E.g. Omar Ibn Al Khattab Street" name="streetno">
+                      </div>
+                      <div class="form-group">
+                        <label for="building">Building name/no., floor, apartment or villa no.</label>
+                        <input type="text" class="form-control"  placeholder="E.g. Princess tower, 5th floor, apt 5023" name="building">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="uaecity">City</label>
+                        <select class="uaecity form-control" name="uaecity" style="width:100%;" placeholder="Select">
+                      
+                          <option value="Dubai">Dubai</option>
+                          <option value="Abu Dhabi">Abu Dhabi</option>
+                          <option value="Al Ain">Al Ain</option>
+                          <option value="Sharjah">Sharjah</option>
+                          <option value="Ajman">Ajman</option>
+                          <option value="Fujairah">Fujairah</option>
+                          <option value="Ras Al Khaimah">Ras Al Khaimah</option>
+                          
+                    </select>
+                       
+                      </div>
+
+                      <div class="form-group">
+                        <label for="address1">Area/District</label>
+                        <input type="text" class="form-control" name="area">
+                      </div>
+                </div>
+                   <div class="form-group usa d-none">
+                    <label for="address1">Address</label>
+                    <input type="text" class="form-control" placeholder="Address" name="address1">
+                    <input type="text" class="form-control mt-2" placeholder="Address" name="address2">
+                  </div>
+                  
+                  
+                  <div class="row usa d-none">
+                    <div class="form-group col-md-4">
+                      <label for="city">City</label>
+                      <input type="text" class="form-control" name="usacity">
+                    </div>
+
+                    <div class="form-group col-md-4">
+                      <label for="state">State</label>
+                      <input type="text" class="form-control" name="state">
+                    </div>
+
+                    <div class="form-group col-md-4">
+                      <label for="zipcode">PIN Code</label>
+                      <input type="number" class="form-control" name="zipcode">
+                    </div>
+                </div>
+
+                  <div class="form-group"><label>Address Type</label></div>
+                  <div class="form-group text-center row">
+                    
+                    <label class="form-check-label col-md-6">
+                      <input class="form-check-input" name="address_type" value="home" type="radio"> Home
+                    </label>
+                    <label class="form-check-label col-md-6">
+                     <input class="form-check-input" name="address_type" value="office" type="radio"> Office
+                   </label>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+             </div>
+       
+             <!-- Modal footer -->
+             <!--div class="modal-footer">
+               <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+             </div-->
+       
+           </div>
+         </div>
+       </div>
+      <!--modal for address-->
+       <!--- edit address modal-->
+       <div class="modal" id="editAddressModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+      
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h5 class="modal-title">Edit delivery address</h5>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+      
+            <!-- Modal body -->
+            <div class="modal-body">
+              <form action="<%=process.env.BASE_URL%>/user/get-address" class="addaddress" method="POST">
+                 <div class="form-group">
+                    <label for="country">Country/Region</label>
+                    <select class="country form-control" name="country" style="width:100%;" placeholder="Select">
+                     
+                         <option value="uae">UAE</option>
+                         <option value="usa">USA</option>
+                                            
+                   </select>
+                   <input type="hidden" name="countrycode" value="971" />
+                  </div>
+                  
+                  
+                  <div class="form-group">
+                   <label for="fullname">Full Name</label>
+                   <input type="text" class="form-control" name="fullname">
+                  </div>
+
+                  <div class="form-group">
+                   <label for="contactno">Contact Number</label>
+                   <input type="text" class="form-control" placeholder="Contact" name="phoneno">
+                 </div>
+                   <div class="uae">
+                     <div class="form-group">
+                       <label for="streetno">Street Number</label>
+                       <input type="text" class="form-control" placeholder="E.g. Omar Ibn Al Khattab Street" name="streetno">
+                     </div>
+                     <div class="form-group">
+                       <label for="building">Building name/no., floor, apartment or villa no.</label>
+                       <input type="text" class="form-control"  placeholder="E.g. Princess tower, 5th floor, apt 5023" name="building">
+                     </div>
+
+                     <div class="form-group">
+                       <label for="uaecity">City</label>
+                       <select class="uaecity form-control" name="uaecity" style="width:100%;" placeholder="Select">
+                     
+                         <option value="Dubai">Dubai</option>
+                         <option value="Abu Dhabi">Abu Dhabi</option>
+                         <option value="Al Ain">Al Ain</option>
+                         <option value="Sharjah">Sharjah</option>
+                         <option value="Ajman">Ajman</option>
+                         <option value="Fujairah">Fujairah</option>
+                         <option value="Ras Al Khaimah">Ras Al Khaimah</option>
+                         
+                   </select>
+                      
+                     </div>
+
+                     <div class="form-group">
+                       <label for="address1">Area/District</label>
+                       <input type="text" class="form-control" name="area">
+                     </div>
+               </div>
+                  <div class="form-group usa d-none">
+                   <label for="address1">Address</label>
+                   <input type="text" class="form-control" placeholder="Address" name="address1">
+                   <input type="text" class="form-control mt-2" placeholder="Address" name="address2">
+                 </div>
+                 
+                 
+                 <div class="row usa d-none">
+                   <div class="form-group col-md-4">
+                     <label for="city">City</label>
+                     <input type="text" class="form-control" name="usacity">
+                   </div>
+
+                   <div class="form-group col-md-4">
+                     <label for="state">State</label>
+                     <input type="text" class="form-control" name="state">
+                   </div>
+
+                   <div class="form-group col-md-4">
+                     <label for="zipcode">PIN Code</label>
+                     <input type="number" class="form-control" name="zipcode">
+                   </div>
+               </div>
+
+                 <div class="form-group"><label>Address Type</label></div>
+                 <div class="form-group text-center row">
+                   
+                   <label class="form-check-label col-md-6">
+                     <input class="form-check-input" name="address_type" value="home" type="radio"> Home
+                   </label>
+                   <label class="form-check-label col-md-6">
+                    <input class="form-check-input" name="address_type" value="office" type="radio"> Office
+                  </label>
+                 </div>
+                 <button type="submit" class="btn btn-primary">Submit</button>
+               </form>
+            </div>
+      
+            <!-- Modal footer -->
+            <!--div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div-->
+      
+          </div>
+        </div>
+      </div>
+       
+       <!-- edit address -->  
+
+       
+             <!--- payment modal-->
+       <div class="col-md-6 order-md-1" style="margin-left: 180px; padding-bottom: 20px;">
+        <div class="row">
+          <div class="col font-weight-bold">
+            Card
+          </div>
+          <div class="col font-weight-bold">
+            Name on card
+          </div>
+          <div class="col font-weight-bold">
+            Expires on
+          </div>
+        </div>
+        
+        <form method="post" action="<%=process.env.BASE_URL%>/checkout/chargeSavedCard">
+
+          <input type="hidden" name="userid" value="<%=userid%>">
+          <input type="hidden" name="storeid" value="<%= (!!locals.store)?store._id:'' %>">
+          <input type="hidden" class="cvvHidden" name="cvvHidden" value="">
+          <input type="hidden" name="_store" value="<%=store._id%>"/>
+          <input type="hidden" name="slug" value="<%=store.slug%>"/>
+          <input type="hidden" name="payment_method" value="0" />
+
+          <% var total = 0 %>
+          <% if(data?.cart){ for (const [i,product] of data.cart.entries()) { %>  
+          <input type="hidden" name="products[<%=i%>][_product]" value="<%=product._product._id%>"/>
+          <input type="hidden" name="products[<%=i%>][quantity]" value="<%=product.quantity%>"/>
+          <% total += product.total_price %>
+          <input type="hidden" name="total_cost" value="<%=total.toFixed(2)%>"/>
+          <% } }%>
+          <% if(addresses) for (const [i,address] of addresses.entries()) { %> 
+              <input type="hidden" name="address" value="<%=address._id%>" />
+          <%} %>
+         
+          <% if(customerID)  { %> 
+          <input type="hidden" name="customerID" class="customerID" value="<%=customerID%>" />
+          <% } %>
+        <% if(cards) for (const [i,card] of cards.entries()) { %> 
+         
+        <div class="row">
+        <div class="col-md-4">
+          <input type="radio" id="<%=card.id%>" name="paymentid" value="<%=card.id%>" required="required">
+          <label for="<%=card.id%>">  <%= card.card.brand %> ending in <%= card.card.last4 %> </label>
+        </div>
+        <div class="col-md-2">
+          <!-- <%=card.billing_details.name%> -->
+          <label for="<%=card.id%>">  <%=card.billing_details.name%> </label>
+        </div>
+        <div class="col-md-2">
+          <label for="<%=card.id%>">  <%=card.card.exp_month%>/ <%=card.card.exp_year%></label>
+        </div>
+
+        <div class="col-md-2">
+           <input type="text" class="cvv" name="cvv" placeholder="CVV" />
+        </div>
+        <div class="col-md-2">
+          <input type="hidden" name="cardIdNew" class="cardIdNew" value="<%=card.id%>" />
+           <a href="#" class="deleteCard">delete</a>
+       </div>
+      </div>
+      <% } %>
+      <button class="btn btn-primary btn-lg btn-block newBtnClassCvv" <%=(data?.cart)?"":"disabled"%> type="submit">Place your order</button>
+    </form>
+        <!--form class="needs-validation" novalidate="">
+          <hr class="mb-4">
+          <h4 class="mb-3">Payment</h4>
+
+          <div class="d-block my-3">
+            <div class="custom-control custom-radio">
+              <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" value="pay" checked="" required="">
+              <label class="custom-control-label" for="credit">Credit card</label>
+            </div>
+           
+            <div class="custom-control custom-radio">
+              <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required="">
+              <label class="custom-control-label" for="paypal">Cash on delivery</label>
+            </div>
+          </div>
+          <div class="mydiv" id="showpay">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="cc-name">Name on card</label>
+              <input type="text" class="form-control" id="cc-name" placeholder="" required="">
+              <small class="text-muted">Full name as displayed on card</small>
+              <div class="invalid-feedback">
+                Name on card is required
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="cc-number">Credit card number</label>
+              <input type="text" class="form-control" id="cc-number" placeholder="" required="">
+              <div class="invalid-feedback">
+                Credit card number is required
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 mb-3">
+              <label for="cc-expiration">Expiration</label>
+              <input type="text" class="form-control" id="cc-expiration" placeholder="" required="">
+              <div class="invalid-feedback">
+                Expiration date required
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="cc-expiration">CVV</label>
+              <input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
+              <div class="invalid-feedback">
+                Security code required
+              </div>
+            </div>
+          </div>
+        </div>
+          <hr class="mb-4">
+          <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+        </form-->
+
+        <form id="payment-card">
+            
+          <div class="sr-payment-form card">
+            <div class="sr-form-row">
+              <label>
+                Account details
+              </label>
+              <input type="text" id="email" name="nameEmail" placeholder="Email address" />
+            </div>
+  
+            <div class="sr-form-row">
+              <label>
+                Payment details
+              </label>
+              <div class="sr-input sr-element sr-card-element" id="card-element">
+                <!-- A Stripe card Element will be inserted here. -->
+              </div>
+            </div>
+            <div class="sr-field-error" id="card-errors" role="alert"></div>
+            <button id="submit">
+              <div class="spinner hidden" id="spinner"></div>
+              <span id="button-text">Save Card</span>
+            </button>
+          </div>
+       
+      </form>
+      
+
+        <form id="payment-form">
+          <div id="payment-element">
+            <!--Stripe.js injects the Payment Element-->
+          </div>
+          <input type="hidden" id="userid" value="<%=userid%>">
+          <input type="hidden" id="storeid" value="<%= (!!locals.store)?store._id:'' %>">
+          <button id="submit">
+            <div class="spinner hidden" id="spinner"></div>
+            <span id="button-text">Pay now</span>
+          </button>
+          <div id="payment-message" class="hidden"></div>
+        </form>
+      </div>
+          <!--- payment modal-->
+
+      <%- await include('_partials/footer.ejs'); %>
+      <!-- Footer -->
+      <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/select2/css/select2.min.css">
+      <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+      
+      <script src="<%= process.env.BASE_URL %>/frontend/js/xakkt.js"></script>
+      <script>
+         $(document).ready(function(){
+          $('.newBtnClassCvv').on("click onchange", function(){
+          var getTxtValue = $(".cvv").val(); // this gives textbox value  
+          $(".cvvHidden").val(getTxtValue);
+          });
+
+          $('.deleteCard').on("click", async function(){
+            const cardId = $('.cardIdNew').val();
+            const customerId = $('.customer_id').val();
+            // alert(cardId);
+          //   const paymentMethod = await stripe.paymentMethods.detach(cardId);
+          //     console.log(paymentMethod);
+          //     window.location.reload();
+          //
+          const items = { customerId: customerId, cardId: cardId };
+          const response = await fetch(`${baseUrl}/checkout/delete-card`, {
+                              method: "POST",
+                             headers: { "Content-Type": "application/json" },
+                             body: JSON.stringify({ items }),
+                          }).then(function (success) {
+                          window.location.href();
+                        })
+                      });
+
+          $('.addaddress,.editAddressModal').submit(function(e){ 
+            e.preventDefault();
+            const obj = $(this).serializeArray().reduce((acc, {name, value}) => ({...acc, [name]: value}), {})
+            
+            var url = $(this).attr('action')
+            switch (obj.country)
+            {  
+              case 'uae': 
+                    obj.address1 = obj.streetno
+                    obj.address2 = obj.building
+                    obj.city = obj.uaecity
+                    obj.countrycode = "+971"
+
+                    delete obj.streetno
+                    delete obj.building
+                    delete obj.uaecity 
+                    break;
+              case 'usa': 
+                    obj.city = obj.usacity
+                    obj.countrycode = "+1"
+                    
+                    delete obj.uaecity
+                    delete obj.building 
+                    delete obj.area 
+                    delete obj.building
+                    delete obj.usacity
+                    delete obj.streetno   
+                    break;
+              
+            }
+
+            $.post(url, obj).done(result => { 
+                              
+                                        if(!result.status){
+                                                $("#loginError").show().text(result.errors); }else{
+                                                  Swal.fire({
+                                                      icon: 'success',
+                                                      title: 'Data addedd successfully',
+                                                      showConfirmButton: false,
+                                                      timer: 1500
+                                                    }) 
+                                                    location.reload();
+                                            }
+                            }).fail(result=>{
+                                      $("#loginError").show().text(result.responseJSON.errors);
+                            }); 
+         
+          })
+          
+            
+              $('.country').change(function(){
+                  $('.uae,.usa').toggleClass('d-none')
+              })
+              $('input[type="radio"]').click(function(){
+                var demovalue = $(this).val(); 
+                  $("div.mydiv").hide();
+                  $("#show"+demovalue).show();
+              });
+
+              
+});
+      </script>
+   </body>
+</html>

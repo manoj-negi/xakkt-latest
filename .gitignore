@@ -1,0 +1,18 @@
+# Node build artifacts
+node_modules
+npm-debug.log
+package-lock.json
+.env
+# Local development
+*.dev
+package-lock.json
+.DS_Store
+
+# Docker
+Dockerfile
+docker-compose.yml
+public/images
+xakkt-3981c-firebase-adminsdk-rns9z-1e6b61e13c.json
+xakkt-grocery.json
+xakkt-3981c-firebase-adminsdk-rns9z-1e6b61e13c.json
+xakkt-grocery.json

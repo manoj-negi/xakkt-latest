@@ -1,0 +1,41 @@
+<input type="hidden" name="_product" value="<%=product._id%>" />
+<input type="hidden" class="button_type" name="button_type" value="" />
+<input type="hidden" class="shoplist" name="_shoppinglist" value="" />
+<input type="hidden" class="user" name="_user" value="<%=userid%>" />
+
+
+<div class="quantity">
+    <button class="minus-btn xbtn" type="button" name="button">
+        <i class="fa fa-minus" aria-hidden="true"></i>
+    </button>
+    <input type="text" name="quantity" value="1">
+    <button class="plus-btn xbtn" type="button" name="button">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+    </button>
+ </div>
+
+<div class="xshop mx-72">
+    <span class="">
+        
+       <img class="img-responsive xakkti x-list x-list-red-<%=product._id%> <%=(product.in_shoppinglist)?'':'d-none' %>" data-productid="<%=product._id%>"  title="Add shopping list" data-prop="x-list" data-action=0 src="<%= process.env.BASE_URL %>/frontend/images/RED_shopping_List.png" title="Add to shopping list" alt="No Image">
+      
+       <img class="img-responsive x-list xakkti x-list-grey-<%=product._id%> <%=(product.in_shoppinglist)?'d-none':'' %>" data-formid="product_form_<%=slider%>_<%=product._id%>" data-toggle="modal" data-action=1 data-target="#shoppingListModal" data-storeid="<%= (!!locals.store)?store._id:'' %>" data-id="<%=product._id%>" data-prop="x-list" src="<%= process.env.BASE_URL %>/frontend/images/GREY_Shopping_List.png" title="Remove shopping list" alt="No Image">
+    
+    </span>
+    <span class="cpr-page">
+
+            <img class="img-responsive xakkti x-heart x-remove-wishlist x-heart-red-<%=product._id%> <%=(product.is_favourite)?'':'d-none' %>" title="Remove from favourite" data-prop="x-heart" data-productid="<%=product._id%>" src="<%= process.env.BASE_URL %>/frontend/images/RED_Favorite.png" alt="No Image">
+            <img class="img-responsive xakkti x-heart x-add-wishlist x-heart-grey-<%=product._id%> <%=(product.is_favourite)?'d-none':'' %>" title="Add to favourite" data-prop="x-heart" data-productid="<%=product._id%>" src="<%= process.env.BASE_URL %>/frontend/images/GREY_Favorite.png" alt="No Image">
+            
+    </span>
+    <span class="">
+        
+        <img class="img-responsive xakkti x-cart x-cart-red-<%=product._id%> <%=(product.in_cart)?'':'d-none' %>" title="Remove from Cart" data-prop="x-cart" data-productid="<%=product._id%>" src="<%= process.env.BASE_URL %>/frontend/images/RED_Cart.png" alt="No Image">
+        
+        <img class="img-responsive xakkti x-cart x-cart-grey-<%=product._id%> <%=(product.in_cart)?'d-none':'' %>" title="Add to Cart" data-prop="x-cart" data-productid="<%=product._id%>" src="<%= process.env.BASE_URL %>/frontend/images/GREY_Cart.png" alt="No Image">    
+
+        
+    </span>
+ </div>
+
+ 

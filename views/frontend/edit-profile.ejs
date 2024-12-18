@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="https://use.fontawesome.com/73e16e51a8.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.js"></script>
+	<link rel="stylesheet" href="<%= process.env.BASE_URL %>/frontend/css/xakkt-slider.css" type="text/css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" type="text/css"> </head>
+
+
+<body class="bg-light">
+	<%- await include('../_partials/_frontend/navbar.ejs'); %>
+		<% if (locals.err) { %>
+			<%}%>
+				<form action="<%=process.env.BASE_URL%>/user/update-profile/<%=userid%>" method="post" enctype="multipart/form-data">
+					<div class="container rounded bg-white mt-5 mb-5">
+						<div class="row">
+							<div class="col-md-3 border-right">
+								<div class="d-flex flex-column align-items-center text-center p-3 py-5">
+									<div class="profile-img-container"> 
+                                        <%if(user.profile_pic){%>
+                                            <img class="rounded-circle mt-5 img-thumbnail" id="profilepic" src="<%=process.env.BASE_URL%>/<%=user.profile_pic%>">
+										<%}else{%>
+                                            <img class="rounded-circle mt-5 img-thumbnail" id="profilepic" src="<%=process.env.BASE_URL%>/xuser.png">        
+                                         <%}%>   
+                                        <label for="ppic" style="cursor: pointer; margin-right: 10px; "> <i class="fas fa-camera fa-2x" style="color: rgb(156, 148, 148);margin-top: 20px;"></i>
+											<input type="file" name="profile_pic" id="ppic" style="display: none;" accept="image/gif,image/jpeg,image/jpg,image/png" data-original-title="upload photos" /> </label>
+									</div> <span class="font-weight-bold"><%= user.first_name%></span><span class="text-black-50"><%=user.email%></span><span>
+                     </span> </div>
+							</div>
+							<div class="col-md-9 border-right">
+								<div class="p-3 py-5">
+									<div class="d-flex justify-content-between align-items-center mb-3">
+										<h4 class="text-right">Profile Settings</h4> </div>
+									<div class="row mt-2">
+										<div class="col-md-6">
+											<label class="labels" for="first_name">Name</label>
+											<input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" value="<%= user.first_name%>">
+										</div>
+										<div class="col-md-6">
+											<label class="labels" for="last_name">Surname</label>
+											<input type="text" class="form-control" value="<%= user.last_name%>" name="last_name" id="last_name" placeholder="surname">
+										</div>
+									</div>
+									<div class="row mt-3">
+										<div class="col-md-6">
+											<label class="labels" for="contact_no">PhoneNumber</label>
+											<input type="text" class="form-control" placeholder="enter phone number" id="contact_no" name="contact_no" value="<%= user.contact_no%>"> </div>
+										<div class="col-md-6">
+											<label class="labels" for="dob">Date of Birth</label>
+											<input type="date" class="form-control" id="dob" name="dob" placeholder="Date of Birth" value="<%=dob%>">
+										</div>
+
+										<div class="col-md-6">
+											<label class="labels" for="email">Email ID</label>
+											<input type="text" class="form-control" placeholder="enter email id" id="email" name="email" value="<%=user.email%>">
+										</div>
+										<div class="col-md-6">
+											<label class="labels" for="gender">Gender</label>
+											<select class="form-control" name="gender" style="width:100%;" placeholder="Select">
+												
+                                                <option value="male" <%=(user.gender == "male")?'selected':""%>>Male</option>
+												<option value="female" <%=(user.gender == "female")?'selected':""%>>Female</option>
+												<option value="other" <%=(user.gender == "other")?'selected':""%>>Other</option>
+           
+
+											</select>
+										</div>
+									</div>
+									
+									<div class="mt-5 text-center">
+										<button class="btn btn-primary profile-button" type="submit">Save Profile</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+				<%- await include('_partials/footer.ejs'); %>
+					<!-- Footer -->
+					<script> var baseUrl = '<%=process.env.BASE_URL%>'</script>
+					<script src="<%= process.env.BASE_URL %>/frontend/js/xakkt.js"></script>
+                    <script>
+                        ppic.onchange = evt => {
+                                const [file] = ppic.files
+                                if (file) {
+                                    profilepic.src = URL.createObjectURL(file)
+                                }
+                            }
+                    </script>
+				
+</body>
+
+</html>

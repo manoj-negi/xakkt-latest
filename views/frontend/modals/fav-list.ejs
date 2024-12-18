@@ -1,0 +1,83 @@
+<div class="modal fade" id="favListModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header border-bottom-0">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Your Favourite Products
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-image">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Product</th>
+                <th scope="col">Wish Price</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="fav-table">
+             
+            </tbody>
+          </table> 
+          <!--div class="d-flex justify-content-end">
+            <h5>Total: <span class="store-currency text-success"><%= (!!locals.store)?store._currency.name:'' %></span><span class="cart-price text-success"></span></h5>
+          </div-->
+        </div>
+        <!--div class="modal-footer border-top-0 d-flex justify-content-between">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success">Checkout</button>
+        </div-->
+      </div>
+    </div>
+  </div>
+  <div id="wishPriceModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <!--div class="modal-header">
+          
+        </div-->
+        <div class="modal-body">
+          <form method="POST" id="save-wish-price" action="<%=process.env.BASE_URL%>/product/add-to-favlist">   
+            <div class="modal-content">
+                  
+               <div class="modal-header border-right">
+                     <h4 class="modal-title w-100 font-weight-bold">Add Wish Price</h4>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                  <input type="hidden" id="wishlistproduct" name="_product" value="">
+                  <div class="modal-body mx-1">
+                     <span id="loginError" class="error-msg" style="display:none"></span>
+                  <div class="form-row">
+                     <div class="form-group col-md-12">
+                        <!-- <i class="fas fa-envelope prefix grey-text"></i> -->
+                        <label data-error="wrong" data-success="right" for="loginEmail">Wish Price</label>
+                        <input type="number" id="wishprice" name="wishprice" class="form-control validate" required>
+                        <span id="wishlistError" class="error-msg" style="display:none"></span>
+                     </div>
+                    
+                  </div>
+                  </div>
+
+                  <div class="modal-footer d-flex justify-content-right">
+                     <button class="btn btn-success">Submit</button>
+                     
+                  </div>
+               </div>
+         </form>   
+        </div>
+        <!--div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div-->
+      </div>
+  
+    </div>
+  </div>
+  

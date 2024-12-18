@@ -1,0 +1,532 @@
+{
+    "places": [
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Old Town Area"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Bin Majid Flamingo Beach Resort"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Hawiyah Area"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Limghadar"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Rawdah"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Raas 1"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Raas 2"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Dar Al Baida"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Riqah"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Meidan"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Shabiyat Essa"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Hamra"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Haditha"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Mallah"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Khor Area"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Khour 1"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Khour 2"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Butain"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Hezam Al Akhdar"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Aahad Area"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Madar Area"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Madr 1"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Madr 2"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Madr 3"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Maqtaa 1"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Maqtaa 2"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Maqtaa 3"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Laatein 1"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Laatein 2"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Neefah"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Ramlah Area"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Ramlah 1"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Ramlah 2"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Ramlah 3"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Industrial Area"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Zowair"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Khor Al Yeefrah"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Abraq Area"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Abraq 1"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Abraq 2"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Nekhailah"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Salamah Area"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Salamah 1"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Salamah 2"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Salamah 3"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Qarayen 1"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Boghah"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Qarayen 2"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Madinat Al Shuhada"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Hoboob 1"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Hoboob 2"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Oud Al Tayer 1"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Oud Al Tayer 2"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Shes"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Ghafat"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Suaihat 1"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Suaihat 2"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Mohammed Bin Rashid 1"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Mohammed Bin Rashid 2"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Khalifa City 1"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Khalifa City 2"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Umm Al Thuaoob"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Umm Dera"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Dream Land"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Shebeakah"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Shanteer"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Door 1"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Door 2"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Athaib"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Hezaiwah"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Meshara"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Raafah"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Aqran"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Khor Al Baida"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Oud Al Owaid"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Barqaa"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Tawi Rbaya"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Medfeq"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Falaj Al Moalla"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Rashdiya"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Shereiah"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Nabgghah"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Falaj Al Sheik"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Kaber"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Mohadhub"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Lubsah"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Surrah"
+            
+        },
+        {
+                "city": "Umm Al Quwain",
+                "countryCode": "AE",
+                "district": "Al Hazzan Area"
+            
+        }
+    ]
+}

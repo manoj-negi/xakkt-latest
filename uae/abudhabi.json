@@ -1,0 +1,1711 @@
+{
+    "places": [
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Salam Street"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Navy Gate"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Abu-Dhabi Mall"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Old Mazda Road"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Saraya"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Qasr Al Bahar"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mina Zayed Port"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Mina"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Warehouse District"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Lulu Street"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Central Market"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Khalifa Street"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Hamdan Street"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Electra Street"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al-Najda Street"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Ziany Area"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Hamdan Post Office"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Khalifa Energy Complex"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Falah street"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Madinat Zayed Abu Dhabi City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Sheikh Khalifa Medical City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Karama"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "SKMC"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Diplomatic Area"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "W 14-02"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "W 15-02"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Embassy Area"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Police College"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Abu-Dhabi Police Academy"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Mushrif"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Mushrif 1"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Mushrif 2"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Mushrif 3"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Mushrif 4"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Mushrif 5"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Yasat Complex"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Sheikh Suroor Compound"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al-Saada Street"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Zaab"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Wahda"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Delma street"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Nahyan"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Abu Dhabi Media Co"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Hazza Bin Zayed Street"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Hadbat al Zaafarana"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Abu-Dhabi Indian School"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Hadharem"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "ADCO Compound"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Hosn"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Ras Al Akhdar"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Marina Village"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Marina Mall"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Khalidiya Village"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Naser Street"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Bateen"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Manaseer"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Qasr al Shati Area"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Khubeirah"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Baynoonah Street"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Daratul Mia"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Manhal"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Tabbiyah"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Istiklal Street"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Officers City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Officer Club"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Danet Gateway"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Umm Al Nar"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Maqta Bridge"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Khor Al Maqta"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Fairmont Residences"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mangrove One"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "SAS Al Nakheel Village"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Bateen Airport"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Khalifa Park"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Orynx Gardens"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Zayed Sports City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Abu Dhabi Exhibition Centre (ADNEC)"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Carrefour Airport Road"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Abu Dhabi Muncipality"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Between The Bridges"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Reem Island"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Maryah Island"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Saadiyat Island"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Saadiyat Marina District"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Industrial City Of Abu Dhabi"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Dhafra Air Base Area"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussafah Shabia"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "ME 1,Mussaffa Shabiya"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "ME 2,Mussaffa Shabiya"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "ME 3,Mussaffa Shabiya"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "ME 4,Mussaffa Shabiya"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "ME 5,Mussaffa Shabiya"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "ME 6,Mussaffa Shabiya"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "ME 7,Mussaffa Shabiya"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "ME 8,Mussaffa Shabiya"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "ME 9,Mussaffa Shabiya"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "ME 10,Mussaffa Shabiya"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "ME 11,Mussaffa Shabiya"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "ME 12,Mussaffa Shabiya"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "ME 13,Mussaffa Shabiya"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "ME 14,Mussaffa Shabiya"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "ME 15,Mussaffa Shabiya"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "ME 16,Mussaffa Shabiya"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussafah Industrial Area"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussafah Police Station Area"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 1"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 10"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 11"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 12"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 13"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 14"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 15"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 16"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 17"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 18"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 19"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 2"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 20"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 21"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 22"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 23"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 24"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 26"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M3"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 32/1"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 32/2"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 33"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 35"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 36"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 37"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 38"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 39"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 4"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 40"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 42"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 43"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 44"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 45"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 46"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 5"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 6"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 7"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 8"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa Industrial M 9"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussaffa West 4 - MW 4"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Dhafra Workers Village"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Bani Yas East"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Bani Yas East 1"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Bani Yas East 2"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Bani Yas East 2-01"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Bani Yas East 2-02"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Bani Yas East 2-03"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Bani Yas East 2-04"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Bani Yas East 2-05"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Bani Yas East 3"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Bani Yas East 4"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Bani Yas East 5"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Bani Yas East 6"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Bani Yas East 7"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Bani Yas East 8"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Bani Yas East 9"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Bani Yas East 10"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Bani Yas East 11"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Bani Yas East 13"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Bani Yas West"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Bani Yas West 2"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Bani Yas West 3"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Bani Yas West 4"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Baniyas City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Bawabat Al Sharq"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Jaber Mafraq Camp"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Mafraq"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mafraq Workers City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Wathba"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Wathba South New"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mazyad Compound"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 1 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 12 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 13 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 14 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 15 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 16 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 17 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 18 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 19 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 2 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 20 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 21 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 22 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 23 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 24 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 25 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 26 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 27 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 29 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 3 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 30 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 31 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 32 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 33 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 34 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 35 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 36 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 4 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 5 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 6 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 6-01 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 7 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 8 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 9 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Z 9-01 Mohammed Bin Zayed City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Abu Dhabi Intl Airport"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Khalifa City A"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Masdar City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Raha Beach"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Yas Island"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Yas Acres"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Yas Island National Housing Project"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Raha Gardens"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Abu-Dhabi Golf club & Resort"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Watani Project"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Rawdat Al Reef"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Reef"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Reef Downtown"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Arabian Village"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Contemporary Village"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Desert Village"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mediterranean Village"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al-Falah City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Falah 1"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Falah 2"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Falah 4"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Shalila"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Hydra Village"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Old Shahamma"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Shahama"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "New Shahama"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "New Shahama South"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Officer's Villas (Defense Houses)"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Samha Area"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Samha East"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Samha West"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Rahba"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Bahya"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Bahya (New Bahya)"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al-Bahia-A"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Shakhbout Block 1"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Shakhbout Block 10"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Shakhbout Block 11"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Shakhbout Block 12"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Shakhbout Block 13"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Shakhbout Block 14"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Shakhbout Block 15"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Shakhbout Block 16"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Shakhbout Block 17"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Shakhbout Block 18"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Shakhbout Block 19"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Shakhbout Block 2"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Shakhbout Block 20"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Shakhbout Block 21"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Shakhbout Block 22"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Shakhbout Block 23"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Shakhbout Block 24"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Shakhbout Block 25"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Shakhbout Block 26"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Shakhbout Block 27"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Shakhbout Block 28"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Shakhbout Block 29"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Shakhbout Block 3"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Shakhbout Block 30"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Shakhbout Block 31"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Shakhbout Block 4"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Shakhbout Block 5"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Shakhbout Block 6"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Shakhbout Block 7"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Shakhbout Block 8"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Shakhbout Block 9"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Khalifha City B"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Shamkha"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Shamkha 1"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Shamkha 2"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Shamkha 3"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Shamkha 6"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Shamkha 7"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Shamkha 8"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Shamkha 9"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Shamkha 16"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Shamkha 17"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Shamkha 19"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Shamkha 22"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Shamkha 24"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Shamkha South"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Shawamek"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Shawamekh Block 1"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Shawamekh Block 2"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Shawamekh Block 3"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Shawamekh Block 4"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Shawamekh Block 5"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Shawamekh Block 6"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Shawamekh Block 7"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Shawamekh Block 8"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Shawamekh Block 9"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Shawamekh Block 10"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Shawamekh Block 11"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Khalidiyah"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Markaziya"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Coconut Island"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Lulu Island"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mushayrib Island"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Nurai Island"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Airport Street"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "International school of Choueifat"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Abu-Dhabi Bus Station"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Garden Tower"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Ferrari World"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al-Dar Lang"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Riyadiya"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Emirates Palace Hotel"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Khalidiya Mall"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Bateen Towers"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Defence Road"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Abu-Dhabi Motor co"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al-Noor Hospital"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Petrolium Institute"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Emirates Driving Co."
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Abu-Dhabi Traffic"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Qasr Al Sarab"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Hydra Golf Walk"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Dhafrah"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Rowdah"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al-Khaleej Al-Arabi St"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Building Material City"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Corniche"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Hoderiyyat"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Mussafah"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Bandar"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Madinat Zayed"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Qurm"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Al Jurf Gardens"
+            },
+        {
+             "city": "Abu Dhabi",
+                "countryCode": "AE",
+                "district": "Nareel Island"
+            }
+           
+        
+    ]
+}

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>XAKKT 2.0</title>
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+  <!-- DataTables -->
+  <!-- Select2 -->
+  <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+  
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+
+</head>
+<style>
+  .container-fluid1 {
+    position: none;
+    padding: 35px !important;
+  }
+
+  .file {
+    margin-right: 5px;
+
+  }
+
+  #dummies {
+    padding: 1px 0px;
+    display: flex;
+    color: red;
+    text-align: center;
+    margin-right: 37px;
+    right: 100px;
+  }
+
+  #dummy {
+    color: black;
+    font-weight: 900;
+    margin-top: -2px;
+    margin-right: 10px;
+    /* right: 100px; */
+  }
+
+  i#dummies h6 {
+    margin: 0;
+  }
+
+  .file i {
+    margin-right: 10px;
+  }
+
+  #dummy:hover {
+    background-color: green !important;
+  }
+
+  #element.style {
+    position: absolute;
+    left: 20%;
+  }
+
+  .upload-icons {
+    justify-content: flex-end;
+    display: flex;
+    align-items: center;
+    margin-top: 9px;
+  }
+</style>
+
+<body class="hold-transition sidebar-mini">
+  <div class="wrapper">
+    <!-- Navbar -->
+    <%- await include('../../_partials/_admin/navbar.ejs'); %>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <%- await include('../../_partials/_admin/sidebar.ejs'); %>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>Products</h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Product</li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+      <!--- message section should be common for all-->
+
+      <% if(failure.length){ %>
+      <div class="alert alert-danger">
+        <strong>
+          <%= failure[0] %>
+        </strong>
+      </div>
+      <% } %>
+      <% if(success.length){ %>
+      <div class="alert alert-success">
+        <strong>
+          <%= success %>
+        </strong>
+      </div>
+      <% } %>
+
+      <!---- end of messages -->
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+
+              <!-- /.card -->
+
+              <div class="card">
+                <div class="card-header row">
+                  <div class="col-md-8">
+                    <h3 class="card-title">All Products</h3>
+                  </div>
+                  <div class="col-md-4"><span class="product-filter">
+                      <select name="stores" id="mostsaved" onchange="myfun(event)" class="select2 form-control custom-select">
+                        <option selected="" disabled="">Select Store</option>
+
+                        <% if(store.length>0){ store.map((item)=>{ %>
+                        <option value="<%=item._id%>"><%=item.name %></option>
+                        <% })}else { %>
+                          <option selected="" disabled="">No data</option>
+                          <% }%>
+                        
+                      </select>
+                    </span>
+                  </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="container-fluid">
+                  <form>
+
+                    <ul class="upload-icons">
+                      <li id="dummies">
+                        <a href="/dummy.csv" id="dummy" download>
+                          <i class="fa fa-file-excel" style="color:red" aria-hidden="true"></i>
+                          Product File
+                        </a>
+                      </li>
+
+                      <li class="file">
+                        <label for='fileinput'><i class="fa fa-upload" style="color:red" class="icon"
+                            aria-hidden="true"></i>Import Product
+                        </label>
+                        <input type="file" style="display:none" name="csv" id="fileinput" />
+                      </li>
+                    </ul>
+                    <% if(await check("system_admin")){ %>
+                    <input type="hidden" value="<%=user%>" id="admin" name="admin" />
+                    <%} %>
+                    <input type="hidden" value="<%=process.env.IMAGES_BUCKET_PATH%>" id="imageUpload" name="imageUpload" />
+                </div>
+                </form>
+                <button type="button" style="display:none" class="btn btn-danger btn-sm check_delete">Delete</button>
+                <table id="products" class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>Check All <input type="checkbox" class='checkall' id='checkall' onchange="checkUncheck(this)">
+                      </th>
+                      <th>Brand</th>
+                      <th>Name</th>
+                      <th>Quantity</th>
+                      <th>Unit</th>
+                      <th>Image</th>
+                      
+                     
+               
+                      <% if(await check("add_product_pricing")) { %>
+                      <th>Promotion</th>
+                      <th>Price</th>
+                      <% } %>
+                      <% if(await check("product_edit","product_delete")) { %>
+                      <th>Action</th>
+                      <%}%>
+                    </tr>
+                  </thead>
+                <tbody>
+
+                              </tbody>
+                              <tfoot>
+                                <tr>
+                                <tr>
+                                  <th>Check All <input type="checkbox" class='checkall' id='checkall'
+                                      onchange="checkUncheck(this)"></th>
+                                      <th>Brand</th>
+                                  <th>Name</th>
+                                  <th>Quantity</th>
+                                  <th>Unit</th>
+                                  <th>Image</th>
+                                 
+                                  <% if(await check("add_product_pricing")) { %>
+                      <th>Promotion</th>
+                      <th>Price</th>
+                      <% } %>
+                      <% if(await check("product_edit","product_delete")) { %>
+                      <th>Action</th>
+                      <%}%>
+                                </tr>
+                              </tfoot>
+                            </table>
+                          </div>
+                          <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                      </div>
+                      <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <%- await include('../../_partials/_admin/footer.ejs'); %>
+
+                      <!-- Control Sidebar -->
+                      <aside class="control-sidebar control-sidebar-dark">
+                        <!-- Control sidebar content goes here -->
+                      </aside>
+                      <!-- /.control-sidebar -->
+              </div>
+              <!-- ./wrapper -->
+
+              <!-- jQuery -->
+              <script src="../../plugins/jquery/jquery.min.js"></script>
+              <!-- Bootstrap 4 -->
+              <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+              <!-- DataTables  & Plugins -->
+              <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+              <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+              <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+              <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+              <script src="../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+              <script src="../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+              <script src="../../plugins/jszip/jszip.min.js"></script>
+              <script src="../../plugins/pdfmake/pdfmake.min.js"></script>
+              <script src="../../plugins/pdfmake/vfs_fonts.js"></script>
+              <script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+              <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
+              <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+              <!-- Select2 -->
+              <script src="<%= process.env.BASE_URL %>/plugins/select2/js/select2.full.min.js"></script>
+              <!-- AdminLTE App -->
+              <script src="../../dist/js/adminlte.min.js"></script>
+              <!-- AdminLTE for demo purposes -->
+              <script src="../../dist/js/demo.js"></script>
+
+              <!-- sweetAlert -->
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+              <!-- Page specific script -->
+              <script>
+                $('.select2').select2({})
+                function myfun(e) {
+                  $('#products').dataTable().fnDestroy();
+                  list_products(e.target.value)
+                }
+                function confirmation(ev) {
+                  ev.preventDefault();
+                  var urlToRedirect = ev.currentTarget.getAttribute('href'); //use currentTarget because the click may be on the nested i tag and not a tag causing the href to be empty
+                  console.log('/////', urlToRedirect); // verify if this is the right URL
+                  swal({
+                    title: "Are you sure?",
+                    text: "But all data related to product also delete.",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes, delete it!",
+                    cancelButtonText: "No, cancel please!",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                  },
+                    function (isConfirm) {
+                      if (isConfirm) {
+                        window.location.href = urlToRedirect;
+                      } else {
+                        swal("Cancelled", "Your file is safe :)", "error");
+                      }
+                    }
+                  )
+
+                }
+
+                $('#fileinput').change(function () {
+                  // $(this).val() will work here
+                  var success = confirm('Are you sure to upload this file');
+                  if (success) {
+                    upload()
+                  }
+                })
+                var fruitsGranted = []
+                // $(".check_delete").hide();
+                function hideandshow(arr) {
+                  (!arr.length) ? $(".check_delete").hide() : $(".check_delete").show();
+                }
+                function upload() {
+                  var data;
+                  var formdata = new FormData();
+                  formdata.append('file', $('#fileinput').prop('files')[0]);
+                  $.ajax({
+                    url: '/admin/upload',
+                    type: 'POST',
+                    processData: false,
+                    contentType: false,
+                    dataType: "json",
+                    mimeType: 'multipart/form-data',
+                    data: formdata,
+                    success: function (data) {
+                      if (data.status) {
+                        console.log("--test", data)
+
+                      }
+                    }
+                  })
+
+                }
+                function checkUncheck(that) {
+                  let allRows = document.getElementsByClassName('test')
+                  let data = $(".test").attr("id")
+                  let flag = false
+                  if (that.checked) {
+                    flag = true
+                  }
+                  for (i = 0; i < allRows.length; i++) {
+
+                    if (flag) {
+                      fruitsGranted.push(allRows[i].id);
+                      allRows[i].checked = flag
+                    }
+                    else {
+                      allRows[i].checked = flag
+                      const index = fruitsGranted.indexOf(allRows[i].id);
+                      if (index > -1) {
+                        fruitsGranted.splice(index, 1);
+                      }
+                    }
+                  }
+                  hideandshow(fruitsGranted)
+                }
+                function myFunction(that) {
+                  var $this = $(that);
+
+                  if ($this.is(":checked")) {
+                    fruitsGranted.push($this.attr("id"));
+                  } else {
+                    const index = fruitsGranted.indexOf($this.attr("id"));
+                    if (index > -1) {
+                      fruitsGranted.splice(index, 1);
+                    }
+                  }
+                  hideandshow(fruitsGranted)
+                  // console.log("|------",fruitsGranted)
+                }
+
+                $(document).ready(function () {
+
+                  list_products();
+                  $(".check_delete").click(function () {
+                    $.ajax({
+                      url: '/admin/product/delete',
+                      type: 'POST',
+                      data: {
+                        id: fruitsGranted
+                      },
+
+                    }).done((data) => {
+                      if (data.status) {
+                        // list_products();
+                        $('#products').DataTable().ajax.reload();
+                        fruitsGranted.splice(0, fruitsGranted.length)
+                        // for (i = 0; i < fruitsGranted.length; i++) {
+                        //   $('#' + fruitsGranted[i]).closest('tr').remove();
+                        // }
+                      }
+                    });
+                  });
+                });
+                function list_products(data) {
+                  let url
+                  if (data) {
+                    url = `/admin/product/list?_store=${data}`
+                  } else {
+                    url = "/admin/product/list"
+                  }
+                  const imageUrl  = $('#imageUpload').val();
+            
+                  var admin = $('#admin').val();
+                  var del = $('#delete').val()
+                  var edit = $('#edit').val()
+                  $('#products').DataTable({
+                    "paging": true,
+                    "processing": true,
+                    "serverSide": true,
+                    "ordering": false,
+                    "ajax": {
+                      "url": url,
+                      "type": "get",
+                    },
+                    "columns": [
+                      {
+                        "data": "ID",
+                        render: function (data, type, row) {
+                          return `<input type="Checkbox" id="${row._id}" onchange="myFunction(this)"
+                              class="test"/>`;
+                        }
+                      },
+
+                      { "data": "brand_id.name" },
+                      { "data": "name.english" },
+                      {"data":"weight"},
+                      {"data": "_unit.name"},
+                      {
+                        "data": "ID",
+                        render: function (data, type, row) {
+                          return `<img class="img-thumbnail" style="width: 6em;height: 4em"
+                            src=${imageUrl}/products/${row.image}>`;
+                        }
+                      },
+                      
+                      
+                        <% if(await check("add_product_pricing")) { %> {
+                          data: "ID",
+                          render: function (data, type, row) {
+                            return `<a href="/admin/product/pricing/${row._id}"> <i class="fa fa-tags" aria-hidden="true"></i></a>`;
+                    }
+                  },
+                  {
+                    data: "ID",
+                    render: function (data, type, row) {
+                      return ` <a href="/admin/regularprice/create/${row._id}"> <i class="fa fa-tags" aria-hidden="true"></i></a>`;
+                    }
+                  },
+                        <% } %>
+                  {
+                    data: "ID",
+                    "visible": (admin || del || edit) ? true : false,
+                    render: function (data, type, row) {
+                      if (admin || (del && edit)) {
+                        return ` <a href="/admin/product/delete/${row._id}"
+                            onclick="return confirmation(event)">
+                            <i class="far fa-trash-alt"></i></a>&nbsp;&nbsp;<a
+                            href="/admin/product/edit/${row._id}"><i class="fas fa-pencil-alt"></i></a>`
+                      } else if (del) {
+                        return ` <a href="/admin/product/delete/${row._id}"
+                            onclick="return confirmation(event)">
+                            <i class="far fa-trash-alt"></i></a>`
+                      } else if (edit) {
+                        return `<a
+                            href="/admin/product/edit/${row._id}"><i class="fas fa-pencil-alt"></i></a>`
+                      }
+                      return ` <a href="/admin/product/delete/${row._id}"
+                            onclick="return confirmation(event)">
+                            <i class="far fa-trash-alt"></i></a>&nbsp;&nbsp;<a
+                            href="/admin/product/edit/${row._id}"><i class="fas fa-pencil-alt"></i></a>`
+                    }
+                  }
+                      ],
+                      "columnDefs": [ {
+                              "targets": 1,
+                              "defaultContent": "--"
+                            } ],
+                  success: function (done) {
+                    // console.log("--ab", done)
+                  }
+                });
+                  }
+
+              </script>
+</body>
+
+</html>

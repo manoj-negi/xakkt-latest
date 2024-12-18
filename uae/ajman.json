@@ -1,0 +1,457 @@
+[
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Emirates City"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Eye Of Ajman"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Aqua City"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Marmooka City"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Park View City"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Aamra"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Helio City"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Helio 1"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Helio 2"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Ajman Meadows"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Chapal Village"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Yasmeen"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Zahya"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Ajman Uptown"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Bustan"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Butain"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Liwara"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Liwara 1"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Liwara 2"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al-Zahra"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Rawda 1"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Rawda 2"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Rawda 3"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Mwaihat"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Mwaihat 1"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Mwaihat 2"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Mwaihat 3"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Muntazi 1"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Muntazi 2"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Tallah 1"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Tallah 2"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Jurf"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Jurf 1"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Jurf 2"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Nakhil"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Nakhil 1"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Nakhil 2"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Owan"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Rumailah"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Rumailah 1"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Rumailah 2"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Rumailah 3"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Rashidiya"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Rashidiya 1"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Rashidiya 2"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Rashidiya 3"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Old Industrial Area"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Falcon Tower"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Sowan"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Ajman1 Tower"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Ajman Freezone"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Mishrif Villas"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Mishrif City"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Ajman Police Headquarters"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Safia"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Zorah"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "GMC"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Nuaimia"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Nuaimia 1"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Nuaimia 2"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Nuaimia 3"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Jerf Gardens"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Jerf Industrial 1"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Jerf Industrial 2"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Jerf Industrial 3"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Bahia"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Hamidiya"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Hamidiya 1"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Hamidiya 2"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Raqaib 1"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Raqaib 2"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Humaid City"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "New Industrial City"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Awali City"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Sanaya Industrial Area"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Ain Ajman"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Fewa Ajman"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "New Industrial Area"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Ajman Industrial 1"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Ajman Industrial 2"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Hamriya Town"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Hamriya Freezone"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Ajman Villas"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Ameera Village"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Ittihad Village"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Al Noor Tower Ajman"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Escape Ajman"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Freej Balushi"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Green City"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Onyx City"
+    },
+    {
+        "city": "Ajman",
+        "countryCode": "AE",
+        "district": "Ajman University"
+    }
+  ]

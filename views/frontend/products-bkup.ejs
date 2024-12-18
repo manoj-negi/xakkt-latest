@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+   <script src="https://use.fontawesome.com/73e16e51a8.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.js"></script>
+  
+<link rel="stylesheet" href="<%= process.env.BASE_URL %>/frontend/css/xakkt-slider.css" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" type="text/css">
+   
+
+
+</head>
+<body>
+   <!-- Navbar -->
+   <%- await include('../_partials/_frontend/navbar.ejs'); %>
+   <!-- /.navbar -->
+   <div class="main-body">
+      
+      <div class="jumbotron jumbotron-fluid x-jumbo">
+         <div id="bannerCarousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+               <% for (const [i,banner] of banners.banner.entries()) { %>
+                  <li data-target="#bannerCarousel" data-slide-to="<%=i%>" class="<%=(i==0)?'active':''%>"></li>
+                <% }%> 
+            </ol>
+            <div class="carousel-inner">
+                <% for (const [i,banner] of banners.banner.entries()) { %>
+                    <div class="carousel-item <%=(i==0)?'active':''%>">
+                        <img class="d-block w-100" src="<%= process.env.IMAGES_BUCKET_PATH %>/banners/<%=banner.image%>" alt="First slide">
+                    </div>
+                <% }%> 
+            </div>
+            <a class="carousel-control-prev" href="#bannerCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#bannerCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+            </a>
+         </div>
+
+
+         <div class="container-list">
+            <ul class="list-inline">
+                <% for (const [key,parent] of Object.entries(categories)) { %>
+                    
+                    <li class="nav-item dropdown list-inline-item">
+                        <a class="nav-link" href="/<%=store.slug%>/main-category/products/<%=parent.parent_slug%>"><%=parent.name%></a>
+                        
+                        <% if(parent.subcategory.length) {%>   
+                        <div class="dropdown-menu cs-drop-mn" aria-labelledby="dropdownMenuLink">
+                          <% parent.subcategory.forEach((key,value)=>{  %> 
+                               <a class="dropdown-item" href="<%=process.env.BASE_URL%>/<%=store.slug%>/category/products/<%=key.slug%>"><%=key.name%></a>
+                          <% }) %> 
+                        </div>
+                        <% } %>
+                     </li>
+
+
+                <% }%>    
+            </ul>
+         </div>
+      </div>
+
+
+      <div class="container-fluid">
+                
+        
+       <div class="ccc_viewed">
+            
+            <div class="row">
+                <div class="col">
+                    <div class="ccc_main_container">
+                        <div class="ccc_viewed_title_container">
+                            <h3 class="ccc_viewed_title">Trending Nearby</h3>
+                            <div class="ccc_viewed_nav_container">
+                                <div class="ccc_viewed_nav ccc_viewed_prev"><i class="fas fa-chevron-left"></i></div>
+                                <div class="ccc_viewed_nav ccc_viewed_next"><i class="fas fa-chevron-right"></i></div>
+                            </div>
+                        </div>
+                        <div class="ccc_viewed_slider_container">
+                            <div class="owl-carousel owl-theme ccc_viewed_slider">
+                               
+                              <% for (const [i,product] of trending.product.entries()) { %>
+                              <div class="owl-item">
+                               
+                                    <div class="ccc_viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
+                                        <div class="ccc_viewed_image" data-product-name="<%=product.name.get('english')%>" data-img="<%=product.image%>" data-id="<%=product._id%>"  data-store-currency="<%=store._currency.name%>" data-deal-price="<%=product.deal_price%>" data-regular-price="<%=product.regular_price%>" >
+                                            <img src="<%=product.image%>" alt="">
+                                        </div>
+                                        <div class="ccc_viewed_content text-center">
+                                           
+                                            <div class="ccc_viewed_name">
+                                                  <a href="<%=process.env.BASE_URL%>/<%=store.slug%>/product/<%=product.slug%>" ><%=product.name.get('english')%></a>
+                                            </div>
+
+                                            <div class="ccc_viewed_price">
+                                                <%if(product.deal_price) {%>
+                                                    <span style="width:100%"><%=store._currency.name%><%=product.regular_price%></span>
+                                                    <div><%=store._currency.name%><%=product.deal_price%></div>
+                                                <%}else{%>
+                                                    <div><%=store._currency.name%><%=product.regular_price%></div>
+                                                 <%}%>   
+                                            </div>
+
+                                            <form class="cart-form" method="post" id="product_form_nearby_<%=product._id%>">
+                                               <input type="hidden" name="_store" value="<%=store._id%>" />
+                                                <%- await include('_partials/productSliders.ejs',{product:product,slider:'nearby'}); %>
+                                           </form>
+
+                                        </div>
+                                      
+                                   </div>
+                                </div>
+                                <% }%> 
+       
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+
+         <div class="bbb_viewed">
+            
+            <div class="row">
+                <div class="col">
+                    <div class="bbb_main_container">
+                        <div class="bbb_viewed_title_container">
+                            <h3 class="bbb_viewed_title">Deals at <%=store.name%></h3>
+                            <div class="bbb_viewed_nav_container">
+                                <div class="bbb_viewed_nav bbb_viewed_prev"><i class="fas fa-chevron-left"></i></div>
+                                <div class="bbb_viewed_nav bbb_viewed_next"><i class="fas fa-chevron-right"></i></div>
+                            </div>
+                        </div>
+                        <div class="bbb_viewed_slider_container">
+                            <div class="owl-carousel owl-theme bbb_viewed_slider">
+                               
+                              <% for (const [i,product] of deal.product.entries()) { %> 
+                              
+                              <div class="owl-item">
+                                    <div class="bbb_viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
+                                        <div class="bbb_viewed_image" data-product-name="<%=product.name.english%>" data-img="<%=product.image%>" data-id="<%=product._id%>"  data-store-currency="<%=store._currency.name%>" data-deal-price="<%=product.deal_price%>" data-regular-price="<%=product.regular_price%>"  data-toggle="modal" data-target="#product_view" ><img src="<%=product.image%>" alt=""></div>
+                                        <div class="bbb_viewed_content text-center">
+                                            <div class="bbb_viewed_name">
+                                                <a href="<%=process.env.BASE_URL%>/<%=store.slug%>/product/<%=product.slug%>"><%=product.name.english%></a>
+                                              </div>
+                                              
+                                            <div class="bbb_viewed_price">
+                                                <%if(product.deal_price) {%>
+                                                    <span style="width:100%"><%=store._currency.name%><%=product.regular_price%></span>
+                                                    <div><%=store._currency.name%><%=product.deal_price%></div>
+                                                <%}else{%>
+                                                    <div><%=store._currency.name%><%=product.regular_price%></div>
+                                                 <%}%> 
+                                            </div>
+                                          
+                                              <form class="cart-form" method="POST" id="product_form_deals_<%=product._id%>">
+                                                <input type="hidden" name="_store" value="<%=store._id%>" />  
+                                                  <%- await include('_partials/productSliders.ejs',{product:product, slider:'deals'}); %>
+                                              </form>
+                                        </div>
+                                        <!--ul class="item_marks">
+                                            <li class="item_mark item_discount">-25%</li>
+                                            <li class="item_mark item_new">new</li>
+                                        </ul-->
+                                    </div>
+                                </div>
+                               
+                                <% }%>  
+
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>  
+          
+
+      
+        
+      </div> <!--container-fluid-->
+  
+
+   </div>
+
+
+
+<%- await include('modals/product-details.ejs'); %>
+
+<!-- Footer -->
+<%- await include('_partials/footer.ejs'); %>
+<!-- Footer -->
+<script> var baseUrl = '<%=process.env.BASE_URL%>'</script>
+<script src="/frontend/js/xakkt.js"></script>
+
+<script type="text/javascript">
+    /*document.getElementById("myButton").onclick = function () {
+        location.href = "www.yoursite.com";
+    };*/
+</script>
+
+
+</body>
+</html>

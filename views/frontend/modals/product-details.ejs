@@ -1,0 +1,94 @@
+
+   <div class="modal fade product_view" id="product_view">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+                <h3 class="modal-title"></h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6 product_img">
+                        <img src="" alt="no image" class="img-fluid xproduct-img">
+                    </div>
+                    <div class="col-md-6 product_content">
+                        <!--h4> SKU: <span class="sku"></span></h4-->
+                        <!--div class="rating">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            (10 reviews)
+                        </div-->
+                        <p id="description"></p>
+                        <h3 class="cost"><span class="glyphicon glyphicon-usd"></span> 
+                            <span class="currency" style="color:#df3b3b"></span> 
+                            <span class="deal-price" style="color:#df3b3b"></span> 
+                            <small class="pre-cost">
+                                <span class="glyphicon glyphicon-usd"></span> 
+                                <span class="regular-price"></span>
+                            </small>
+                        </h3>
+                        <div class="row">
+                            
+                            <!-- end col -->
+                            
+                            <!-- end col -->
+                            <div class="col-md-12 col-sm-12">
+
+                                <form mehod="POST" class="detail-page-cart-form">
+
+                                    <input type="hidden" name="_product" class="d-product"/>
+                                    <input type="hidden" name="_store" value="<%= (!!locals.store)?store._id:'' %>"/>
+
+                                    <!--div class="quantity dqnty">
+                                        <button class="minus-btn xbtn qxbtn" type="button" name="button">
+                                            <i class="fa fa-minus" aria-hidden="true"></i>
+                                        </button>
+                                        <input type="text" name="name" value="1">
+                                        <button class="plus-btn xbtn qxbtn" type="button" name="button">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </button>
+                                    </div-->
+
+                                    <div class="">
+                                            Size: <span class="size"></span> <span class="unit"></span>
+                                    </div>
+                                    <div class="btn-ground cart-img">
+                            
+                                        <!--span>
+                                            <img class="img-responsive xakkt-product-popup d-none red-list shoplist" data-productid=""  title="Add shopping list" data-prop="x-list" data-action=0 src="<%= process.env.BASE_URL %>/frontend/images/RED_shopping_List.png" title="Add to shopping list" alt="No Image">
+                                           
+                                            <img class="img-responsive xakkt-product-popup grey-list shoplist" data-formid="product_form__" data-toggle="modal" data-action=1 data-target="#shoppingListModal" data-storeid="<%= (!!locals.store)?store._id:'' %>" data-id="" data-prop="x-list" src="<%= process.env.BASE_URL %>/frontend/images/GREY_Shopping_List.png" title="Remove shopping list" alt="No Image">
+                                        </span>
+
+                                         <span>
+                                            <img class="img-responsive xakkt-product-popup d-none red-fav favlist" title="Remove from favourite" data-productid="" src="<%= process.env.BASE_URL %>/frontend/images/RED_Favorite.png" alt="No Image">
+                                            <img class="img-responsive xakkt-product-popup grey-fav favlist" title="Add to favourite" data-productid="" src="<%= process.env.BASE_URL %>/frontend/images/GREY_Favorite.png" alt="No Image">
+                                        </span>
+                                        
+                                        <span>
+                                                    
+                                            <img class="img-responsive xakkt-product-popup cart-red d-none xcart" title="Remove from Cart" data-prop="x-cart" data-productid="" src="<%= process.env.BASE_URL %>/frontend/images/RED_Cart.png" alt="No Image">
+                                            
+                                            <img class="img-responsive xakkt-product-popup cart-grey xcart" title="Add to Cart" data-prop="x-cart" data-productid="" src="<%= process.env.BASE_URL %>/frontend/images/GREY_Cart.png" alt="No Image">    
+                                    
+                                            
+                                        </span-->
+
+                                      </div>
+                                  </form>
+
+                            </div>
+                            
+                            <!-- end col -->
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

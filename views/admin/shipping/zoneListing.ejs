@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>XAKKT 2.0</title>
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini">
+  <div class="wrapper">
+    <!-- Navbar -->
+    <%- await include('../../_partials/_admin/navbar.ejs'); %>
+      <!-- /.navbar -->
+
+      <!-- Main Sidebar Container -->
+      <%- await include('../../_partials/_admin/sidebar.ejs'); %>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+          <!-- Content Header (Page header) -->
+          <section class="content-header">
+            <div class="container-fluid">
+              <div class="row mb-2">
+                <div class="col-sm-6">
+                  <h1>Zone</h1>
+                </div>
+                <div class="col-sm-6">
+                  <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Zone</li>
+                  </ol>
+                </div>
+              </div>
+            </div><!-- /.container-fluid -->
+          </section>
+          <!--- message section should be common for all-->
+
+          <% if(failure.length){ %>
+            <div class="alert alert-danger">
+              <strong>
+                <%= failure[0] %>
+              </strong>
+            </div>
+            <% } %>
+              <% if(success.length){ %>
+                <div class="alert alert-success">
+                  <strong>
+                    <%= success %>
+                  </strong>
+                </div>
+                <% } %>
+
+                  <!---- end of messages -->
+                  <!-- Main content -->
+                  <section class="content">
+                    <div class="container-fluid">
+                      <div class="row">
+                        <div class="col-12">
+
+                          <!-- /.card -->
+
+                          <div class="card">
+                            <!-- <div class="card-header">
+                  <h3 class="card-title">All Brand</h3>
+                </div> -->
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                              <table id="shipping" class="table table-bordered table-striped">
+                                <thead>
+                                  <tr>
+                                    <th>Shipping Zone</th>
+                                    <th>Mile Radius (from origin)</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>Zone 1 (local)</td>
+                                    
+                                    <td>50 mile radius
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Zone 2</td>
+                                    
+                                    <td>51 – 150 mile radius
+
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Zone 3</td>
+                                    
+                                    <td>151 – 300 mile radius
+
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Zone 4</td>
+                                    
+                                    <td>301 – 600 mile radius
+
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Zone 5</td>
+                                    
+                                    <td>601 – 1000 mile radius
+
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Zone 6</td>
+                                    
+                                    <td>1001 – 1400 mile radius
+
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Zone 7</td>
+                                    
+                                    <td>1401 – 1800 mile radius
+
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Zone 8</td>
+                                    
+                                    <td>1801+ mile radius
+
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Zone 9</td>
+                                    
+                                    <td>Freely Associated States
+
+                                    </td>
+                                  </tr>
+                                </tbody>
+                                <tfoot>
+                                  <tr>
+                                    <th>Shipping Zone</th>
+                                    <th>Mile Radius (from origin)</th>
+                                  </tr>
+                                </tfoot>
+                              </table>
+                            </div>
+                            <!-- /.card-body -->
+                          </div>
+                          <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+                      </div>
+                      <!-- /.row -->
+                    </div>
+                    <!-- /.container-fluid -->
+                  </section>
+                  <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <%- await include('../../_partials/_admin/footer.ejs'); %>
+
+          <!-- Control Sidebar -->
+          <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+          </aside>
+          <!-- /.control-sidebar -->
+  </div>
+  <!-- ./wrapper -->
+
+
+  <!-- jQuery -->
+  <script src="../../plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- DataTables  & Plugins -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+  <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+  <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+  <script src="../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+  <script src="../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+  <script src="../../plugins/jszip/jszip.min.js"></script>
+  <script src="../../plugins/pdfmake/pdfmake.min.js"></script>
+  <script src="../../plugins/pdfmake/vfs_fonts.js"></script>
+  <script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+  <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
+  <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="../../dist/js/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="../../dist/js/demo.js"></script>
+  <!-----Datamoment------->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+  <script src="//cdn.datatables.net/plug-ins/1.10.12/sorting/datetime-moment.js"></script>
+  <script src="moment.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.32/moment-timezone.min.js" integrity="sha512-u3yRfU7FD5wGhxEMFZLZT/W/Y+C0vqUuQjPAhRWnQjBZ1LhUMnyTnZ6AfwxLSCxACT4eiyAnjFAMIt0qog67qg==" crossorigin="anonymous"></script>
+  <!-------Datamoment------>
+  <!-- Page specific script -->
+ <script> 
+   
+  //   function getSelectOptions(value) {
+  //   var select = $("<select><option value='pending'>Pending</option><option value='delivered'>Delivery</option  <option  value='dispatched'>Dispatch</option><option value='cancelled'>cancelled</option><option value='refunded'>Dispatch</option><option value='disputed'>Disputed</option><option value='recieved'>Recieved</option></select>");
+  //   if (value) {
+  //     select.val(value).find(':selected').attr('selected', true);
+  //   }
+  //   return select.html()
+  // }
+    $(document).ready(function () {
+      $.fn.dataTable.moment('HH:mm DD/MM/YYYY');
+
+      $('#shipping').DataTable({
+        "paging": true,
+        // "processing": true,
+        "serverSide": true,
+        
+        "ordering": false,
+        // "ajax": {
+        //   "url": "/myForm",
+        //   "type": "get",
+       
+        // "columns": [
+        // {
+        //     data: "ID",
+        //     render: function (data, type, row) {
+        //       return  row._user
+        //     }
+        //   },
+        //   {
+        //     data: "ID",
+        //     render: function (data, type, row) {
+        //       return  row.transation_id
+        //     }
+        //   },
+        //   {
+        //     data: "ID",
+        //     render: function (data, type, row) {
+        //       return  row._order
+        //     }
+        //   },
+        //   {
+        //     data: "ID",
+        //     render: function (data, type, row) {
+        //       return  row.method
+        //     }
+        //   },
+        //   {
+        //     data: "ID",
+        //     render: function (data, type, row) {
+        //       return  row.status
+        //     }
+        //   },
+        //   {
+        //     "data": "createdAt",
+        //     "render": function (data) {
+        //       return (moment(data).isValid()) ? moment(data).format("YYYY-MM-DD  hh:mm:ss a ") : "-";
+        //     }
+        //   },
+        
+        // ],
+        success: function (done) {
+          console.log("--ab", done)
+        }
+      });
+    });
+
+  </script> -->
+</body>
+
+</html>

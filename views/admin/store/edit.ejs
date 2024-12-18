@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>XAKKT 2.0</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/fontawesome-free/css/all.min.css">
+  <!-- daterange picker -->
+  <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/daterangepicker/daterangepicker.css">
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Bootstrap Color Picker -->
+  <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <!-- Bootstrap4 Duallistbox -->
+  <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+  <!-- BS Stepper -->
+  <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/bs-stepper/css/bs-stepper.min.css">
+  <!-- dropzonejs -->
+  <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/dropzone/min/dropzone.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="<%= process.env.BASE_URL %>/dist/css/adminlte.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini">
+  <div class="wrapper">
+    <!-- Navbar -->
+    <%- await include('../../_partials/_admin/navbar.ejs'); %>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <%- await include('../../_partials/_admin/sidebar.ejs'); %>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>New Store</h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">New Store</li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <!-- SELECT2 EXAMPLE -->
+          <div class="card card-default">
+            <div class="card-header">
+              <h3 class="card-title">Add Store Details</h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <form id="storeForm" method="POST" action="/admin/store/update/<%= store._id %>">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Name</label>
+                      <input type="text" class="form-control" id="name" name="name" value="<%=store.name%>">
+                    </div>
+                    <div class="form-group">
+                      <label>Select Departments</label>
+                      <select class="select2" name="department" multiple="multiple" style="width: 100%;" placeholder="Select Department">
+                        <% departments.forEach((department)=>{ %>
+                               <option value="<%=department._id%>" <%=(store?._department?.includes(department._id))?'selected':''%> ><%=department.name%></option>
+                        <%})%>
+                       </select>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="">Address</label>
+                      <input type="text" class="form-control" id="address" name="address" value="<%=store.address%>">
+                    </div>
+                    <div class="form-group">
+                      <label>Currency</label>
+                    <select class="select2" data-placeholder="Select a currency" name="currency" style="width: 100%;">
+                      <% currency.forEach(function(currency){ %>
+                      <option value="<%=currency._id%>" <%=(currency._id.equals(store._currency))?'selected':'' %> ><%=currency.name%></option>
+                      <%})%>
+                    </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Country</label>
+                      <select class="select2" data-placeholder="Select a State" name="country" style="width: 100%;">
+                        <option></option>
+                        <% countries.forEach(function(country){ %>
+                        <option <%=(country._id.equals(store._country))?'selected':'' %> value="<%=country._id%>"><%=country.name%></option>
+                        <%})%>
+                      </select>
+                    </div>
+
+                    <div class="form-group">
+                      <label>City</label>
+                      <input type="text" class="form-control" id="city" name="city" value="<%=store.city%>">
+                    </div>
+
+                    <div class="form-group">
+                      <label>States</label>
+                      <input type="text" class="form-control" id="state" name="state" value="<%=store.state%>">
+                    </div>
+
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Location on map</label>
+                      <div id="googleMap" style="width:100%;height:400px;"></div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="">Zipcode</label>
+                      <input type="number" class="form-control" id="zipcode" name="zipcode" value="<%=store.zipcode%>">
+                    </div>
+                    <div class="form-group">
+                      <label for="">Contact no</label>
+                      <input type="text" class="form-control" id="contactno" name="contactno" value="<%=store.contact_no%>" >
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="tz">Timezone</label>
+                      <select class="select2" data-placeholder="Select a Timezone" name="timezone" style="width: 100%;">
+                        <% timezone.forEach(function(timezone){ %>
+                        <option <%=(timezone == store._timezone)?'selected':'' %> value="<%=timezone%>"><%=timezone%></option>
+                        <%})%>
+                      </select>
+                    </div>
+                    <div class="row">
+                    <div class="col">
+                      <label for="lat">Latitude</label>
+                      <input type="number" class="form-control" id="lat" name="lat" value="<%=store?.location?.coordinates[1]%>">
+                    </div>
+                    <div class="col">
+                      <label for="long">Longitude</label>
+                      <input type="number" class="form-control" id="long" name="long" value="<%=store?.location?.coordinates[0]%>">
+                    </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <table class="table">
+                      <thead class="thead-dark1">
+                        <tr>
+                          <th>Weekday</th>
+                          <th>Open(Ex. 09:00)</th>
+                          <th>Close(Ex. 13:00)</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                         <% for (const [key, value] of Object.entries(store.time_schedule)) { %>
+                            <tr>
+                                <td> <%=key%> </td>
+                                <td class="form-group"> <input name="<%=key.toLowerCase()%>_stime" type="time" value="<%=value.startTime%>" class="form-control"> </td>
+                                <td class="form-group"> <input name="<%=key.toLowerCase()%>_etime" type="time" value="<%=value.endTime%>" class="form-control"> </td>
+                              </tr>
+                         <%}%> 
+                       
+                       
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="col-md-6 ">
+                      <%store.holidays.forEach(day => {%>
+                           
+                           <div class="card card-primary">
+                            <div class="card-header">
+                              <h3 class="card-title">Holiday</h3>
+                            </div>
+                            <div class="card-body">
+      
+                              <!-- Date and time range -->
+                              <div class="form-group">
+                                <label>Date and time range:</label>
+      
+                                <div class="input-group">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="far fa-clock"></i></span>
+                                  </div>
+                                  <input type="text" class="form-control float-right" name="holiday" id="holiday">
+                                </div>
+                                <!-- /.input group -->
+                              </div>
+                              <div class="form-group">
+                                <label>Message:</label>
+      
+                                <div class="input-group">
+                                  <textarea class="form-control" rows="4" name="holiday_message"><%=day.message%> </textarea>
+                                </div>
+                                <!-- /.input group -->
+                              </div>
+                              <!-- /.form group -->
+      
+                            </div>
+      
+                            <!-- /.card-body -->
+                          </div>
+                      <%})%>
+                    
+                    
+                  </div>
+
+                  <!-- /.col -->
+                </div>
+                <!-- /.row -->
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+              <!-- /.row -->
+            </div>
+            <!-- /.card-body -->
+
+          </div>
+          <!-- /.card -->
+
+        </div>
+        <!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <%- await include('../../_partials/_admin/footer.ejs'); %>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  </div>
+  <!-- ./wrapper -->
+
+  <!-- jQuery -->
+  <script src="<%= process.env.BASE_URL %>/plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="<%= process.env.BASE_URL %>/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Select2 -->
+  <script src="<%= process.env.BASE_URL %>/plugins/select2/js/select2.full.min.js"></script>
+
+  <!-- InputMask -->
+  <script src="<%= process.env.BASE_URL %>/plugins/moment/moment.min.js"></script>
+
+  <!-- date-range-picker -->
+  <script src="<%= process.env.BASE_URL %>/plugins/daterangepicker/daterangepicker.js"></script>
+
+  <!-- AdminLTE App -->
+  <script src="<%= process.env.BASE_URL %>/dist/js/adminlte.min.js"></script>
+  <!-- jquery-validation -->
+  <script src="<%= process.env.BASE_URL %>/plugins/jquery-validation/jquery.validate.min.js"></script>
+  <script src="<%= process.env.BASE_URL %>/plugins/jquery-validation/additional-methods.min.js"></script>
+
+  <script>
+    $(function () {
+      //Initialize Select2 Elements
+      $('.select2').select2({
+        placeholder: "Select departments"
+      })
+
+   
+      //Date range picker with time picker
+      $('#holiday').daterangepicker({
+        timePicker: true,
+        timePickerIncrement: 30,
+        locale: {
+          format: 'MM/DD/YYYY hh:mm A'
+        }
+      })
+      //Date range as a button
+    })
+
+  </script>
+
+  <script>
+    function myMap() {
+      var mapProp = {
+        center: new google.maps.LatLng(51.508742, -0.120850),
+        zoom: 5,
+      };
+      var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+    }
+    $(function () {
+
+      $('#storeForm').validate({
+        rules: {
+          address:      { required: true },
+          country:      { required: true },
+          city:         { required: true },
+          state:        { required: true },
+          zipcode:      { required: true },
+          contactno:    { required: true },
+          lat:          { required: true },
+          long:         { required: true },
+          monday_stime: { required: true },
+          monday_etime: { required: true },
+          tuesday_stime:{ required: true },
+          tuesday_etime:{ required: true },
+          wed_stime:    { required: true },
+          wed_etime:    { required: true },
+          thurs_stime:  { required: true },
+          thurs_etime:  { required: true },
+          fri_stime:    { required: true },
+          fri_etime:    { required: true },
+          sat_stime:    { required: true },
+          sat_etime:    { required: true },
+          sun_stime:    { required: true },
+          sun_etime:    { required: true }
+        },
+        messages: {
+          /*department: { required: "Please enter a department name" },
+          */
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+          error.addClass('invalid-feedback');
+          element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+          $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+          $(element).removeClass('is-invalid');
+        }
+      });
+    });
+  </script>
+
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzH67rgct9XAR0ZpRUPgwc2-oJwAXlseo&callback=myMap"></script>
+</body>
+
+</html>

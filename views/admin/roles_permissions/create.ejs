@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>XAKKT 2.0</title>
+      <!-- Google Font: Source Sans Pro -->
+      <link rel="stylesheet"
+         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+      <!-- Font Awesome -->
+      <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/fontawesome-free/css/all.min.css">
+      <!-- daterange picker -->
+      <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/daterangepicker/daterangepicker.css">
+      <!-- iCheck for checkboxes and radio inputs -->
+      <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+      <!-- Bootstrap Color Picker -->
+      <link rel="stylesheet"
+         href="<%= process.env.BASE_URL %>/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+      <!-- Tempusdominus Bootstrap 4 -->
+      <link rel="stylesheet"
+         href="<%= process.env.BASE_URL %>/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+      <!-- Select2 -->
+      <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/select2/css/select2.min.css">
+      <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+      <!-- Bootstrap4 Duallistbox -->
+      <link rel="stylesheet"
+         href="<%= process.env.BASE_URL %>/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+      <!-- BS Stepper -->
+      <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/bs-stepper/css/bs-stepper.min.css">
+      <!-- dropzonejs -->
+      <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/dropzone/min/dropzone.min.css">
+      <!-- Theme style -->
+      <link rel="stylesheet" href="<%= process.env.BASE_URL %>/dist/css/adminlte.min.css">
+      <style>
+         table,
+         th,
+         td {
+         border: 1px solid black;
+         border-collapse: collapse;
+         }
+         th,
+         td {
+         padding: 5px;
+         text-align: left;
+         }
+      </style>
+   </head>
+   <body class="hold-transition sidebar-mini">
+      <div class="wrapper">
+      <!-- Navbar -->
+      <%- await include('../../_partials/_admin/navbar.ejs'); %>
+      <!-- /.navbar -->
+      <!-- Main Sidebar Container -->
+      <%- await include('../../_partials/_admin/sidebar.ejs'); %>
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+         <!-- Content Header (Page header) -->
+         <section class="content-header">
+            <div class="container-fluid">
+               <div class="row mb-2">
+                  <div class="col-sm-6">
+                     <h1>New Role</h1>
+                  </div>
+                  <div class="col-sm-6">
+                     <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">New Role</li>
+                     </ol>
+                  </div>
+               </div>
+            </div>
+            <!-- /.container-fluid -->
+         </section>
+         <div class="row">
+            <!-- Trigger the modal with a button -->
+            <div class="col-md-8"></div>
+            <div class="col-md-4" style="text-align:right">
+               <a href="javascript:void(0)" class="btn btn-info btn-sm" data-toggle="modal" data-target="#roleModal">Add
+               Role</a>
+               <!-- Modal -->
+               <!-- Trigger the modal with a button -->
+               <a href="javascript:void(0)" class="btn btn-info btn-sm" data-toggle="modal"
+                  data-target="#permissionModal">Add
+               Permission</a>
+            </div>
+         </div>
+         <!-- Main content -->
+         <section class="content">
+            <div class="container">
+               <!-- SELECT2 EXAMPLE -->
+               <div class="card card-primary">
+                  <div class="card-header">
+                     <h3 class="card-title">Roles and Permissions</h3>
+                     <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                        </button>
+                     </div>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                     <br>
+                     <div class="container">
+                        <!-- <table style="width:100%"> -->
+                        <table class="table table-condensed" id="myTable">
+                           <tr style="background-color: lightgray;">
+                              <th style="width:100px"><p>Roles</p></hr><p>Permissions</p></th>
+                              <% if(roles) roles.forEach(function(role){ %>
+                              <th>
+                                 <%= role.name %>
+                              </th>
+                              <%}) %>
+                           </tr>
+                           <% permissionType="" %>
+                           <% permission.forEach(function(permission){ %>
+                           <% if(permissionType != permission.type){ %>
+                           <% permissionType=permission.type %>
+                           <tbody class="panel">
+                              <!-- <tr class="parent"> -->
+                              <tr style="cursor: pointer;" data-toggle="collapse" data-target="#<%= permission.type %>" data-parent="#myTable">
+                                 <th colspan="<%=roles.length+1%>">
+                                    <%=permission?.type?.toUpperCase()%>
+                                 </th>
+                              </tr>
+                              <% } %>
+                              <tr id="<%=permission.type %>" class="collapse">
+                                 <th class="hiddenRow">
+                                    <%= permission.description %>
+                                 </th>
+                                 <% roles.forEach(function(role){ %>
+                                 <td colspan="1" class="hiddenRow">
+                                    <input data-roleid="<%= role._id %>" data-permisionid="<%= permission._id %>"
+                                       type="checkbox" <%=(role._permission.includes(permission._id))?'checked':''%>>
+                                 </td>
+                                 <%})%>
+                              </tr>
+                              <%}) %>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+                  <!-- /.card -->
+               </div>
+               <!-- /.container-fluid -->
+         </section>
+         <!-- /.content -->
+         </div>
+         <!-- /.content-wrapper -->
+         <%- await include('../../_partials/_admin/footer.ejs'); %>
+         <!-- Control Sidebar -->
+         <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+         </aside>
+         <!-- /.control-sidebar -->
+      </div>
+      <!-- ./wrapper -->
+      <!-- Pop for permission model -->
+      <div class="modal fade" id="permissionModal" role="dialog">
+         <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h1>Add New Permission</h1>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+               </div>
+               <div class="modal-body">
+                  <form id="permission_form" method="post" action="/admin/roles/createPermission">
+                     <div class="row">
+                        <div class="col-md-12">
+                           <div class="form-group">
+                              <label for="permission_name">Permission</label>
+                                 <select name="permission_name" class="form-control">
+                                    <option value="Add">Add</option>
+                                    <option value="View">View</option>
+                                    <option value="Delete">Delete</option>
+                                    <option value="Edit">Edit</option>
+                                 </select>  
+                           </div>
+                        </div>
+                        <div class="col-md-12">
+                           <div class="form-group">
+                              <label for="permission_name">Type</label>
+                              <select name="type" class="form-control">
+                                 <option value="store">Store</option>
+                                 <option value="product">Product</option>
+                                 <option value="category">Category</option>
+                                 <option value="brad">Brand</option>
+                                 <option value="deal">Deal</option>
+                                 <option value="user">User</option>
+                                 <option value="role">Role</option>
+                                 <option value="audit">Audit</option>
+                                 <option value="company">Company</option>
+                                 <option value="coupon">Coupon Code</option>
+                                 <option value="product_pricing">Product - Price and Promo</option>
+                                 <option value="payment">Payment</option>
+                              </select>
+                           </div>
+                        </div>
+                        <!-- /.col -->
+                        <!-- /.row -->
+                     </div>
+                     <!--div class="row">
+                        <div class="col-md-12">
+                           <div class="form-group">
+                              <label>Description</label>
+                              <textarea name="permission_description" class="form-control" rows="2"
+                                 placeholder="Enter ..."></textarea>
+                           </div>
+                        </div>
+                     </div-->
+                     <!-- /.card-body -->
+                     <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                     </div>
+                  </form>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- ------------popup for permission----- -->
+      <!-- -------pop for role -------- -->
+      <div class="modal fade" id="roleModal" role="dialog">
+         <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+               </div>
+               <div class="modal-body">
+                  <form id="departmentForm" method="post" action="/admin/roles/create">
+                     <div class="row">
+                        <div class="col-md-12">
+                           <div class="form-group">
+                              <label for="role_name">Role Name</label>
+                              <input type="text" name="name" class="form-control" id="role_name" placeholder="Enter role">
+                           </div>
+                        </div>
+                        <!-- /.col -->
+                        <!-- /.row -->
+                     </div>
+                     <div class="row">
+                        <div class="col-md-12">
+                           <div class="form-group">
+                              <label>Description</label>
+                              <textarea name="description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- /.card-body -->
+                     <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                     </div>
+                  </form>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- -------pop for role -------- -->
+      <!-- jQuery -->
+      <script src="<%= process.env.BASE_URL %>/plugins/jquery/jquery.min.js"></script>
+      <!-- Bootstrap 4 -->
+      <script src="<%= process.env.BASE_URL %>/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- bs-custom-file-input -->
+      <script src="<%= process.env.BASE_URL %>/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+      <!-- AdminLTE App -->
+      <script src="<%= process.env.BASE_URL %>/dist/js/adminlte.min.js"></script>
+      <!-- AdminLTE for demo purposes -->
+      <!-- jquery-validation -->
+      <script src="<%= process.env.BASE_URL %>/plugins/jquery-validation/jquery.validate.min.js"></script>
+      <script src="<%= process.env.BASE_URL %>/plugins/jquery-validation/additional-methods.min.js"></script>
+      <script src="<%= process.env.BASE_URL %>/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+      <script>
+       
+         $('input[type="checkbox"]').bootstrapSwitch();
+         $('input[type="checkbox"]').on('switchChange.bootstrapSwitch', function () {
+       
+           $.ajax({
+             url: '/admin/roles/update',
+             type: 'POST',
+             data: {
+               roleid: $(this).data("roleid"),
+               permissionid: $(this).data("permisionid"),
+               checked: $(this).prop("checked") ? 1 : 0
+             },
+           });
+         });
+         $(function () {
+           bsCustomFileInput.init();
+         });
+         
+         $(function () {
+         
+           $('#departmentForm').validate({
+             rules: {
+               name: {
+                 required: true
+               }
+             },
+             messages: {
+               name: {
+                 required: "Please enter a department name"
+               }
+             },
+             errorElement: 'span',
+             errorPlacement: function (error, element) {
+               error.addClass('invalid-feedback');
+               element.closest('.form-group').append(error);
+             },
+             highlight: function (element, errorClass, validClass) {
+               $(element).addClass('is-invalid');
+             },
+             unhighlight: function (element, errorClass, validClass) {
+               $(element).removeClass('is-invalid');
+             }
+           });
+         });
+      </script>
+   </body>
+</html>

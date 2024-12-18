@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>XAKKT 2.0</title>
+      <!-- Google Font: Source Sans Pro -->
+      <link rel="stylesheet"
+         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+      <!-- Font Awesome -->
+      <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/fontawesome-free/css/all.min.css">
+      <!-- daterange picker -->
+      <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/daterangepicker/daterangepicker.css">
+      <!-- iCheck for checkboxes and radio inputs -->
+      <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+      <!-- Bootstrap Color Picker -->
+      <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+      <!-- Tempusdominus Bootstrap 4 -->
+      <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+      <!-- Select2 -->
+      <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/select2/css/select2.min.css">
+      <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+      <!-- Bootstrap4 Duallistbox -->
+      <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+      <!-- BS Stepper -->
+      <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/bs-stepper/css/bs-stepper.min.css">
+      <!-- dropzonejs -->
+      <link rel="stylesheet" href="<%= process.env.BASE_URL %>/plugins/dropzone/min/dropzone.min.css">
+      <!-- Theme style -->
+      <link rel="stylesheet" href="<%= process.env.BASE_URL %>/dist/css/adminlte.min.css">
+   </head>
+   <body class="hold-transition sidebar-mini">
+      <div class="wrapper">
+         <!-- Navbar -->
+         <%- await include('../../_partials/_admin/navbar.ejs'); %>
+         <!-- /.navbar -->
+         <!-- Main Sidebar Container -->
+         <%- await include('../../_partials/_admin/sidebar.ejs'); %>
+         <!-- Content Wrapper. Contains page content -->
+         <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+               <div class="container-fluid">
+                  <div class="row mb-2">
+                     <div class="col-sm-6">
+                        <h1>Edit User</h1>
+                     </div>
+                     <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                           <li class="breadcrumb-item"><a href="#">Home</a></li>
+                           <li class="breadcrumb-item active">Edit User</li>
+                        </ol>
+                     </div>
+                  </div>
+               </div>
+               <!-- /.container-fluid -->
+            </section>
+            <!-- Main content -->
+            <section class="content">
+               <div class="container-fluid">
+                  <!-- SELECT2 EXAMPLE -->
+                  <div class="card card-default">
+                     <div class="card-header">
+                        <h3 class="card-title">Edit User Details</h3>
+                        <div class="card-tools">
+                           <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                           <i class="fas fa-minus"></i>
+                           </button>
+                           <button type="button" class="btn btn-tool" data-card-widget="remove">
+                           <i class="fas fa-times"></i>
+                           </button>
+                        </div>
+                     </div>
+                     <!-- /.card-header -->
+                     <div class="card-body">
+                        <form id="userForm" method="POST" action="/admin/user/update/<%=user._id%>" enctype="multipart/form-data">
+                           <div class="row">
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label for="first_name">First Name</label>
+                                    <input type="text" class="form-control" id="first_name" value="<%=user.first_name%>" name="first_name" placeholder="First Name">
+                                 </div>
+                              </div>
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label>Last Name</label>
+                                    <input type="text" class="form-control" id="last_name" value="<%=user.last_name%>" name="last_name" placeholder="Last Name">
+                                 </div>
+                              </div>
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label for="contact_no">Contact no</label>
+                                    <input type="text" class="form-control" id="contact_no" value="<%=user.contact_no%>" name="contact_no" placeholder="Contact no">
+                                 </div>
+                              </div>
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label for="email">Email or Username</label>
+                                    <input type="text" class="form-control" id="email" value="<%=user.email%>" name="email" placeholder="Email">
+                                 </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                   <label for="">Password</label>
+                                   <input type="text" class="form-control" id="password" name="password" placeholder="Password">
+                                </div>
+                             </div>
+                             <div class="col-md-6">
+                              <div class="form-group">
+                                 <label for="profilePic"><img id="blah" src=<%=`${process.env.IMAGES_BUCKET_PATH}` + '/users/' + user.profile_pic%> style="height:100px; cursor:pointer;" alt="your image" /></label>
+                                <div class="input-group"  style="display:none;">
+                                  <div class="custom-file">
+                                    <input type="file" name="profile_pic" class="custom-file-input" accept="image/png,image/jpeg" id="profilePic">
+                                    <label class="custom-file-label" for="departmentLogo">Choose file</label>
+                                  </div>
+                                  
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                 <label for="">Company</label>
+                                 <select class="select2" name="company" style="width: 100%;">
+                                    <% company.forEach((company)=>{ %>
+                                       <option value="<%=company._id%>" <%=(company._id.equals(user._company))?'selected':'' %>>
+                                          <%=company.name%>
+                                       </option>
+                                       <%})%>
+                                 </select>
+                              </div>
+                          </div>
+                            
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label for="">Store</label>
+                                      <select class="select2" name="store" multiple="multiple" style="width: 100%;" placeholder="Select Store" required>
+                                     <% stores.forEach((store)=>{ %>
+                                          <option value="<%=store._id%>"  <%=(user?._store?.includes(store._id))?'selected':''%> ><%=store.name%></option>
+                                     <%})%>
+                                   </select>
+                                 </div>
+                              </div>
+      
+                             <div class="col-md-6">
+                              <div class="form-group">
+                                 <label for="">Role</label>
+                                 <!-- <input type="text" class="form-control" id="role" name="role" placeholder="Role"> -->
+                                 <select class="select2" name="role" multiple="multiple" style="width: 100%;" placeholder="Select Role" required>
+                                  <% role.forEach((role)=>{ %>
+                                  <option value="<%=role._id%>"<%=(user?.role_id?.includes(role._id))?'selected':''%>><%=role.name%></option>
+                                  <%})%>
+                                </select>
+                             
+                               </div>                             
+                             </div>
+                             <div class="col-md-6">
+                              <div class="form-group">
+                                 <label for="tz">Timezone</label>
+                                 <select class="select2" data-placeholder="Select a Timezone" name="timezone" style="width: 100%;">
+                                   <% timezone.forEach(function(timezone){ %>
+                                    <option <%=(timezone == user._timezone)?'selected':'' %> value="<%=timezone%>"><%=timezone%></option>
+                                    <%})%>
+                                 </select>
+                               </div>
+                             </div>
+                              <!-- /.col -->
+                           </div>
+                           <!-- /.row -->
+                           <div class="card-footer">
+                              <button type="submit" class="btn btn-primary">Submit</button>
+                           </div>
+                        </form>
+                        <!-- /.row -->
+                     </div>
+                     <!-- /.card-body -->
+                  </div>
+                  <!-- /.card -->
+               </div>
+               <!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
+         </div>
+         <!-- /.content-wrapper -->
+         <%- await include('../../_partials/_admin/footer.ejs'); %>
+         <!-- Control Sidebar -->
+         <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+         </aside>
+         <!-- /.control-sidebar -->
+      </div>
+      <!-- ./wrapper -->
+      <!-- jQuery -->
+      <script src="<%= process.env.BASE_URL %>/plugins/jquery/jquery.min.js"></script>
+      <!-- Bootstrap 4 -->
+      <script src="<%= process.env.BASE_URL %>/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+      
+      <!-- bs-custom-file-input -->
+      <script src="<%= process.env.BASE_URL %>/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+      <!-- Select2 -->
+      <script src="<%= process.env.BASE_URL %>/plugins/select2/js/select2.full.min.js"></script>
+      <!-- InputMask -->
+      <script src="<%= process.env.BASE_URL %>/plugins/moment/moment.min.js"></script>
+      <!-- date-range-picker -->
+      <script src="<%= process.env.BASE_URL %>/plugins/daterangepicker/daterangepicker.js"></script>
+      <!-- AdminLTE App -->
+      <script src="<%= process.env.BASE_URL %>/dist/js/adminlte.min.js"></script>
+      <!-- jquery-validation -->
+      <script src="<%= process.env.BASE_URL %>/plugins/jquery-validation/jquery.validate.min.js"></script>
+      <script src="<%= process.env.BASE_URL %>/plugins/jquery-validation/additional-methods.min.js"></script>
+      
+     
+<script>
+  $(function () {
+   $('.select2').select2({})
+    bsCustomFileInput.init();
+  });
+
+  $(function () {
+   profilePic.onchange = evt => {
+        const [file] = profilePic.files
+        // console.log("<%= process.env.BASE_URL %>",file)
+        if (file) {
+          blah.src = URL.createObjectURL(file)
+        }
+      }
+  $('#userForm').validate({
+    rules: {
+      first_name: {
+        required: true
+      },
+      last_name: {
+        required: true,
+      },
+      contact_no: {
+        required: true
+      },
+      email: {
+        required: true
+      }
+    },
+    messages: {
+      
+    },
+    errorElement: 'span',
+    errorPlacement: function (error, element) {
+      error.addClass('invalid-feedback');
+      element.closest('.form-group').append(error);
+    },
+    highlight: function (element, errorClass, validClass) {
+      $(element).addClass('is-invalid');
+    },
+    unhighlight: function (element, errorClass, validClass) {
+      $(element).removeClass('is-invalid');
+    }
+  });
+});
+  </script>
+   </body>
+</html>

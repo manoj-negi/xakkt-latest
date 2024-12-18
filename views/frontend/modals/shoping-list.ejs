@@ -1,0 +1,137 @@
+<div class="modal fade" id="shoppingListProducsModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+        <h5 class="modal-title" id="shopListModalLabel">
+           Shopping List
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-danger d-none" id="shoplisterror"></div>
+        <table class="table table-image">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Product</th>
+              <!--th scope="col">Price</th-->
+              <th scope="col">Qty</th>
+              <th scope="col">Total</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="shoppinglist-product-table">
+           
+          </tbody>
+        </table> 
+       
+      </div>
+      <div class="modal-footer border-top-0 d-flex justify-content-between">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a href="/checkout/<%= (!!locals.store)?store.slug:'' %>" class="btn btn-success">Checkout</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="allAhoppingListsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header border-bottom-0">
+        <h5 class="modal-title" id="shopListModalLabel">
+           Shopping Lists
+        </h5>
+        <a class="xakkt-popup" data-toggle="modal" data-modal="createShoppingList"
+               data-storeid="<%= (!!locals.store)?store._id:'' %>" href="javascript:void(0)">+Add New</a>
+        <!--button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button-->
+      </div>
+
+      <div class="modal-body">
+        <span id="shopilistError" class="error-msg d-none"></span>
+        <table class="table table-image">
+          <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <!-- <th scope="col">View</th> -->
+                <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody id="shopping-table-navbar">
+           
+          </tbody>
+        </table> 
+        <!--div class="d-flex justify-content-end">
+          <h5>Total: <span class="store-currency text-success"><%= (!!locals.store)?store._currency.name:'' %></span><span class="cart-price text-success"></span></h5>
+        </div-->
+      </div>
+      <!--div class="modal-footer border-top-0 d-flex justify-content-between">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a href="/checkout" class="btn btn-success">Checkout</a>
+      </div-->
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="shoppingListModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <!--div class="modal-header border-bottom-0">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Your Shopping List
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div-->
+        <div class="modal-body">
+          <span id="error-x-list" class="error-msg d-none"></span>
+          <table class="table table-image">
+            <thead>
+              <tr>
+                  <th scope="col">Your shopping lists to select</th>
+              </tr>
+            </thead>
+            <tbody id="shopping-table">
+             
+            </tbody>
+          </table> 
+          <!--div class="d-flex justify-content-end">
+            <h5>Total: <span class="store-currency text-success"><%= (!!locals.store)?store._currency.name:'' %></span><span class="cart-price text-success"></span></h5>
+          </div-->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+</div>
+<div class="modal" id="createShoppingList" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Create a Shopping List</h5>
+        <button type="button" id="slclose" class="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post"  id = "createShopping">
+          <div class="form-group">
+            <span id="err" class="error-msg" style="display:none"></span>
+            <!--label for="exampleInputEmail1">Name the ShoppingList</label-->
+            <input type="hidden" required  id="store"name="_store" value="<%= (!!locals.store)?store._id:'' %>"/>
+            <input type="text" name="name" required class="form-control">
+          </div>
+        
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+     
+    </div>
+  </div>
+</div>

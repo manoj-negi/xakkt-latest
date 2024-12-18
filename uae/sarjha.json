@@ -1,0 +1,872 @@
+[
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Abu Shaghara"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Bu Danig"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Fayha"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Ramla"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Ramla East"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Ramla West"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Mansoura"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Nud"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Mahatah"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Qasimia"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Taawun"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Khan"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Port Khalid"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Layyah Suburb"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Khaildia Suburb"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Soor"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Ghuwair"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Um Tarrsfa"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Suweihan"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Mareija"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Jubail"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Mamzar"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Sharjah Industrial Areas 1-14"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Industrial Area"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Industrial Area 1"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Industrial Area 2"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Industrial Area 3"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Industrial Area 4"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Industrial Area 5"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Industrial Area 6"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Industrial Area 7"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Industrial Area 8"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Industrial Area 9"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Industrial Area 10"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Industrial Area 11"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Industrial Area 12"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Industrial Area 13"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Industrial Area 15"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Industrial Area 17"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Industrial Area 18"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Sharjah Cricket Stadium"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Nahda Sharjah Areas"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Nahda"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Muwaileh Commercial"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Muwaileh"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Falah Camp"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Sharjah University"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Juraina 1"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Juraina 2"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Juraina 3"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Juraina 4"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Noof 1"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Noof 2"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Noof 3"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Noof 4"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Qarayen 1"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Qarayen 2"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Qarayen 3"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Qarayen 4"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Qarayen 5"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Basateen Al Fallah"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Atain"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Barashi"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al bedea"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Elm"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Fallah Suburb"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Suyoh 1"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Suyoh 2"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Suyoh 3"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Suyoh 4"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Suyoh 5"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Suyoh 6"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Suyoh 7"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Suyoh 8"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Tai"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Qtah"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Manazel"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Zubair"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Emirates Industrial City"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Sajaa"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Rahmanya"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Rahmanya 1"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Rahmanya 2"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Rahmanya 3"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Rahmanya 4"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Rahmanya 5"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Rahmanya 6"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Rahmanya 7"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Rahmanya 8"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Rahmanya 9"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Rahmanya 10"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Muzairah"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Dafeen"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Sharjah International Airport"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Saif Zone"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Sharjah Airport FreeZone"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Tasjeel Village"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Souq Al Haraj"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Sharjah Golf and Shooting club"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Um Fannain"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Muwafjah"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Yash"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Houmah"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Ramaqiya"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Sweihat"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Ramtha"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Goaz"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Majaz 1,2,3"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Majaz 1"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Majaz 2"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Majaz 3"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Jamal Abdul Naser Street"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Azra"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Ghafia"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Sabkha"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Falaj"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Jazzat"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Hazzanah"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Mirgab"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Margab"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Heera"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Nekhailat"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Qadisiya"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Sharqan"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Rifaah"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Muntazah"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Fisht"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Nasserya"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Bu Tina"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Sharq"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Maysaloon"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Nabba"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Qulayaah"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Majarah"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Riffa"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Turffa"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Talaa"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Darari"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Khezamia"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Shahab"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Halwan Suburb"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Abar"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Samnan"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Dasman"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Ghubaiba"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Seef"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Yarmook"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Manakh"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Musalla"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Suyoh 9"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Suyoh 10"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Suyoh 11"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Suyoh 12"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Jawazia"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Sehijan Suburb"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al khaledia"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al-Budai"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Riqa Suburb"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Subaikha"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Nahilak"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al-Faha"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Gharb"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Bank Street"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Wasit Suburb"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Queen Tower"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Buhairah Corniche"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Hydra Village"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Sharjah Investment Center"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Beach Road"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Mughaidir Suburb"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Dubai Bypass Road"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Al Batayeh"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Tilal City"
+    },
+    {
+            "city": "Sharjah",
+            "countryCode": "AE",
+            "district": "Sharjah Waterfront City"
+    }
+]

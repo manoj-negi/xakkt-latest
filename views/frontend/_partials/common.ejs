@@ -1,0 +1,56 @@
+<script src="js/SmoothScroll.min.js"></script>
+<script src="/frontend/js/jquery-2.1.4.min.js"> </script>
+<script src="/frontend/js/minicart.js"></script>
+<script>
+ function signup(e) {
+    e.preventDefault();
+    let user = {
+        dob: $("#date").val(),
+        email: $("#email").val(),
+        password: $("#password").val(),
+        contact_no: $("#contact").val(),
+        last_name: $("#last_name").val(),
+        first_name: $("#first_name").val(),
+
+    }
+    let options = {
+        method: 'POST',
+        headers: {
+            'Content-Type':
+                'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(user)
+    }
+    let fetchRes = fetch("<%=process.env.BASE_URL%>/api/v1/user/create", options);
+    fetchRes.then(res =>
+        res.json()).then(resp => {
+            if (resp.status) {
+                $(document).ready(function () {
+                    $('#myModal2').modal('hide');
+                    $('#myModal1').modal('show');
+
+                });
+            }
+        })
+}
+</script>
+<script>
+    paypalm.minicartk.render(); //use only unique class names other than paypalm.minicartk.Also Replace same class name in css and minicart.min.js
+
+    paypalm.minicartk.cart.on('checkout', function (evt) {
+        var items = this.items(),
+            len = items.length,
+            total = 0,
+            i;
+
+        // Count the number of each item in the cart
+        for (i = 0; i < len; i++) {
+            total += items[i].get('quantity');
+        }
+
+        if (total < 3) {
+            alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
+            evt.preventDefault();
+        }
+    });
+</script>

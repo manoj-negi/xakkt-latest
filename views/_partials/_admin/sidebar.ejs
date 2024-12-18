@@ -1,0 +1,677 @@
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="#" class="brand-link">
+  <img src="<%= process.env.userId%>/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+  <span class="brand-text font-weight-light">Xakkt</span>
+  </a>
+  <!-- Sidebar -->
+  <div class="sidebar">
+     <!-- Sidebar user panel (optional) -->
+     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+           <img src="<%= process.env.userId%>/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+           <a href="#" class="d-block">Xakkt</a>
+        </div>
+     </div>
+     <!-- SidebarSearch Form -->
+     <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+           <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+           <div class="input-group-append">
+              <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+              </button>
+           </div>
+        </div>
+     </div>
+     <!-- Sidebar Menu -->
+     <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+           with font-awesome or any other icon font library -->
+        <li class="nav-item">
+           <a href="/admin" class="nav-link <% if (menu === 'dashboard') { %> active <% } %>">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p> Dashboard  </p>
+           </a>
+        </li>
+        <% if(await check("user_view") ) {%>
+        <!-- Users -->
+        <li class="nav-item <% if (menu === 'users') { %> menu-open <% } %>">
+           <a href="#" class="nav-link <% if (menu === 'users') { %> active <% } %>">
+              <i class="nav-icon fas fa-box-open"></i>
+              <p>
+                 Users
+                 <i class="fas fa-angle-left right"></i>
+              </p>
+           </a>
+           <% if(await check("user_add") ) {%>
+           <ul class="nav nav-treeview">
+              <li class="nav-item">
+                 <a href="/admin/user/create" class="nav-link <% if (menu === 'users' && submenu === 'create' ) { %> active <% } %>">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add New User</p>
+                 </a>
+              </li>
+           </ul>
+           <% } %>
+
+           <ul class="nav nav-treeview">
+              <li class="nav-item">
+                 <a href="/admin/users" class="nav-link <% if (menu === 'users' && submenu === 'list' ) { %> active <% } %>">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Manage Users</p>
+                 </a>
+              </li>
+           </ul>
+           
+        </li>
+        <%}%>
+
+        <!--li class="nav-item <% if (menu === 'users') { %> menu-open <% } %>">
+         <a href="#" class="nav-link <% if (menu === 'users') { %> active <% } %>">
+            <i class="nav-icon fas fa-box-open"></i>
+            <p>
+               Field Rep
+               <i class="fas fa-angle-left right"></i>
+            </p>
+         </a>
+         <% if(await check("user_add") ) {%>
+         <ul class="nav nav-treeview">
+            <li class="nav-item">
+               <a href="/admin/fieldrep/companies" class="nav-link <% if (menu === 'fieldrep' && submenu === 'add_companies' ) { %> active <% } %>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Field Rep</p>
+               </a>
+            </li>
+         </ul>
+         <% } %>
+
+         <ul class="nav nav-treeview">
+            <li class="nav-item">
+               <a href="/admin/users" class="nav-link <% if (menu === 'users' && submenu === 'list' ) { %> active <% } %>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Manage Filed Rap</p>
+               </a>
+            </li>
+         </ul>
+         
+      </li-->
+
+        <!--- Departments ---->
+        <% if(await check("system_admin")) {%>
+        <li class="nav-item <% if (menu === 'departments') { %> menu-open <% } %>">
+           <a href="#" class="nav-link <% if (menu === 'departments') { %> active <% } %>">
+              <i class="nav-icon fas fa-box-open"></i>
+              <p>
+                 Departments
+                 <i class="fas fa-angle-left right"></i>
+              </p>
+           </a>
+           <ul class="nav nav-treeview">
+              <li class="nav-item">
+                 <a href="/admin/department/create" class="nav-link <% if (menu === 'departments' && submenu === 'create' ) { %> active <% } %>">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add New Department</p>
+                 </a>
+              </li>
+           </ul>
+           <ul class="nav nav-treeview">
+              <li class="nav-item">
+                 <a href="/admin/departments" class="nav-link <% if (menu === 'departments' && submenu === 'list' ) { %> active <% } %>">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Manage Departments</p>
+                 </a>
+              </li>
+           </ul>
+        </li>
+        <%}%>
+        <!-- Store -->
+        <% if(await check("store_view") ) {%>
+        <li class="nav-item <% if (menu === 'store') { %> menu-open <% } %>">
+           <a href="#" class="nav-link <% if (menu === 'store') { %> active <% } %>">
+              <i class="nav-icon fas fa-cube"></i>
+              <p>
+                 Stores
+                 <i class="fas fa-angle-left right"></i>
+              </p>
+           </a>
+           <% if(await check("store_add")) {%>
+           <ul class="nav nav-treeview">
+              <li class="nav-item">
+                 <a href="/admin/store/create" class="nav-link <% if (menu === 'store' && submenu === 'create' ) { %> active <% } %>">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add New Store</p>
+                 </a>
+              </li>
+           </ul>
+           <%}%>
+           <ul class="nav nav-treeview">
+              <li class="nav-item">
+                 <a href="/admin/stores" class="nav-link  <% if (menu === 'store' && submenu === 'list' ) { %> active <% } %>">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Manage Stores</p>
+                 </a>
+              </li>
+           </ul>
+        </li>
+        <%}%>
+        <!--- Products ---->
+        <% if(await check("product_view") ) {%>
+        <li class="nav-item <% if (menu === 'products') { %> menu-open <% } %>">
+           <a href="#" class="nav-link <% if (menu === 'products') { %> active <% } %>">
+              <i class="nav-icon fas fa-cube"></i>
+              <p>
+                 Products
+                 <i class="fas fa-angle-left right"></i>
+              </p>
+           </a>
+           <% if(await check("product_add") ) {%>
+           <ul class="nav nav-treeview">
+              <li class="nav-item">
+                 <a href="/admin/product/create" class="nav-link <% if (menu === 'products' && submenu === 'create' ) { %> active <% } %>">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add New Product</p>
+                 </a>
+              </li>
+           </ul>
+           <%}%>
+           <ul class="nav nav-treeview">
+              <li class="nav-item">
+                 <a href="/admin/product" class="nav-link  <% if (menu === 'products' && submenu === 'list' ) { %> active <% } %>">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Manage Products</p>
+                 </a>
+              </li>
+           </ul>
+        </li>
+        <%}%>
+        <!---- Product Categories ---->
+        <% if(await check("product_category_view") ) {%>
+        <li class="nav-item <% if (menu === 'productCategory') { %> menu-open <% } %>">
+           <a href="#" class="nav-link <% if (menu === 'productCategory') { %> active <% } %>">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                 Product Categories
+                 <i class="fas fa-angle-left right"></i>
+              </p>
+           </a>
+           <ul class="nav nav-treeview">
+              <li class="nav-item">
+                 <a href="/admin/category/create" class="nav-link <% if (menu === 'productCategory' && submenu === 'create' ) { %> active <% } %>">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add New Category</p>
+                 </a>
+              </li>
+           </ul>
+           <ul class="nav nav-treeview">
+              <li class="nav-item">
+                 <a href="/admin/category" class="nav-link  <% if (menu === 'productCategory' && submenu === 'list' ) { %> active <% } %>">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Manage Categories</p>
+                 </a>
+              </li>
+           </ul>
+        </li>
+        <%}%>
+        <!----- Brands ----->
+        <% if(await check("brand_view") ) {%>
+        <li class="nav-item">
+           <a href="#" class="nav-link <% if (menu === 'brands') { %> active <% } %>">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                 Brands
+                 <i class="fas fa-angle-left right"></i>
+              </p>
+           </a>
+           <% if(await check("brand_add") ) {%>
+           <ul class="nav nav-treeview">
+              <li class="nav-item">
+                 <a href="/admin/brand/create" class="nav-link <% if (menu === 'brands' && submenu === 'create' ) { %> active <% } %>">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add New Brand</p>
+                 </a>
+              </li>
+           </ul>
+           <%}%>
+           <ul class="nav nav-treeview">
+              <li class="nav-item">
+                 <a href="/admin/brand" class="nav-link <% if (menu === 'brands' && submenu === 'list' ) { %> active <% } %>"">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Manage Brands</p>
+                 </a>
+              </li>
+           </ul>
+        </li>
+        <%}%>
+        <!-----------Banner------------>
+        <% if(await check("banner_view") ) {%>
+        <li class="nav-item <% if (menu === 'banner') { %> menu-open <% } %>">
+           <a href="#" class="nav-link <% if (menu === 'banner') { %> active <% } %>">
+              <i class="nav-icon fas fa-box-open"></i>
+              <p>
+                 Banner
+                 <i class="fas fa-angle-left right"></i>
+              </p>
+           </a>
+        <% if(await check("banner_add") ) {%>
+
+           <ul class="nav nav-treeview">
+              <li class="nav-item">
+                 <a href="/admin/banner/create" class="nav-link <% if (menu === 'banner' && submenu === 'create' ) { %> active <% } %>">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add New Banner</p>
+                 </a>
+              </li>
+           </ul>
+           <%}%>
+           <ul class="nav nav-treeview">
+              <li class="nav-item">
+                 <a href="/admin/banner/list" class="nav-link <% if (menu === 'banner' && submenu === 'list' ) { %> active <% } %>">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Manage Banner</p>
+                 </a>
+              </li>
+           </ul>
+        </li>
+        <%}%>
+        <!--------Banner--------->
+        <!--------------Unit--------->
+        <% if(await check("unit_view") ) {%>
+        <li class="nav-item  <% if (menu === 'units') { %> menu-open <% } %>">
+           <a href="#" class="nav-link  <% if (menu === 'units') { %> active <% } %>">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                 Unit
+                 <i class="fas fa-angle-left right"></i>
+              </p>
+           </a>
+           <% if(await check("unit_add")  ) {%>
+           <ul class="nav nav-treeview">
+              <li class="nav-item">
+                 <a href="/admin/unit/create" class="nav-link <% if (menu === 'units' && submenu === 'create' ) { %> active <% } %>">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add New Unit</p>
+                 </a>
+              </li>
+           </ul>
+           <%}%>
+           <ul class="nav nav-treeview">
+              <li class="nav-item">
+                 <a href="/admin/unit" class="nav-link <% if (menu === 'units' && submenu === 'list' ) { %> active <% } %>">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Manage Units</p>
+                 </a>
+              </li>
+           </ul>
+        </li>
+        <%}%>
+        <!----- Deals ---->
+        <% if(await check("deal_view")) {%>
+        <li class="nav-item <% if (menu === 'deals') { %> menu-open <% } %>">
+           <a href="#" class="nav-link  <% if (menu === 'deals') { %> active <% } %>">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                 Deals
+                 <i class="fas fa-angle-left right"></i>
+              </p> 
+           </a>
+           <% if(await check("deal_add")) {%>
+           <ul class="nav nav-treeview">
+              <li class="nav-item">
+                 <a href="/admin/deal/create" class="nav-link <% if (menu === 'deals' && submenu === 'create' ) { %> active <% } %>">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add New Deal</p>
+                 </a>
+              </li>
+              <%}%>
+              <li class="nav-item">
+                 <a href="/admin/deal" class="nav-link <% if (menu === 'deals' && submenu === 'list' ) { %> active <% } %>">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Manage Deals</p>
+                 </a>
+              </li>
+           </ul>
+           <!-- <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="pages/tables/data.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>DataTables</p>
+                </a>
+              </li>
+              </ul> -->
+        </li>
+        <%}%>
+        <!----- Roles n Permissions ---->
+        <% if(await check("system_admin")) {%>
+        <li class="nav-item  <% if (menu === 'roles') { %> menu-open <% } %>">
+           <a href="#" class="nav-link <% if (menu === 'roles') { %> active <% } %>">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                 Roles n Permissions
+                 <i class="fas fa-angle-left right"></i>
+              </p>
+           </a>
+           <ul class="nav nav-treeview">
+              <li class="nav-item">
+                 <a href="/admin/roles" class="nav-link <% if (menu === 'roles' && submenu === 'list' ) { %> active <% } %>">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Roles</p>
+                 </a>
+              </li>
+              <!-- <li class="nav-item">
+                 <a href="pages/forms/advanced.html" class="nav-link">
+                   <i class="far fa-circle nav-icon"></i>
+                   <p>Permissions</p>
+                 </a>
+                 </li> -->
+           </ul>
+           <!-- <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="pages/tables/data.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>DataTables</p>
+                </a>
+              </li>
+              
+              </ul> -->
+        </li>
+        <%}%>
+        <!----------------Coupon ----------------->
+        <% if(await check("system_admin")) {%>
+        <!--li class="nav-item  <% if (menu === 'coupon') { %> menu-open <% } %>">
+           <a href="#" class="nav-link <% if (menu === 'coupon') { %> active <% } %>">
+             <i class="nav-icon fas fa-edit"></i>
+             <p>
+                Coupons
+               <i class="fas fa-angle-left right"></i>
+             </p>
+           </a>
+           <ul class="nav nav-treeview">
+             <li class="nav-item">
+               <a href="/admin/coupon/create" class="nav-link <% if (menu === 'coupon' && submenu === 'add' ) { %> active <% } %>">
+                 <i class="far fa-circle nav-icon"></i>
+                 <p>New Coupon</p>
+               </a>
+             </li>
+             <li class="nav-item">
+              <a href="/admin/coupon/list" class="nav-link <% if (menu === 'coupon' && submenu === 'list' ) { %> active <% } %>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Coupons</p>
+              </a>
+            </li>
+           </ul-->
+        <!-- <ul class="nav nav-treeview">
+           <li class="nav-item">
+             <a href="pages/tables/data.html" class="nav-link">
+               <i class="far fa-circle nav-icon"></i>
+               <p>DataTables</p>
+             </a>
+           </li>
+           
+           </ul> -->
+        </li>
+        <%}%>
+        <!----- Payments ---->
+        <% if(await check("view_payment") ) {%>
+        <li class="nav-item <% if (menu === 'payment') { %> menu-open <% } %>" >
+         <a href="#" class="nav-link <% if (menu === 'payment') { %> active <% } %>">
+            <i class="nav-icon fab fa-cc-stripe"></i>
+            <p>
+              Payments
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            
+            <li class="nav-item">
+              <a href="/admin/payment/list" class="nav-link ">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Payments</p>
+              </a>
+            </li>
+            
+          </ul>
+        </li>
+        <%}%>
+        <li class="nav-item">
+         <a href="#" class="nav-link">
+           <i class="nav-icon fab fa-cc-stripe"></i>
+           <p>
+             Shipping
+             <i class="fas fa-angle-left right"></i>
+           </p>
+         </a>
+         <ul class="nav nav-treeview">
+           
+           <li class="nav-item">
+             <a href="/admin/shipping/list" class="nav-link">
+               <i class="far fa-circle nav-icon"></i>
+               <p>Manage Shipping</p>
+             </a>
+           </li>
+           
+         </ul>
+       </li>
+        <% if(await check("company_view") ) {%>
+        <!-------Company------->
+        <li class="nav-item <% if (menu === 'company') { %> menu-open <% } %> " >
+           <a href="#" class="nav-link <% if (menu === 'company') { %> active <% } %>">
+              <i class="nav-icon fab fa-cc-stripe"></i>
+              <p>
+                 Company
+                 <i class="fas fa-angle-left right"></i>
+              </p>
+           </a>
+           <ul class="nav nav-treeview">
+              <% if(await check("company_add")) {%>
+              <li class="nav-item">
+                 <a href="/admin/company/create" class="nav-link <% if (menu === 'company' && submenu === 'create' ) { %> active <% } %>">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add New Company</p>
+                 </a>
+              </li>
+              <%}%>
+           </ul>
+           <ul class="nav nav-treeview">
+              <li class="nav-item">
+                 <a href="/admin/company/list" class="nav-link <% if (menu === 'company' && submenu === 'list' ) { %> active <% } %>">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Manage Company</p>
+                 </a>
+              </li>
+           </ul>
+        </li>
+        <%}%>
+      
+      <!--  <% if(await check("company_view") ) {%> -->
+         <!-------coupon------->
+         <li class="nav-item <% if (menu === 'company') { %> menu-open <% } %> " >
+            <a href="#" class="nav-link <% if (menu === 'company') { %> active <% } %>">
+               <i class="nav-icon fab fa-cc-stripe"></i>
+               <p>
+                  Coupons
+                  <i class="fas fa-angle-left right"></i>
+               </p>
+            </a>
+            <ul class="nav nav-treeview">
+             <!--  <% if(await check("company_add")) {%> -->
+               <li class="nav-item">
+                  <a href="/admin/coupon/create" class="nav-link <% if (menu === 'company' && submenu === 'create' ) { %> active <% } %>">
+                     <i class="far fa-circle nav-icon"></i>
+                     <p>Add New Coupon</p>
+                  </a>
+               </li>
+            <!-- <%}%> -->
+            </ul>
+            <ul class="nav nav-treeview">
+               <li class="nav-item">
+                  <a href="/admin/coupon/list" class="nav-link <% if (menu === 'company' && submenu === 'list' ) { %> active <% } %>">
+                     <i class="far fa-circle nav-icon"></i>
+                     <p>Manage Coupons</p>
+                  </a>
+               </li>
+            </ul>
+         </li>
+       <!--  <%}%> -->
+
+        <% if(await check("order_view")) {%>
+        <li class="nav-item <% if (menu === 'orders') { %> menu-open <% } %>">
+           <a href="#" class="nav-link <% if (menu === 'orders') { %> active <% } %>">
+              <i class="nav-icon fas fa-box-open"></i>
+              <p>
+                 Order
+                 <i class="fas fa-angle-left right"></i>
+              </p>
+           </a>
+           <ul class="nav nav-treeview">
+              <li class="nav-item">
+                 <a href="/admin/order/list" class="nav-link <% if (menu === 'orders' && submenu === 'list' ) { %> active <% } %>">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Manage Orders</p>
+                 </a>
+              </li>
+           </ul>
+        </li>
+        <%}%>
+        <li class="nav-item <% if (menu === 'company') { %> menu-open <% } %> " >
+           <a href="#" class="nav-link <% if (menu === 'company') { %> active <% } %>">
+              <i class="nav-icon fab fa-cc-stripe"></i>
+              <p>
+                 Currency
+                 <i class="fas fa-angle-left right"></i>
+              </p>
+           </a>
+           <ul class="nav nav-treeview">
+              <li class="nav-item">
+                 <a href="/admin/currency/create" class="nav-link <% if (menu === 'currency' && submenu === 'create' ) { %> active <% } %>">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add Currency</p>
+                 </a>
+              </li>
+           </ul>
+           <ul class="nav nav-treeview">
+              <li class="nav-item">
+                 <a href="/admin/currency/list" class="nav-link <% if (menu === 'currency' && submenu === 'list' ) { %> active <% } %>">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Manage Currency</p>
+                 </a>
+              </li>
+           </ul>
+        </li>
+        <!--- Reports -->
+        <!-- <li class="nav-header">REPORTS</li>
+           <li class="nav-item">
+             <a href="pages/calendar.html" class="nav-link">
+               <i class="nav-icon far fa-calendar-alt"></i>
+               <p>
+                 Store Analytics
+                 <span class="badge badge-info right">2</span>
+               </p>
+             </a>
+           </li>
+           <li class="nav-item">
+             <a href="pages/gallery.html" class="nav-link">
+               <i class="nav-icon far fa-image"></i>
+               <p>
+                 Deal Analytics
+               </p>
+             </a>
+           </li>
+           <li class="nav-item <% if (menu === 'invoice') { %> menu-open <% } %>">
+             <a href="/admin/banner/agreement" class="nav-link">
+               <i class="nav-icon far fa-image"></i>
+               <p>
+                  Invoice
+               </p>
+             </a>
+           </li>
+           <li class="nav-item">
+             <a href="#" class="nav-link">
+               <i class="nav-icon far fa-envelope"></i>
+               <p>
+                 Traffic
+                 <i class="fas fa-angle-left right"></i>
+               </p>
+             </a>
+             <ul class="nav nav-treeview">
+               <li class="nav-item">
+                 <a href="pages/mailbox/mailbox.html" class="nav-link">
+                   <i class="far fa-circle nav-icon"></i>
+                   <p>Product Analytics</p>
+                 </a>
+               </li>
+               <li class="nav-item">
+                 <a href="pages/mailbox/compose.html" class="nav-link">
+                   <i class="far fa-circle nav-icon"></i>
+                   <p>Member</p>
+                 </a>
+               </li>
+               
+             </ul>
+           </li>
+           <li class="nav-item">
+             <a href="#" class="nav-link">
+               <i class="nav-icon fas fa-book"></i>
+               <p>
+                 Pages
+                 <i class="fas fa-angle-left right"></i>
+               </p>
+             </a>
+             <ul class="nav nav-treeview">
+               <li class="nav-item">
+                 <a href="pages/agreement.html" class="nav-link">
+                   <i class="far fa-circle nav-icon"></i>
+                   <p>Invoice</p>
+                 </a>
+               </li>
+               <li class="nav-item">
+                 <a href="pages/examples/profile.html" class="nav-link">
+                   <i class="far fa-circle nav-icon"></i>
+                   <p>Profile</p>
+                 </a>
+               </li>
+               <li class="nav-item">
+                 <a href="pages/examples/e-commerce.html" class="nav-link">
+                   <i class="far fa-circle nav-icon"></i>
+                   <p>E-commerce</p>
+                 </a>
+               </li>
+               <li class="nav-item">
+                 <a href="pages/examples/contacts.html" class="nav-link">
+                   <i class="far fa-circle nav-icon"></i>
+                   <p>Contacts</p>
+                 </a>
+               </li>
+               <li class="nav-item">
+                 <a href="pages/examples/faq.html" class="nav-link active">
+                   <i class="far fa-circle nav-icon"></i>
+                   <p>FAQ</p>
+                 </a>
+               </li>
+               <li class="nav-item">
+                 <a href="pages/examples/contact-us.html" class="nav-link">
+                   <i class="far fa-circle nav-icon"></i>
+                   <p>Contact us</p>
+                 </a>
+               </li>
+             </ul>
+           </li>
+           
+           <li class="nav-header">MOBILE APP</li>
+           <li class="nav-item">
+             <a href="/admin/app/settings" class="nav-link">
+                  <i class="nav-icon fab fa-apple"></i>
+               <p> App Settings  </p>
+             </a>
+           </li>
+           
+           </ul> -->
+     </nav>
+     <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
