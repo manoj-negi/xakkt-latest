@@ -231,16 +231,105 @@ exports.nearByStores = async (req, res) => {
 }
 
 
-exports.updateStore = async function (req, res) {
+// exports.updateStore = async function (req, res) {
 	
+// 	try {
+// 		const errors = await validationResult(req);
+// 		if (!errors.isEmpty()) {
+// 			return res.status(400).json({
+// 				errors: errors.array()
+// 			});
+// 		}
+// 		//var holiday_date = req.body.holiday.split('-').map((item) => item.trim())
+// 		const storeinfo = {
+// 			name: req.body.name,
+// 			_department: req.body.department,
+// 			_user: req._user,
+// 			contact_no: req.body.contact_no,
+// 			address: req.body.address,
+// 			city: req.body.city,
+// 			state: req.body.state,
+// 			slug:(req.body.name+req.body.address).replace(/ /g, "-").toLowerCase(),
+// 			_country: req.body.country,
+// 			_currency: req.body.currency,
+// 			_timezone: req.body.timezone,
+// 			zipcode: req.body.zipcode,
+// 			contact_no: req.body.contactno,
+// 			location: {
+// 				type: "Point",
+// 				coordinates: [req.body.long, req.body.lat]
+// 			},
+// 			time_schedule: {
+// 				Monday: {
+// 					startTime: req.body.monday_stime,
+// 					endTime: req.body.monday_etime
+// 				},
+// 				Tuesday: {
+// 					startTime: req.body.tuesday_stime,
+// 					endTime: req.body.tuesday_etime
+// 				},
+// 				Wednesday: {
+// 					startTime: req.body.wednesday_stime,
+// 					endTime: req.body.wednesday_etime
+// 				},
+// 				Thursday: {
+// 					startTime: req.body.thursday_stime,
+// 					endTime: req.body.thursday_etime
+// 				},
+// 				Friday: {
+// 					startTime: req.body.friday_stime,
+// 					endTime: req.body.friday_etime
+// 				},
+// 				Saturday: {
+// 					startTime: req.body.saturday_stime,
+// 					endTime: req.body.saturday_etime
+// 				},
+// 				Sunday: {
+// 					startTime: req.body.sunday_stime,
+// 					endTime: req.body.sunday_etime
+// 				},
+
+// 			},
+// 			/*holidays: {
+// 				startDate: holiday_date[0],
+// 				endDate: holiday_date[1],
+// 				message: req.body.holiday_message
+// 			}*/
+
+// 		}
+// 		const store = await Store.findByIdAndUpdate({
+// 			_id: req.params.id
+// 		}, storeinfo, {
+// 			new: true,
+// 			upsert: true
+// 		});
+// 		if (store) res.redirect('/admin/stores')
+// 		return res.status(400).json({
+// 			status: false,
+// 			message: "Store not found"
+// 		});
+
+// 	} catch (err) {
+// 		console.log(err)
+// 		res.status(400).json({
+// 			status: false,
+// 			message: "Not updated",
+// 			data: err
+// 		});
+// 	}
+
+
+// }
+
+exports.updateStore = async function (req, res) {
 	try {
 		const errors = await validationResult(req);
 		if (!errors.isEmpty()) {
 			return res.status(400).json({
-				errors: errors.array()
+				errors: errors.array(),
 			});
 		}
-		//var holiday_date = req.body.holiday.split('-').map((item) => item.trim())
+
 		const storeinfo = {
 			name: req.body.name,
 			_department: req.body.department,
@@ -249,77 +338,74 @@ exports.updateStore = async function (req, res) {
 			address: req.body.address,
 			city: req.body.city,
 			state: req.body.state,
-			slug:(req.body.name+req.body.address).replace(/ /g, "-").toLowerCase(),
+			slug: (req.body.name + req.body.address).replace(/ /g, "-").toLowerCase(),
 			_country: req.body.country,
 			_currency: req.body.currency,
 			_timezone: req.body.timezone,
 			zipcode: req.body.zipcode,
-			contact_no: req.body.contactno,
 			location: {
 				type: "Point",
-				coordinates: [req.body.long, req.body.lat]
+				coordinates: [req.body.long, req.body.lat],
 			},
 			time_schedule: {
 				Monday: {
 					startTime: req.body.monday_stime,
-					endTime: req.body.monday_etime
+					endTime: req.body.monday_etime,
 				},
 				Tuesday: {
 					startTime: req.body.tuesday_stime,
-					endTime: req.body.tuesday_etime
+					endTime: req.body.tuesday_etime,
 				},
 				Wednesday: {
 					startTime: req.body.wednesday_stime,
-					endTime: req.body.wednesday_etime
+					endTime: req.body.wednesday_etime,
 				},
 				Thursday: {
 					startTime: req.body.thursday_stime,
-					endTime: req.body.thursday_etime
+					endTime: req.body.thursday_etime,
 				},
 				Friday: {
 					startTime: req.body.friday_stime,
-					endTime: req.body.friday_etime
+					endTime: req.body.friday_etime,
 				},
 				Saturday: {
 					startTime: req.body.saturday_stime,
-					endTime: req.body.saturday_etime
+					endTime: req.body.saturday_etime,
 				},
 				Sunday: {
 					startTime: req.body.sunday_stime,
-					endTime: req.body.sunday_etime
+					endTime: req.body.sunday_etime,
 				},
-
 			},
-			/*holidays: {
-				startDate: holiday_date[0],
-				endDate: holiday_date[1],
-				message: req.body.holiday_message
-			}*/
+		};
 
+		const store = await Store.findByIdAndUpdate(
+			{ _id: req.params.id },
+			storeinfo,
+			{
+				new: true,
+				upsert: true,
+			}
+		);
+
+		if (store) {
+			return res.redirect('/admin/stores'); 
+		} else {
+			return res.status(400).json({
+				status: false,
+				message: "Store not found",
+			});
 		}
-		const store = await Store.findByIdAndUpdate({
-			_id: req.params.id
-		}, storeinfo, {
-			new: true,
-			upsert: true
-		});
-		if (store) res.redirect('/admin/stores')
+	} catch (err) {
+		console.log(err);
 		return res.status(400).json({
 			status: false,
-			message: "Store not found"
-		});
-
-	} catch (err) {
-		console.log(err)
-		res.status(400).json({
-			status: false,
 			message: "Not updated",
-			data: err
+			data: err,
 		});
 	}
+};
 
-
-}
 
 exports.deleteStore = async (req, res) => {
 	try {
