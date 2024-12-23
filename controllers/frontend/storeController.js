@@ -35,6 +35,7 @@ exports.productDetails = async (req, res) => {
       })
       .lean();
 
+    product.image = process.env.IMAGES_BUCKET_PATH + "/products/" + product.image
     is_favourite = 0;
     in_shoppinglist = 0;
     in_cart = 0;
