@@ -152,7 +152,7 @@
                                           </select>
                                        </td>
                                        <td style="width:10%">
-                                          <input type="number" name="deal_value[]" step="any" value="<%= prices.deal_percentage %>"
+                                          <input type="number" name="deal_value[]" min="0" max="100" step="any" value="<%= prices.deal_percentage %>"
                                              class="form-control deal" required>
                                        </td>
                                        <td style="width:10%"> <input type="number" step="any" required name="deal_price[]"
@@ -200,7 +200,7 @@
                                        </select>
                                     </td>
                                     <td style="width:10%">
-                                       <input type="number" required name="deal_value[]" step="any" class="form-control deal"
+                                       <input type="number" required name="deal_value[]" min="0" max="100" step="any" class="form-control deal"
                                           required>
                                     </td>
                                     <td style="width:20%"> <input type="number" required name="deal_price[]" step="any"
@@ -299,13 +299,39 @@
            return $(that).attr('min', today);
          }
          
+         // $(document).on("input", '.deal', function (e) {
+         //   let that = e.target
+         //   let regularPrice = that.parentElement.parentElement.getElementsByClassName("rgprice")[0].value
+         //   let dealPrice = 0, dealPercentage = that.value
+         //   dealPrice = eval(regularPrice - (regularPrice * dealPercentage) / 100)
+         //   that.parentElement.parentElement.getElementsByClassName("deal_price")[0].value = dealPrice.toFixed(2)
+         // });
+
          $(document).on("input", '.deal', function (e) {
-           let that = e.target
-           let regularPrice = that.parentElement.parentElement.getElementsByClassName("rgprice")[0].value
-           let dealPrice = 0, dealPercentage = that.value
-           dealPrice = eval(regularPrice - (regularPrice * dealPercentage) / 100)
-           that.parentElement.parentElement.getElementsByClassName("deal_price")[0].value = dealPrice.toFixed(2)
-         });
+               let that = e.target;
+               let regularPrice = parseFloat(that.parentElement.parentElement.getElementsByClassName("rgprice")[0].value);
+               let dealPrice = 0;
+               let dealPercentage = parseFloat(that.value);
+
+               // Ensure the deal percentage is between 0 and 100
+               if (dealPercentage < 0) {
+                  alert("Promo percentage cannot be less than 0.");
+                  that.value = '';  // Clear the input
+                  return;
+               }
+
+               if (dealPercentage > 100) {
+                  alert("Promo percentage cannot be greater than 100.");
+                  that.value = '';  // Clear the input
+                  return;
+               }
+
+               // Calculate the deal price based on the percentage
+               dealPrice = regularPrice - (regularPrice * dealPercentage) / 100;
+
+               // Update the deal price input field
+               that.parentElement.parentElement.getElementsByClassName("deal_price")[0].value = dealPrice.toFixed(2);
+            });
 
          
          $(document).on("input", '.deal_price', function (e) {
