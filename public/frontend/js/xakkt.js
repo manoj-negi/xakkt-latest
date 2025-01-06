@@ -680,9 +680,13 @@ $("#cartModal").on("show.bs.modal", function () {
         result.data.forEach((product, index) => {
           total += product.total_price;
 
+          const productImage = product._product.image
+          ?"https://grocery-xakkt.s3.amazonaws.com"  + "/products/" + product._product.image
+          : "https://grocery-xakkt.s3.amazonaws.com" + "/products/default.jpg";
+
           tableHtml += `<tr>
                             <td class="w-25">
-                              <img src="${product._product.image}" class="cart-prod-img img-fluid img-thumbnail" alt="Sheep">
+                              <img src="${productImage}" class="cart-prod-img img-fluid img-thumbnail" alt="Sheep">
                             </td>
                             <td>${product._product.name.english}</td>
                             <td class="qty">

@@ -30,9 +30,10 @@ exports.login = async (req, res) => {
       { last_login: Date.now() }
     ).lean();
     req.session.customer = userInfo.email;
-    req.session.profilePic = userInfo.profile_pic;
+    req.session.profilePic = userInfo.profile_pic?`${process.env.IMAGES_BUCKET_PATH}/users/${userInfo.profile_pic}`:userInfo.profile_pic;
     req.session.fullName = userInfo.first_name + " " + userInfo.last_name;
-    req.session.customerId = userInfo.stripe_customer_id;
+    // req.session.customerId = userInfo.stripe_customer_id;
+    req.session.customerId = userInfo._id ;
     req.session.userid = userInfo._id;
 
     await Cart.updateMany(
@@ -59,16 +60,16 @@ exports.create = async (req, res) => {
       });
     }
 
-    const customer = await stripe.customers.create({
-      email: req.body.email,
-      description: "Xakkt Customer",
-    });
-    console.log("----stripe id---", customer);
+    // const customer = await stripe.customers.create({
+    //   email: req.body.email,
+    //   description: "Xakkt Customer",
+    // });
+    // console.log("----stripe id---", customer);
     let userInfo = {
       first_name: req.body.first_name,
       last_name: req.body.last_name,
       email: req.body.email,
-      stripe_customer_id: customer.id,
+      // stripe_customer_id: customer.id,
       password: req.body.password,
       contact_no: req.body.contact_no,
       dob: req.body.dob,

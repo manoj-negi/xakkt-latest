@@ -91,15 +91,102 @@ const pushController = require("./pushController");
     return res.status(400).json({ data: err.message });
   }
 }),
-  (exports.placeOrder = async (req, res) => {
-    // console.log(req);
-    // return;
+  // (exports.placeOrder = async (req, res) => {
+  //   // console.log(req);
+  //   // return;
+  //   const errors = await validationResult(req);
+  //   if (!errors.isEmpty()) {
+  //     return res.status(400).json({ errors: errors.array() });
+  //   }
+
+  //   try {
+  //     var user = await User.findOne(
+  //       { _id: req.session.userid },
+  //       {
+  //         address: {
+  //           $elemMatch: { _id: mongoose.Types.ObjectId(req.body.address) },
+  //         },
+  //       }
+  //     ).lean();
+  //     console.log(req);
+  //      user.address = '123 Road'
+  //     if (user.address === undefined) {
+  //       return res.json({ status: 0, message: "address not found" });
+  //     }
+  //     delete user.address[0]._id;
+  //     var address = { ...user.address[0] };
+
+  //     var product = [];
+  //     const charge = req.charge;
+
+  //     await Promise.all(
+  //       req.body.products.map(async (element) => {
+  //         var data = {};
+  //         var productId = element._product;
+  //         var productPrice = await _global.productprice(
+  //           req.body._store,
+  //           productId
+  //         );
+
+  //         if (productPrice) {
+  //           data = {
+  //             ...data,
+  //             _product: productId,
+  //             quantity: element.quantity,
+  //             deal_price: productPrice.deal_price,
+  //             regular_price: productPrice.regular_price,
+  //           };
+  //         } else {
+  //           data = {
+  //             ...data,
+  //             _product: productId,
+  //             quantity: element.quantity,
+  //             deal_price: 0,
+  //             regular_price: 0,
+  //           };
+  //         }
+  //         product.push(data);
+  //       })
+  //     );
+
+  //     var orderInfo = {
+  //       _user: req.session.userid,
+  //       _store: req.body._store,
+  //       shipping: {
+  //         address: address,
+  //         delivery_notes: req.body.delivery_notes ?? null,
+  //         order_id: orderid.generate(),
+  //       },
+
+  //       payment: {
+  //         method: req.body.payment_method,
+  //         transaction_id: charge.id,
+  //       },
+  //       products: product,
+  //       total_cost: req.body.total_cost,
+  //     };
+
+  //     await Order.create(orderInfo);
+  //     await Cart.deleteOne({
+  //       _user: req.session.userid,
+  //       _store: req.body._store,
+  //     }).exec();
+  //     await pushController.firebase(req, "New Order Placed");
+  //     return res.redirect("/myorders/" + req.body.slug);
+  //   } catch (err) {
+  //     console.log("---value", err);
+  //     return res.status(400).json({ data: err.message });
+  //   }
+  // });
+
+  exports.placeOrder = async (req, res) => {
     const errors = await validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-
+  
     try {
+      // Fetch the user and address
       var user = await User.findOne(
         { _id: req.session.userid },
         {
@@ -108,25 +195,30 @@ const pushController = require("./pushController");
           },
         }
       ).lean();
-      console.log(req);
-      if (user.address === undefined) {
-        return res.json({ status: 0, message: "address not found" });
+  
+      if (!user.address){
+        user.address = '123 Road'
       }
-      delete user.address[0]._id;
-      var address = { ...user.address[0] };
 
+      if (!user || !user.address || user.address.length === 0) {
+        return res.json({ status: 0, message: "Address not found" });
+      }
+  
+      // Assuming the address is correctly fetched, use it
+      const address = { ...user.address[0] };
+      delete address._id; // Remove _id from address if needed
+  
+      // Initialize product array
       var product = [];
       const charge = req.charge;
-
+  
+      // Loop through the products to calculate product prices
       await Promise.all(
         req.body.products.map(async (element) => {
           var data = {};
           var productId = element._product;
-          var productPrice = await _global.productprice(
-            req.body._store,
-            productId
-          );
-
+          var productPrice = await _global.productprice(req.body._store, productId);
+  
           if (productPrice) {
             data = {
               ...data,
@@ -147,7 +239,10 @@ const pushController = require("./pushController");
           product.push(data);
         })
       );
-
+  
+      // Ensure total_cost is a number and not an array
+      let total_cost = Array.isArray(req.body.total_cost) ? req.body.total_cost.reduce((acc, val) => acc + parseFloat(val), 0) : parseFloat(req.body.total_cost);
+  
       var orderInfo = {
         _user: req.session.userid,
         _store: req.body._store,
@@ -156,27 +251,35 @@ const pushController = require("./pushController");
           delivery_notes: req.body.delivery_notes ?? null,
           order_id: orderid.generate(),
         },
-
         payment: {
           method: req.body.payment_method,
           transaction_id: charge.id,
         },
         products: product,
-        total_cost: req.body.total_cost,
+        total_cost: total_cost, // Ensure total_cost is a single number
       };
-
+  
+      // Create the order in the database
       await Order.create(orderInfo);
+  
+      // Delete the cart
       await Cart.deleteOne({
         _user: req.session.userid,
         _store: req.body._store,
       }).exec();
+  
+      // Notify via Firebase
       await pushController.firebase(req, "New Order Placed");
+  
+      // Redirect to the user's orders page
       return res.redirect("/myorders/" + req.body.slug);
+  
     } catch (err) {
       console.log("---value", err);
       return res.status(400).json({ data: err.message });
     }
-  });
+  };
+  
 (exports.myorder = async (req, res) => {
   try {
     if (!res.locals.userid) {

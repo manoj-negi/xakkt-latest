@@ -9,6 +9,7 @@ const Store = require("../../models/store");
 const Stripe = require("stripe");
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 const orderController = require("./orderController");
+const { HTML5_FMT } = require("moment");
 
 exports.cartProducts = async (req, res) => {
   try {
@@ -27,7 +28,6 @@ exports.cartProducts = async (req, res) => {
         },
       })
       .lean();
-
     if (cartProducts?.cart.length)
       return res.json({ status: 1, data: cartProducts.cart });
     return res.json({ status: 0, data: [] });
@@ -124,6 +124,7 @@ exports.addPoductToCart = async (req, res) => {
 
 exports.checkoutPage = async (req, res) => {
   try {
+
     let storedata = await Store.findOne({ slug: req.params.store })
       .select(
         "-time_schedule -_department -holidays -__v -createdAt -updatedAt -_user"
@@ -154,10 +155,44 @@ exports.checkoutPage = async (req, res) => {
       })
       .lean();
 
-    const paymentMethods = await stripe.customers.listPaymentMethods(
-      `${req.session.customerId}`,
-      { type: "card" }
-    );
+    // const paymentMethods = await stripe.customers.listPaymentMethods(
+    //   `${req.session.customerId}`,
+    //   { type: "card" }
+    // );
+
+    const paymentMethods = [
+      {
+        id: 1,
+        name: "Credit Card",
+        description: "Pay securely with your credit or debit card.",
+        supportedCards: ["Visa", "MasterCard", "American Express"],
+        supportedRegions: ["US", "EU", "APAC"],
+        processingFee: "2.5%",
+        card:{
+          brand: "Visa", 
+          last4: "3456"  
+        },
+        billing_details:{
+          name: "Manoj"
+        }
+      },
+      {
+        id: 2,
+        name: "PayPal",
+        description: "Use your PayPal account for secure payments.",
+        supportedCards: ["PayPal Balance", "Bank Transfer"],
+        supportedRegions: ["US", "EU", "APAC"],
+        processingFee: "3.0%",
+        card:{
+          brand: "MasterCard", 
+          last4: "8889"  
+        },
+        billing_details:{
+          name: "Manoj Singh Negi"
+        }
+      }
+    ];
+    
 
     // const cards = await stripe.customers.listSources(
     //   `${req.session.customerId}`,
@@ -165,7 +200,7 @@ exports.checkoutPage = async (req, res) => {
     //     source: "tok_amex",
     //   }
     // );
-    console.log("sdscard", paymentMethods.data);
+    // console.log("sdscard", paymentMethods.data);
     //return res.json({card:paymentMethods.data})
     //return res.json(user?.address)
     //if(cartProducts?.cart.length)return res.json({status:1,data:cartProducts.cart, store: storedata})
@@ -174,7 +209,7 @@ exports.checkoutPage = async (req, res) => {
       data: cartProducts,
       addresses: user?.address ?? null,
       store: storedata,
-      cards: paymentMethods.data,
+      cards: paymentMethods,
       // cardsNew: cards.data,
       customerID: req.session.customerId,
     });
@@ -589,19 +624,118 @@ exports.listCards = async (req, res) => {
   }
 };
 
+// exports.chargeSavedCard = async (req, res) => {
+//   try {
+//     console.log("----req body,", req.body);
+//     var total = 0;
+
+//     const cartInfo = {
+//       _user: req.body.userid,
+//       _store: req.body.storeid,
+//       cvv: req.body.cvvHidden,
+//       // cvv: req.body.cvv.filter(Boolean),
+//     };
+
+//     var data = await Cart.findOne({
+//       _user: cartInfo._user,
+//       _store: cartInfo._store,
+//     })
+//       .populate({
+//         path: "cart._product",
+//         select: "name sku price image _unit weight",
+//         populate: {
+//           path: "_unit",
+//           select: "name",
+//         },
+//       })
+//       .lean();
+//     if (!data)
+//       return res.json({ status: 0, message: "cart is empty", data: "" });
+//     let total_quantity, total_price, coupon, discounted_price;
+//     total_quantity = data.cart
+//       .map((product) => product.quantity)
+//       .reduce(function (acc, cur) {
+//         return acc + cur;
+//       });
+
+//     total_price = data.cart
+//       .map((product) => product.total_price)
+//       .reduce(function (acc, cur) {
+//         return acc + cur;
+//       });
+
+//     for (const [i, product] of data.cart.entries()) {
+//       total += product.total_price;
+//     }
+//     console.log("----", total);
+//     // const paymentIntent = await stripe.paymentIntents.create({
+//     //   amount: total * 100,
+//     //   currency: "usd",
+//     //   // payment_method_types: ["card"],
+//     //   customer: `${req.decoded.customer_id}`,
+//     //   payment_method: req.body.payment_method_id,
+//     //   confirmation_method: "manual",
+//     //   confirm: true,
+//     // });
+
+//     const paymentIntent = {
+//       amount: total * 100,
+//       currency: "usd",
+//       // payment_method_types: ["card"],
+//       customer: `${req.decoded.customer_id}`,
+//       payment_method: req.body.payment_method_id,
+//       confirmation_method: "manual",
+//       confirm: true,
+//     };
+
+
+//     // const paymentIntent = await stripe.paymentIntents.create({
+//     //   amount: total * 100,
+//     //   currency: "usd",
+//     //   // payment_method_types: ["card"],
+//     //   customer: `${req.session.customerId}`,
+//     //   automatic_payment_methods: {
+//     //     enabled: true,
+//     //   },
+//     // });
+
+//     // const charge = await stripe.charges.create({
+//     //   amount: total * 100,
+//     //   currency: "usd",
+//     //   customer: `${req.session.customerId}`,
+//     // });
+
+//     console.log("charge----", charge);
+//     req.charge = paymentIntent;
+//     const result = await orderController.placeOrder(req, res);
+
+//     return result;
+//     // return res.json({ data: paymentIntent });
+//   } catch (err) {
+//     //  console.log("--err", err.raw.message);
+//     return res.render("frontend/payment-error", {
+//       status: 1,
+//       // message: err.raw.message,
+//     });
+//     // res.redirect("/payment-error", mess);
+//     // return res.status(400).json({ data: "Something Went Wrong" });
+//   }
+// };
+
+
 exports.chargeSavedCard = async (req, res) => {
   try {
-    console.log("----req body,", req.body);
-    var total = 0;
+    let total = 0;
 
+    // Build cart information
     const cartInfo = {
       _user: req.body.userid,
       _store: req.body.storeid,
       cvv: req.body.cvvHidden,
-      // cvv: req.body.cvv.filter(Boolean),
     };
 
-    var data = await Cart.findOne({
+    // Fetch cart data
+    const data = await Cart.findOne({
       _user: cartInfo._user,
       _store: cartInfo._store,
     })
@@ -614,66 +748,53 @@ exports.chargeSavedCard = async (req, res) => {
         },
       })
       .lean();
-    if (!data)
-      return res.json({ status: 0, message: "cart is empty", data: "" });
-    let total_quantity, total_price, coupon, discounted_price;
-    total_quantity = data.cart
-      .map((product) => product.quantity)
-      .reduce(function (acc, cur) {
-        return acc + cur;
-      });
+
+    // Handle case when cart is empty
+    if (!data || !data.cart || data.cart.length === 0) {
+      return res.json({ status: 0, message: "Cart is empty", data: "" });
+    }
+
+    // Calculate the total cost as a single value
+    let total_price = 0;
 
     total_price = data.cart
-      .map((product) => product.total_price)
-      .reduce(function (acc, cur) {
-        return acc + cur;
-      });
+      .map((product) => parseFloat(product.total_price)) // Ensure prices are treated as numbers
+      .reduce((acc, cur) => acc + cur, 0); // Sum all the product prices
 
-    for (const [i, product] of data.cart.entries()) {
-      total += product.total_price;
-    }
-    console.log("----", total);
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: total * 100,
-      currency: "usd",
-      // payment_method_types: ["card"],
-      customer: `${req.decoded.customer_id}`,
-      payment_method: req.body.payment_method_id,
-      confirmation_method: "manual",
-      confirm: true,
-    });
-    // const paymentIntent = await stripe.paymentIntents.create({
-    //   amount: total * 100,
-    //   currency: "usd",
-    //   // payment_method_types: ["card"],
-    //   customer: `${req.session.customerId}`,
-    //   automatic_payment_methods: {
-    //     enabled: true,
-    //   },
-    // });
+    // Ensure total_cost is a number (not an array)
+    total = total_price;
 
-    // const charge = await stripe.charges.create({
-    //   amount: total * 100,
-    //   currency: "usd",
-    //   customer: `${req.session.customerId}`,
-    // });
+    // Customer information (Customer ID from request body)
+    const customerID = req.body.customerID;
 
-    console.log("charge----", charge);
+    // Create payment intent (assuming integration with Stripe or other provider)
+    const paymentIntent = {
+      amount: total * 100, // Convert total to cents for Stripe
+      currency: "usd", // Use the appropriate currency
+      customer: customerID, // Customer ID from the request
+      payment_method: req.body.paymentid, // Payment method ID
+      confirmation_method: "manual", // Confirm payment manually
+      confirm: true, // Confirm payment immediately
+    };
+
+    // Pass payment intent to order controller
     req.charge = paymentIntent;
+
+    // Ensure order creation uses the correct total cost type
     const result = await orderController.placeOrder(req, res);
 
+    // Return the result of placing the order
     return result;
-    // return res.json({ data: paymentIntent });
+
   } catch (err) {
-    //  console.log("--err", err.raw.message);
+    console.error("--err", err); // Log error for debugging
     return res.render("frontend/payment-error", {
       status: 1,
-      // message: err.raw.message,
+      message: "Something went wrong during the payment process.",
     });
-    // res.redirect("/payment-error", mess);
-    // return res.status(400).json({ data: "Something Went Wrong" });
   }
 };
+
 
 exports.connectionToken = async (req, res) => {
   const token = await stripe.terminal.connectionTokens.create();

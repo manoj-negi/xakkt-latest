@@ -35,7 +35,12 @@ exports.productDetails = async (req, res) => {
       })
       .lean();
 
-    product.image = process.env.IMAGES_BUCKET_PATH + "/products/" + product.image
+    // product.image = process.env.IMAGES_BUCKET_PATH + "/products/" + product.image
+    
+    product.image = product.image
+    ? process.env.IMAGES_BUCKET_PATH + "/products/" + product.image
+    : process.env.IMAGES_BUCKET_PATH + "/products/default.jpg";
+
     is_favourite = 0;
     in_shoppinglist = 0;
     in_cart = 0;
