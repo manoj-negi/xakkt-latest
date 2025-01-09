@@ -12,6 +12,7 @@ const Device = require('../../models/device')
 var md5 = require('md5');
 const transporter = require('../../config/transporter-mail');
 var fs = require('fs');
+const imageUpload = require("../../helper/imageUpload");
 
 const app = express();
 var server = require('http').Server(app);
@@ -266,8 +267,6 @@ exports.editProfile = async (req, res) => {
 		  const user = await User.findOne({
 			_id: req.session.userid
 		})
-
-
 		let dob = moment(user.dob).format("YYYY-MM-DD")
 		return res.render('frontend/edit-profile', {
 			user: user,
@@ -299,16 +298,22 @@ exports.updateProfile = async (req, res) => {
 			}*/
 			//const pass = await md5(req.body.password)
 
+			let userprofile = user.profilePic;
+			if (req.file) {
+				const folder = 'user_profiles';
+				const uploadResult = await imageUpload.uploadNew1(req, folder);
+				userprofile = uploadResult.imageUrl;
+			}
+	
 			const data = {
 				   first_name: req.body.first_name,
 					last_name: req.body.last_name,
 					email: req.body.email,
 					contact_no: req.body.contact_no,
 					dob: req.body.dob,	
-					gender:req.body.gender
+					gender:req.body.gender,
+					profile_pic:userprofile
 			}
-			if(req.file){  data.profile_pic = req.file.path.replace(/public/g, "") }
-
 			
 			var userInfo = await User.findOneAndUpdate({
 				_id: req.params.id

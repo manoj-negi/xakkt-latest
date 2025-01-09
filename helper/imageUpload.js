@@ -28,3 +28,33 @@ exports.uploadNew = async (req, folder) => {
     return;
   }
 };
+
+exports.uploadNew1 = async (req, folder) => {
+  try {
+    const file = req.file.filename;
+    const absoluteFilePath = req.file.path;
+
+    return new Promise((resolve, reject) => {
+      fs.readFile(absoluteFilePath, async (err, data) => {
+        if (err) return reject(err);
+
+        const params = {
+          Bucket: `${process.env.AWS_BUCKET_NAME}`,
+          Key: `${folder}/${file}`,
+          Body: data,
+          ContentType: "image/*",
+        };
+
+        s3.upload(params, (s3Err, uploadData) => {
+          if (s3Err) return reject(s3Err);
+          console.log(`File uploaded successfully at ${uploadData.Location}`);
+          resolve({ imageName: file, imageUrl: uploadData.Location });
+        });
+      });
+    });
+
+  } catch (error) {
+    console.log("catch error = ", error);
+    throw error;
+  }
+};

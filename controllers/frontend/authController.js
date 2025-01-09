@@ -30,7 +30,7 @@ exports.login = async (req, res) => {
       { last_login: Date.now() }
     ).lean();
     req.session.customer = userInfo.email;
-    req.session.profilePic = userInfo.profile_pic?`${process.env.IMAGES_BUCKET_PATH}/users/${userInfo.profile_pic}`:userInfo.profile_pic;
+    req.session.profilePic = userInfo.profile_pic;
     req.session.fullName = userInfo.first_name + " " + userInfo.last_name;
     // req.session.customerId = userInfo.stripe_customer_id;
     req.session.customerId = userInfo._id ;
