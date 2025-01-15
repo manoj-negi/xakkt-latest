@@ -124,6 +124,62 @@ exports.upload = async (req, res) => {
 //     });
 // };
 
+// exports.cronWishlist = async (req, res) => {
+//   try {
+//       let wishlist = await Wishlist.find().lean();
+//       let users = [];
+
+//       for (const wishlistElem of wishlist) {
+//           const productStorePriceData = await StoreProductPricing.findOne({
+//               _product: wishlistElem._product,
+//               _store: wishlistElem._store,
+//           });
+//           const productRegularPriceData = await ProductRegularPricing.findOne({
+//               _product: wishlistElem._product,
+//               _store: wishlistElem._store,
+//           });
+
+//           const productRegularPrice = productRegularPriceData ? productRegularPriceData.regular_price : 0;
+//           const storeDealPrice = productStorePriceData ? productStorePriceData.deal_price : 0;
+
+//           if (wishlistElem.wish_price <= storeDealPrice || wishlistElem.wish_price <= productRegularPrice) {
+//               users.push(wishlistElem._user);
+//           }
+//       }
+
+//       if (users.length === 0) {
+//           return res.status(200).send({ status: true, message: "No users met the criteria." });
+//       }
+
+//       const job = queue.createJob(users);
+//       job.retries(3).save();
+
+//       job.on("succeeded", (result) => console.log(`Job succeeded: ${result}`));
+//       job.on("failed", (err) => console.error(`Job failed: ${err.message}`));
+
+//       if (!queue.processing) {
+//           queue.processing = true;
+//           queue.process(3, async (job, done) => {
+//               try {
+//                   for (const user of job.data) {
+//                       await pushController.firebase(user, "Deal Price");
+//                   }
+//                   done();
+//               } catch (error) {
+//                   done(error);
+//               }
+//           });
+//       }
+
+//       return res.status(200).send({ status: true, message: "Wishlist cron job queued successfully." });
+//   } catch (error) {
+//       if (!res.headersSent) {
+//           return res.status(500).send({ status: false, message: "Internal Server Error." });
+//       }
+//   }
+// };
+
+
 exports.cronWishlist = async (req, res) => {
   let wishlist = await Wishlist.find().lean();
   var users = [];
@@ -169,9 +225,27 @@ exports.cronWishlist = async (req, res) => {
     );
   });
 
-  queue.process(3, async (job) => {
-    users.forEach((element) => {
-      pushController.firebase(element, "Deal Price");
-    });
-  });
+//   queue.process(3, async (job) => {
+//     users.forEach((element) => {
+//       pushController.firebase(element, "Deal Price");
+//     });
+//   });
+
+// if (!queue.processCalled) {
+//     queue.processCalled = true;
+//     queue.process(3, async (job) => {
+//         try {
+//             job.data.forEach((element) => {
+//                 pushController.firebase(element, "Deal Price");
+//             });
+//             await queue.destroy(); // Stops the queue permanently
+//             console.log('Queue has been destroyed after processing.');
+//         } catch (err) {
+//             console.error(`Job processing error: ${err.message}`);
+//         }
+//     });
+// }
+
 };
+
+
