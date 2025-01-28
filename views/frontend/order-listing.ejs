@@ -76,7 +76,7 @@
                                     <div class="card-body">
                                     <h6 class="mb-2">
                                         <a href="javascript:void(0)" class="text-black"># <%=order.shipping.order_id%> </a>
-                                        <span class="text-black" style="float: right;">Delivered on Mon, Nov 12 </span>
+                                        <span id="delivery-date" class="text-black" style="float: right;"></span>
                                     </h6>
                                     </div>
                                   </div>
@@ -141,6 +141,21 @@
     <script>  var baseUrl = '<%=process.env.BASE_URL%>'</script>
     <script src="/frontend/js/xakkt.js"></script>
     
+    <script>
+  // Function to get tomorrow's date in the desired format
+  function getTomorrowDate() {
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+
+    const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+    return tomorrow.toLocaleDateString('en-US', options);
+  }
+
+  // Set the tomorrow's date in the span
+  document.getElementById('delivery-date').textContent = `Delivered on ${getTomorrowDate()}`;
+</script>
+
     <script>
       // Example starter JavaScript for disabling form submissions if there are invalid fields
       (function() {

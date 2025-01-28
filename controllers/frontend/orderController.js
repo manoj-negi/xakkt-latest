@@ -186,7 +186,7 @@ const pushController = require("./pushController");
     }
   
     try {
-      // Fetch the user and address
+      
       var user = await User.findOne(
         { _id: req.session.userid },
         {
@@ -195,7 +195,7 @@ const pushController = require("./pushController");
           },
         }
       ).lean();
-  
+
       if (!user.address){
         user.address = '123 Road'
       }
