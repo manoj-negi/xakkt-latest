@@ -231,6 +231,23 @@
 
 
    <script>
+
+      $(function () {
+      $('.select2').select2({});
+      bsCustomFileInput.init();
+
+      $("select[name='role']").on("change", function () {
+         const selectedRoles = $(this).val();
+         const customerRoleId = "60d460699e55392308757fc2";
+
+         if (selectedRoles.includes(customerRoleId)) {
+            $("select[name='company']").prop("disabled", true).val(null).trigger('change'); 
+         } else {
+            $("select[name='company']").prop("disabled", false);
+         }
+      });
+      });
+
       $(function () {
          $('.select2').select2({})
          bsCustomFileInput.init();
