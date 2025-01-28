@@ -157,44 +157,103 @@ exports.deleteAddress = async (req, res) => {
 
 	}
 }
+// exports.makeDefaultAddress = async (req, res) => {
+// 		try {
+// 			let resetDefault = await User.update({
+// 				_id: req.session.userid,
+// 				//address: { $elemMatch: { is_default: true} }
+// 			}, {
+// 				$set: {
+// 					"address.$[].is_default": false
+// 				}
+// 			})
+
+// 			if (!resetDefault.nModified) return res.json({
+// 				state: 0,
+// 				message: "Could not updated"
+// 			})
+
+// 			let setDefault = await User.update({
+// 				_id: req.session.userid,
+// 				"address._id": req.params.address
+// 			}, {
+// 				$set: {
+// 					"address.$.is_default": true
+// 				}
+// 			})
+
+// 			setDefault.nModified && res.redirect(req.header('Referer'));
+// 			return res.json({
+// 				state: 1,
+// 				message: "Something went wrong"
+// 			})
+
+// 		} catch (err) {
+// 			return res.status(404).json({
+// 				message: err.message
+// 			})
+
+// 		}
+// 	},
+
 exports.makeDefaultAddress = async (req, res) => {
-		try {
-			let resetDefault = await User.update({
-				_id: req.session.userid,
-				//address: { $elemMatch: { is_default: true} }
-			}, {
-				$set: {
-					"address.$[].is_default": false
-				}
-			})
+    try {
+        // First, check if there is any address with is_default = true
+        const user = await User.findById(req.session.userid);
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
 
-			if (!resetDefault.nModified) return res.json({
-				state: 0,
-				message: "Could not updated"
-			})
+        // Check if any address is already marked as default
+        const hasDefault = user.address.some(addr => addr.is_default === true);
+        
+        if (hasDefault) {
+            // Reset the default address to false if one exists
+            let resetDefault = await User.update(
+                {
+                    _id: req.session.userid,
+                    "address.is_default": true
+                },
+                {
+                    $set: { "address.$.is_default": false }
+                }
+            );
 
-			let setDefault = await User.update({
-				_id: req.session.userid,
-				"address._id": req.params.address
-			}, {
-				$set: {
-					"address.$.is_default": true
-				}
-			})
+            if (!resetDefault.nModified) {
+                return res.json({
+                    state: 0,
+                    message: "Could not reset the default address"
+                });
+            }
+        }
 
-			setDefault.nModified && res.redirect(req.header('Referer'));
-			return res.json({
-				state: 1,
-				message: "Something went wrong"
-			})
+        // Set the new default address
+        let setDefault = await User.update(
+            {
+                _id: req.session.userid,
+                "address._id": req.params.address
+            },
+            {
+                $set: { "address.$.is_default": true }
+            }
+        );
 
-		} catch (err) {
-			return res.status(404).json({
-				message: err.message
-			})
+        if (setDefault.nModified) {
+            return res.redirect(req.header('Referer'));
+        } else {
+            return res.json({
+                state: 0,
+                message: "Could not update the default address"
+            });
+        }
+    } catch (err) {
+        return res.status(500).json({
+            message: err.message
+        });
+    }
+};
 
-		}
-	},
+
 exports.updateAddress = async (req, res) => {
 		try {
 

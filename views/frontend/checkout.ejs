@@ -538,6 +538,14 @@
        </div>
       </div>
       <% } %>
+
+      <div class="row">
+        <div class="col-md-12">
+            <input type="radio" id="cod" name="paymentid" value="cash_on_delivery" required="required">
+            <label for="cod">Cash on Delivery</label>
+        </div>
+    </div>
+
       <button class="btn btn-primary btn-lg btn-block newBtnClassCvv" <%=(data?.cart)?"":"disabled"%> type="submit">Place your order</button>
     </form>
         <!--form class="needs-validation" novalidate="">

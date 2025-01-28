@@ -726,7 +726,6 @@ exports.listCards = async (req, res) => {
 exports.chargeSavedCard = async (req, res) => {
   try {
     let total = 0;
-
     // Build cart information
     const cartInfo = {
       _user: req.body.userid,
@@ -749,14 +748,12 @@ exports.chargeSavedCard = async (req, res) => {
       })
       .lean();
 
-    // Handle case when cart is empty
     if (!data || !data.cart || data.cart.length === 0) {
       return res.json({ status: 0, message: "Cart is empty", data: "" });
     }
 
     // Calculate the total cost as a single value
     let total_price = 0;
-
     total_price = data.cart
       .map((product) => parseFloat(product.total_price)) // Ensure prices are treated as numbers
       .reduce((acc, cur) => acc + cur, 0); // Sum all the product prices
@@ -766,8 +763,6 @@ exports.chargeSavedCard = async (req, res) => {
 
     // Customer information (Customer ID from request body)
     const customerID = req.body.customerID;
-
-    // Create payment intent (assuming integration with Stripe or other provider)
     const paymentIntent = {
       amount: total * 100, // Convert total to cents for Stripe
       currency: "usd", // Use the appropriate currency
@@ -777,12 +772,8 @@ exports.chargeSavedCard = async (req, res) => {
       confirm: true, // Confirm payment immediately
     };
 
-    // Pass payment intent to order controller
     req.charge = paymentIntent;
-
-    // Ensure order creation uses the correct total cost type
     const result = await orderController.placeOrder(req, res);
-
     // Return the result of placing the order
     return result;
 

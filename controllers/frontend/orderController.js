@@ -199,7 +199,7 @@ const pushController = require("./pushController");
       if (!user.address){
         user.address = '123 Road'
       }
-
+      
       if (!user || !user.address || user.address.length === 0) {
         return res.json({ status: 0, message: "Address not found" });
       }
