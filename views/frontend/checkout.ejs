@@ -501,41 +501,41 @@
           <input type="hidden" name="payment_method" value="0" />
 
           <% var total = 0 %>
-<% if(data?.cart){ for (const [i,product] of data.cart.entries()) { %>  
-<input type="hidden" name="products[<%=i%>][_product]" value="<%=product._product._id%>"/>
-<input type="hidden" name="products[<%=i%>][quantity]" value="<%=product.quantity%>"/>
-<% total += product.total_price %>
-<input type="hidden" name="total_cost" value="<%=total.toFixed(2)%>"/>
-<% } }%>
-<% if(addresses) for (const [i,address] of addresses.entries()) { %> 
-<input type="hidden" name="address" value="<%=address._id%>" />
-<%} %>
+          <% if(data?.cart){ for (const [i,product] of data.cart.entries()) { %>  
+          <input type="hidden" name="products[<%=i%>][_product]" value="<%=product._product._id%>"/>
+          <input type="hidden" name="products[<%=i%>][quantity]" value="<%=product.quantity%>"/>
+          <% total += product.total_price %>
+          <input type="hidden" name="total_cost" value="<%=total.toFixed(2)%>"/>
+          <% } }%>
+          <% if(addresses) for (const [i,address] of addresses.entries()) { %> 
+          <input type="hidden" name="address" value="<%=address._id%>" />
+          <%} %>
 
-<% if(customerID)  { %> 
-<input type="hidden" name="customerID" class="customerID" value="<%=customerID%>" />
-<% } %>
+          <% if(customerID)  { %> 
+          <input type="hidden" name="customerID" class="customerID" value="<%=customerID%>" />
+          <% } %>
 
-<% if(cards) for (const [i,card] of cards.entries()) { %> 
-  <div class="row">
-    <div class="col-md-4">
-      <input type="radio" id="<%=card.id%>" name="paymentid" value="<%=card.id%>" required="required" class="payment-radio">
-      <label for="<%=card.id%>">  <%= card.card.brand %> ending in <%= card.card.last4 %> </label>
-    </div>
-    <div class="col-md-2">
-      <label for="<%=card.id%>">  <%=card.billing_details.name%> </label>
-    </div>
-    <div class="col-md-2">
-      <label for="<%=card.id%>">  <%=card.card.exp_month%>/ <%=card.card.exp_year%></label>
-    </div>
-    <div class="col-md-2">
-      <input type="text" class="cvv" name="cvv" placeholder="CVV" />
-    </div>
-    <div class="col-md-2">
-      <input type="hidden" name="cardIdNew" class="cardIdNew" value="<%=card.id%>" />
-      <a href="#" class="deleteCard">delete</a>
-    </div>
-  </div>
-<% } %>
+          <% if(cards) for (const [i,card] of cards.entries()) { %> 
+            <div class="row">
+              <div class="col-md-4">
+                <input type="radio" id="<%=card.id%>" name="paymentid" value="<%=card.id%>" required="required" class="payment-radio" data-cvv-id="cvv-<%=card.id%>">
+                <label for="<%=card.id%>">  <%= card.card.brand %> ending in <%= card.card.last4 %> </label>
+              </div>
+              <div class="col-md-2">
+                <label for="<%=card.id%>">  <%=card.billing_details.name%> </label>
+              </div>
+              <div class="col-md-2">
+                <label for="<%=card.id%>">  <%=card.card.exp_month%>/ <%=card.card.exp_year%></label>
+              </div>
+              <div class="col-md-2">
+                <input type="text" id="cvv-<%=card.id%>" class="cvv" name="cvv" placeholder="CVV" />
+              </div>
+              <div class="col-md-2">
+                <input type="hidden" name="cardIdNew" class="cardIdNew" value="<%=card.id%>" />
+                <a href="#" class="deleteCard">delete</a>
+              </div>
+            </div>
+          <% } %>
 
       <div class="row">
         <div class="col-md-12">
@@ -736,40 +736,30 @@
               
 });
       </script>
-
 <script>
-  // Get all the radio buttons for payment options
-  const paymentRadios = document.querySelectorAll('.payment-radio');
-  
-  // Get the CVV input element
-  const cvvInput = document.querySelector('.cvv');
-  
-  // Function to toggle the required attribute on the CVV input
-  function toggleCVVRequired() {
-    let isChecked = false;
-    
-    // Check if any radio button is checked
+  document.addEventListener('DOMContentLoaded', function () {
+    // Get all the radio buttons for payment options
+    const paymentRadios = document.querySelectorAll('.payment-radio');
+
     paymentRadios.forEach(radio => {
-      if (radio.checked) {
-        isChecked = true;
-      }
+      radio.addEventListener('change', function () {
+        // Remove "required" from all CVV inputs initially
+        document.querySelectorAll('.cvv').forEach(cvv => cvv.removeAttribute('required'));
+
+        // Add "required" to the CVV linked to the selected card
+        const associatedCvvInput = document.getElementById(this.dataset.cvvId);
+        if (associatedCvvInput) {
+          associatedCvvInput.setAttribute('required', 'required');
+        }
+      });
     });
 
-    // If a card is selected, make the CVV field required, otherwise remove the required attribute
-    if (isChecked) {
-      cvvInput.setAttribute('required', 'required');
-    } else {
-      cvvInput.removeAttribute('required');
+    // Trigger change event on page load to ensure correct CVV is required
+    const checkedRadio = document.querySelector('.payment-radio:checked');
+    if (checkedRadio) {
+      checkedRadio.dispatchEvent(new Event('change'));
     }
-  }
-
-  // Add event listener to all radio buttons
-  paymentRadios.forEach(radio => {
-    radio.addEventListener('change', toggleCVVRequired);
   });
-
-  // Initially check the selected card on page load
-  toggleCVVRequired();
 </script>
    </body>
 </html>
