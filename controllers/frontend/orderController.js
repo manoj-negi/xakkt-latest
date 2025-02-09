@@ -186,15 +186,16 @@ const pushController = require("./pushController");
     }
   
     try {
-      
-      var user = await User.findOne(
+      const addressIds = Array.isArray(req.body.address) ? req.body.address : [req.body.address];
+
+        const user = await User.findOne(
         { _id: req.session.userid },
         {
           address: {
-            $elemMatch: { _id: mongoose.Types.ObjectId(req.body.address) },
+            $elemMatch: { _id: { $in: addressIds.map(id => mongoose.Types.ObjectId(id)) } },
           },
         }
-      ).lean();
+        ).lean();
 
       if (!user.address){
         user.address = '123 Road'
@@ -204,11 +205,9 @@ const pushController = require("./pushController");
         return res.json({ status: 0, message: "Address not found" });
       }
   
-      // Assuming the address is correctly fetched, use it
       const address = { ...user.address[0] };
-      delete address._id; // Remove _id from address if needed
+      delete address._id; 
   
-      // Initialize product array
       var product = [];
       const charge = req.charge;
   

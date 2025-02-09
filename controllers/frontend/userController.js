@@ -157,44 +157,6 @@ exports.deleteAddress = async (req, res) => {
 
 	}
 }
-// exports.makeDefaultAddress = async (req, res) => {
-// 		try {
-// 			let resetDefault = await User.update({
-// 				_id: req.session.userid,
-// 				//address: { $elemMatch: { is_default: true} }
-// 			}, {
-// 				$set: {
-// 					"address.$[].is_default": false
-// 				}
-// 			})
-
-// 			if (!resetDefault.nModified) return res.json({
-// 				state: 0,
-// 				message: "Could not updated"
-// 			})
-
-// 			let setDefault = await User.update({
-// 				_id: req.session.userid,
-// 				"address._id": req.params.address
-// 			}, {
-// 				$set: {
-// 					"address.$.is_default": true
-// 				}
-// 			})
-
-// 			setDefault.nModified && res.redirect(req.header('Referer'));
-// 			return res.json({
-// 				state: 1,
-// 				message: "Something went wrong"
-// 			})
-
-// 		} catch (err) {
-// 			return res.status(404).json({
-// 				message: err.message
-// 			})
-
-// 		}
-// 	},
 
 exports.makeDefaultAddress = async (req, res) => {
     try {
@@ -219,12 +181,12 @@ exports.makeDefaultAddress = async (req, res) => {
                 }
             );
 
-            if (!resetDefault.nModified) {
-                return res.json({
-                    state: 0,
-                    message: "Could not reset the default address"
-                });
-            }
+            // if (!resetDefault.nModified) {
+            //     return res.json({
+            //         state: 0,
+            //         message: "Could not reset the default address"
+            //     });
+            // }
         }
 
         // Set the new default address
@@ -238,14 +200,15 @@ exports.makeDefaultAddress = async (req, res) => {
             }
         );
 
-        if (setDefault.nModified) {
-            return res.redirect(req.header('Referer'));
-        } else {
-            return res.json({
-                state: 0,
-                message: "Could not update the default address"
-            });
-        }
+		return res.redirect(req.header('Referer'));
+        // if (setDefault.nModified) {
+        //     return res.redirect(req.header('Referer'));
+        // } else {
+        //     return res.json({
+        //         state: 0,
+        //         message: "Could not update the default address"
+        //     });
+        // }
     } catch (err) {
         return res.status(500).json({
             message: err.message
