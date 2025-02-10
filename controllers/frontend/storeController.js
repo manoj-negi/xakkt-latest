@@ -88,6 +88,7 @@ exports.productDetails = async (req, res) => {
 };
 
 exports.products = async (req, res) => {
+
   var userid = res.locals.userid;
   var pdata = [];
   var product = [];
@@ -395,25 +396,44 @@ exports.products = async (req, res) => {
 			data: pdata, 
 			store:storedata
 		})    */
-    let parentCatogories = await Categories.find({ parent_id: { $eq: null } })
+    // let parentCatogories = await Categories.find({ parent_id: { $eq: null } })
+    //   .select("-_products -createdAt -updatedAt -__v")
+    //   .lean();
+
+    // parentCategory = [];
+    // await Promise.all(
+    //   parentCatogories.map(async function (element) {
+    //     chilCategories = await Categories.find({ parent_id: element._id })
+    //       .select("-_products -createdAt -updatedAt -__v")
+    //       .lean();
+    //     var categorySet = {};
+    //     categorySet.name = element.name;
+    //     categorySet.subcategory = chilCategories;
+    //     categorySet.parent_slug = element.slug;
+    //     parentCategory.push(categorySet);
+    //     //chilCategories=chilCategories.map(v => ({...v, parentSlug: element.slug}))
+    //     //categorySet[element.name] = chilCategories
+    //   })
+    // );
+
+    let parentCategories = await Categories.find({ parent_id: { $eq: null } })
       .select("-_products -createdAt -updatedAt -__v")
       .lean();
 
-    parentCategory = [];
-    await Promise.all(
-      parentCatogories.map(async function (element) {
-        chilCategories = await Categories.find({ parent_id: element._id })
+    let parentCategory = await Promise.all(
+      parentCategories.map(async function (element) {
+        let childCategories = await Categories.find({ parent_id: element._id })
           .select("-_products -createdAt -updatedAt -__v")
           .lean();
-        var categorySet = {};
-        categorySet.name = element.name;
-        categorySet.subcategory = chilCategories;
-        categorySet.parent_slug = element.slug;
-        parentCategory.push(categorySet);
-        //chilCategories=chilCategories.map(v => ({...v, parentSlug: element.slug}))
-        //categorySet[element.name] = chilCategories
+
+        return {
+          name: element.name,
+          subcategory: childCategories,
+          parent_slug: element.slug,
+        };
       })
     );
+
     return res.render("frontend/products", {
       banners: pdata[0],
       deal: pdata[2],

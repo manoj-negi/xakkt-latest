@@ -89,9 +89,13 @@
                     <div class="form-group">
                       <label>Select Departments</label>
                       <select class="select2" name="department" multiple="multiple" style="width: 100%;" placeholder="Select Department">
-                        <% departments.forEach((department)=>{ %>
-                               <option value="<%=department._id%>" <%=(store?._department?.includes(department._id))?'selected':''%> ><%=department.name%></option>
-                        <%})%>
+                        <% departments.forEach((department) => { %>
+                          <option value="<%= department._id %>" 
+                          <%=(store?._department?.map(String).includes(String(department._id))) ? 'selected' : '' %> >
+                          <%= department.name %>
+                          </option>
+                        <% }) %>
+                        
                        </select>
                     </div>
                     
