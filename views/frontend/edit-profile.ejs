@@ -28,9 +28,9 @@
 								<div class="d-flex flex-column align-items-center text-center p-3 py-5">
 									<div class="profile-img-container"> 
                                         <%if(user.profile_pic){%>
-                                            <img class="rounded-circle mt-5 img-thumbnail" id="profilepic" src="<%=process.env.BASE_URL%>/<%=user.profile_pic%>">
+                                            <img class="rounded-circle mt-5 img-thumbnail" id="profilepic" src="<%=user.profile_pic%>">
 										<%}else{%>
-                                            <img class="rounded-circle mt-5 img-thumbnail" id="profilepic" src="<%=process.env.BASE_URL%>/xuser.png">        
+                                            <img class="rounded-circle mt-5 img-thumbnail" id="profilepic" src="<%=user.profile_pic%>">        
                                          <%}%>   
                                         <label for="ppic" style="cursor: pointer; margin-right: 10px; "> <i class="fas fa-camera fa-2x" style="color: rgb(156, 148, 148);margin-top: 20px;"></i>
 											<input type="file" name="profile_pic" id="ppic" style="display: none;" accept="image/gif,image/jpeg,image/jpg,image/png" data-original-title="upload photos" /> </label>

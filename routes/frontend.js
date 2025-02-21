@@ -9,28 +9,47 @@ var isloggedin = require("../middlewares/customerloggedin");
 // var userloggedin = require('../middlewares/customerloggedin')
 var multer = require("multer");
 var moment = require("moment");
+const fs = require('fs');
 const path = require("path");
 const Stripe = require("stripe");
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
+// var userStorage = multer.diskStorage({
+//   destination: function (req, file, callback) {
+//     callback(null, "./public/images/users");
+//   },
+//   filename: function (req, file, callback) {
+//     const img = path.basename(
+//       file.originalname,
+//       path.extname(file.originalname)
+//     );
+//     callback(
+//       null,
+//       img.split(" ").join("_").toLowerCase() +
+//         "_" +
+//         moment().unix() +
+//         path.extname(file.originalname)
+//     );
+//   },
+// });
+
 var userStorage = multer.diskStorage({
   destination: function (req, file, callback) {
-    callback(null, "./public/images/users");
+    const uploadDir = "./public/images/users";
+    fs.mkdir(uploadDir, { recursive: true }, (err) => {
+      if (err) {
+        console.error('Error creating directory:', err);
+        return callback(err);
+      }
+      callback(null, uploadDir);
+    });
   },
   filename: function (req, file, callback) {
-    const img = path.basename(
-      file.originalname,
-      path.extname(file.originalname)
-    );
-    callback(
-      null,
-      img.split(" ").join("_").toLowerCase() +
-        "_" +
-        moment().unix() +
-        path.extname(file.originalname)
-    );
-  },
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    callback(null, file.fieldname + '_' + uniqueSuffix + '.' + file.originalname.split('.').pop());
+  }
 });
+
 var userUpload = multer({ storage: userStorage });
 
 const IndexController = require("../controllers/frontend/indexController");

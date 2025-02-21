@@ -12,6 +12,7 @@ const Device = require('../../models/device')
 var md5 = require('md5');
 const transporter = require('../../config/transporter-mail');
 var fs = require('fs');
+const imageUpload = require("../../helper/imageUpload");
 
 const app = express();
 var server = require('http').Server(app);
@@ -156,44 +157,66 @@ exports.deleteAddress = async (req, res) => {
 
 	}
 }
+
 exports.makeDefaultAddress = async (req, res) => {
-		try {
-			let resetDefault = await User.update({
-				_id: req.session.userid,
-				//address: { $elemMatch: { is_default: true} }
-			}, {
-				$set: {
-					"address.$[].is_default": false
-				}
-			})
+    try {
+        // First, check if there is any address with is_default = true
+        const user = await User.findById(req.session.userid);
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
 
-			if (!resetDefault.nModified) return res.json({
-				state: 0,
-				message: "Could not updated"
-			})
+        // Check if any address is already marked as default
+        const hasDefault = user.address.some(addr => addr.is_default === true);
+        
+        if (hasDefault) {
+            // Reset the default address to false if one exists
+            let resetDefault = await User.update(
+                {
+                    _id: req.session.userid,
+                    "address.is_default": true
+                },
+                {
+                    $set: { "address.$.is_default": false }
+                }
+            );
 
-			let setDefault = await User.update({
-				_id: req.session.userid,
-				"address._id": req.params.address
-			}, {
-				$set: {
-					"address.$.is_default": true
-				}
-			})
+            // if (!resetDefault.nModified) {
+            //     return res.json({
+            //         state: 0,
+            //         message: "Could not reset the default address"
+            //     });
+            // }
+        }
 
-			setDefault.nModified && res.redirect(req.header('Referer'));
-			return res.json({
-				state: 1,
-				message: "Something went wrong"
-			})
+        // Set the new default address
+        let setDefault = await User.update(
+            {
+                _id: req.session.userid,
+                "address._id": req.params.address
+            },
+            {
+                $set: { "address.$.is_default": true }
+            }
+        );
 
-		} catch (err) {
-			return res.status(404).json({
-				message: err.message
-			})
+		return res.redirect(req.header('Referer'));
+        // if (setDefault.nModified) {
+        //     return res.redirect(req.header('Referer'));
+        // } else {
+        //     return res.json({
+        //         state: 0,
+        //         message: "Could not update the default address"
+        //     });
+        // }
+    } catch (err) {
+        return res.status(500).json({
+            message: err.message
+        });
+    }
+};
 
-		}
-	},
+
 exports.updateAddress = async (req, res) => {
 		try {
 
@@ -266,8 +289,6 @@ exports.editProfile = async (req, res) => {
 		  const user = await User.findOne({
 			_id: req.session.userid
 		})
-
-
 		let dob = moment(user.dob).format("YYYY-MM-DD")
 		return res.render('frontend/edit-profile', {
 			user: user,
@@ -299,16 +320,22 @@ exports.updateProfile = async (req, res) => {
 			}*/
 			//const pass = await md5(req.body.password)
 
+			let userprofile = user.profilePic;
+			if (req.file) {
+				const folder = 'user_profiles';
+				const uploadResult = await imageUpload.uploadNew1(req, folder);
+				userprofile = uploadResult.imageUrl;
+			}
+	
 			const data = {
 				   first_name: req.body.first_name,
 					last_name: req.body.last_name,
 					email: req.body.email,
 					contact_no: req.body.contact_no,
 					dob: req.body.dob,	
-					gender:req.body.gender
+					gender:req.body.gender,
+					profile_pic:userprofile
 			}
-			if(req.file){  data.profile_pic = req.file.path.replace(/public/g, "") }
-
 			
 			var userInfo = await User.findOneAndUpdate({
 				_id: req.params.id

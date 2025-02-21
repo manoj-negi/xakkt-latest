@@ -136,6 +136,9 @@ exports.save = async (req, res) => {
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
+
+    let profilePic = req.file && req.file.filename ? req.file.filename : 'empty.jpg';
+
     // profile_pic: req.file.path.replace('public/', ''),
     let userinfo = {
       first_name: req.body.first_name,
@@ -152,7 +155,7 @@ exports.save = async (req, res) => {
       ncrStatus: req.body.ncrStatus,
       superbuckId: req.body.superbuckId,
       _timezone: req.body.timezone,
-      profile_pic: req.file.filename,
+      profile_pic: profilePic,
       dob: moment(req.body.dob).format("YYYY-MM-DD"),
     };
 

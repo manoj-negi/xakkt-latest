@@ -430,7 +430,12 @@
                       { "data": "brand_id.name" },
                       { "data": "name.english" },
                       {"data":"weight"},
-                      {"data": "_unit.name"},
+                      {
+                          data: '_unit.name',
+                          render: function(data, type, row) {
+                              return data ? data : 'NA';
+                          }
+                      },
                       {
                         "data": "ID",
                         render: function (data, type, row) {

@@ -66,45 +66,40 @@
       </section>
      <section class="categ-pro">
         <div class="container mt-5 mb-5">
-            
-            <div class="row mt-1">
-                <% for (const [i,product] of storeProducts.entries()) { %>
+          <div class="row mt-1">
+            <% if (storeProducts.length === 0) { %>
+              <div class="col-12 text-center">
+                <p>There are no products available at this time. Please check back again.</p>
+              </div>
+            <% } else { %>
+              <% for (const [i, product] of storeProducts.entries()) { %>
                 <div class="col-md-3 col-sm-12 mb-3">
-                    <div class="p-card bg-white p-2 rounded px-3 text-center">
-                       <!--div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2">2 credits</span></div-->
-                       <img class="card-img-top" src="<%=process.env.IMAGES_BUCKET_PATH%>/images/products/<%=product.image%>" alt="Card image cap">
-                       
-                       <!--span class="badge badge-primary py-1 mb-2">integrations</span-->
-                       
-
-                        <div class="d-block mb-5">
-                            <div class="product-title">
-                              <a href="<%=process.env.BASE_URL%>/<%=store.slug%>/product/<%=product.slug%>" > <%=product.name.english%> </a>
-                            </div>
-                            <div><%=product.weight%> <%=product.unit%></div>
-                            <div class="pricing">
-
-                              <%if(product.deal_price) {%>
-                                 <span style="width:100%" class="regular_price"><del><%=store._currency.name%><%=product.regular_price%></del></span>
-                                 <span class="deal_price"><%=store._currency.name%><%=product.deal_price%></span>
-                             <%}else{%>
-                                 <span class="deal_price"><%=store._currency.name%><%=product.regular_price%></span>
-                              <%}%> 
-                               
-                            </div>
-
-                          <form class="cart-form" method="post" id="product_form_subcategory_<%=product._id%>">
-                            <input type="hidden" name="_store" value="<%=store._id%>" />
-                            <%- await include('_partials/productSliders.ejs',{product:product,slider:'subcategory'}); %>
-                          </form>  
-                          </div>
-                       
-                       
-                   
+                  <div class="p-card bg-white p-2 rounded px-3 text-center">
+                    <img class="card-img-top" src="<%= process.env.IMAGES_BUCKET_PATH %>/products/<%= product.image %>" alt="Card image cap" style="width: 178px; height: 178px; object-fit: cover;">
+                    
+                    <div class="d-block mb-5">
+                      <div class="product-title">
+                        <a href="<%= process.env.BASE_URL %>/<%= store.slug %>/product/<%= product.slug %>"><%= product.name.english %></a>
+                      </div>
+                      <div><%= product.weight %> <%= product.unit %></div>
+                      <div class="pricing">
+                        <% if (product.deal_price) { %>
+                          <span style="width:100%" class="regular_price"><del><%= store._currency.name %><%= product.regular_price %></del></span>
+                          <span class="deal_price"><%= store._currency.name %><%= product.deal_price %></span>
+                        <% } else { %>
+                          <span class="deal_price"><%= store._currency.name %><%= product.regular_price %></span>
+                        <% } %>
+                      </div>
+                      <form class="cart-form" method="post" id="product_form_subcategory_<%= product._id %>">
+                        <input type="hidden" name="_store" value="<%= store._id %>" />
+                        <%- await include('_partials/productSliders.ejs', { product: product, slider: 'subcategory' }) %>
+                      </form>
                     </div>
-                 </div>
-                 <% }%> 
-            </div>
+                  </div>
+                </div>
+              <% } %>
+            <% } %>
+          </div>
            
          </div> 
      </section>                  

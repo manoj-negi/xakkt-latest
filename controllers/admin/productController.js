@@ -409,7 +409,6 @@ exports.remove = async (req, res) => {
 exports.priceSave = async (req, res) => {
   try {
     const arr = [];
-
     for (i = 0; i < req.body.no_of_stores; i++) {
       data = {};
       data._deal = req.body.deal[i];
@@ -426,12 +425,14 @@ exports.priceSave = async (req, res) => {
         req.body.productid,
         req.body.deal_price[i]
       );
+
       const bannerinfo = {
         _deal: req.body.deal[i],
         _store: req.body.store[i],
         deal_start: moment(req.body.stime[i]).startOf("day").toISOString(),
         deal_end: moment(req.body.etime[i]).endOf("day").toISOString(),
       };
+
       const banner = {
         _deal: req.body.deal[i],
         _store: req.body.store[i],
@@ -450,12 +451,12 @@ exports.priceSave = async (req, res) => {
     uploadController.cronWishlist(req, res);
     if (!productprice) {
       await req.flash("failure", "Product price");
-      res.redirect("/admin/product");
+      return res.redirect("/admin/product");
     }
-    res.redirect("/admin/product");
+    return res.redirect("/admin/product");
   } catch (err) {
     console.log("===validation", err);
-    res.send(err);
+    return res.send(err);
   }
 };
 
